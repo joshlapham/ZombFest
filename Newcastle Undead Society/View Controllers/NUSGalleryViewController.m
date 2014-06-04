@@ -102,7 +102,7 @@
     
     if (self) {
         // Remove seperator insets from tableView
-        // NOTE - not working
+        // TODO - IS working, but images have a line in-between?
         [self.tableView setSeparatorColor:[UIColor clearColor]];
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }

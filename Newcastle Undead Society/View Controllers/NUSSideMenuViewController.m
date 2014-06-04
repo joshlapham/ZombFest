@@ -12,6 +12,7 @@
 #import "NUSNewsFeedViewController.h"
 #import "NUSGalleryViewController.h"
 #import "NUSAboutViewController.h"
+#import "NUSContactViewController.h"
 
 @interface NUSSideMenuViewController () {
     NSArray *cellArray;
@@ -57,6 +58,16 @@
         case 2:
             // Gallery was selected
             self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSGalleryViewController alloc] init]];
+            break;
+            
+        case 3:
+            // Videos was selected
+            // Code here ..
+            break;
+            
+        case 4:
+            // Contact was selected
+            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSContactViewController alloc] init]];
             break;
             
         default:

@@ -37,6 +37,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AboutCell" forIndexPath:indexPath];
     
+    // Disable tapping of cells
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     // Init cell labels
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
     UILabel *contentLabel = (UILabel *)[cell viewWithTag:102];

@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		3286E19C248E44EB8742593A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E52AA9D13145B0BFBCDE4A /* libPods.a */; };
 		6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */; };
+		680E749D193F16FA00457BA2 /* NUSContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680E749C193F16FA00457BA2 /* NUSContactCell.xib */; };
 		6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */; };
 		684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 684AF03418F028C100AE304F /* NUSSideMenuViewController.m */; };
+		688CCF02193F12E7007C01D9 /* NUSContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688CCF01193F12E7007C01D9 /* NUSContactViewController.m */; };
 		6892E78318CF31A600D60787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78218CF31A600D60787 /* Foundation.framework */; };
 		6892E78518CF31A600D60787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78418CF31A600D60787 /* CoreGraphics.framework */; };
 		6892E78718CF31A600D60787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78618CF31A600D60787 /* UIKit.framework */; };
@@ -45,10 +47,13 @@
 /* Begin PBXFileReference section */
 		11E52AA9D13145B0BFBCDE4A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSNewsFeedCell.xib; path = Cells/NUSNewsFeedCell.xib; sourceTree = "<group>"; };
+		680E749C193F16FA00457BA2 /* NUSContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSContactCell.xib; path = Cells/NUSContactCell.xib; sourceTree = "<group>"; };
 		6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSidePanelController.h; path = "View Controllers/NUSSidePanelController.h"; sourceTree = "<group>"; };
 		6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSSidePanelController.m; path = "View Controllers/NUSSidePanelController.m"; sourceTree = "<group>"; };
 		684AF03318F028C100AE304F /* NUSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSideMenuViewController.h; path = "View Controllers/NUSSideMenuViewController.h"; sourceTree = "<group>"; };
 		684AF03418F028C100AE304F /* NUSSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSSideMenuViewController.m; path = "View Controllers/NUSSideMenuViewController.m"; sourceTree = "<group>"; };
+		688CCF00193F12E7007C01D9 /* NUSContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSContactViewController.h; path = "View Controllers/NUSContactViewController.h"; sourceTree = "<group>"; };
+		688CCF01193F12E7007C01D9 /* NUSContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContactViewController.m; path = "View Controllers/NUSContactViewController.m"; sourceTree = "<group>"; };
 		6892E77F18CF31A600D60787 /* Newcastle Undead Society.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Newcastle Undead Society.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6892E78218CF31A600D60787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6892E78418CF31A600D60787 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +190,7 @@
 				6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */,
 				68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */,
 				68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */,
+				680E749C193F16FA00457BA2 /* NUSContactCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -198,6 +204,8 @@
 				68FF3876193EE30200DA9438 /* NUSAboutViewController.m */,
 				68C22774193ED03700764274 /* NUSGalleryViewController.h */,
 				68C22775193ED03700764274 /* NUSGalleryViewController.m */,
+				688CCF00193F12E7007C01D9 /* NUSContactViewController.h */,
+				688CCF01193F12E7007C01D9 /* NUSContactViewController.m */,
 				6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */,
 				6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */,
 				684AF03318F028C100AE304F /* NUSSideMenuViewController.h */,
@@ -256,6 +264,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Josh Lapham";
 				TargetAttributes = {
+					6892E77E18CF31A600D60787 = {
+						DevelopmentTeam = 7HSH26BZGU;
+					};
 					6892E7A218CF31A600D60787 = {
 						TestTargetID = 6892E77E18CF31A600D60787;
 					};
@@ -290,6 +301,7 @@
 				6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */,
 				68C22778193ED13F00764274 /* NUSGalleryTitleCell.xib in Resources */,
 				6892E79E18CF31A600D60787 /* Images.xcassets in Resources */,
+				680E749D193F16FA00457BA2 /* NUSContactCell.xib in Resources */,
 				6892E79618CF31A600D60787 /* Main_iPhone.storyboard in Resources */,
 				6892E78D18CF31A600D60787 /* InfoPlist.strings in Resources */,
 			);
@@ -349,6 +361,7 @@
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,
 				68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */,
 				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,
+				688CCF02193F12E7007C01D9 /* NUSContactViewController.m in Sources */,
 				6892E79318CF31A600D60787 /* NUSAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,11 +498,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Newcastle Undead Society/Newcastle Undead Society-Prefix.pch";
 				INFOPLIST_FILE = "Newcastle Undead Society/Newcastle Undead Society-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A2D4690A-BF6D-4D62-A237-8A68D6984F36";
+				PROVISIONING_PROFILE = "EAB57CD7-3139-4E6E-87B4-019760260B09";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -500,11 +516,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Newcastle Undead Society/Newcastle Undead Society-Prefix.pch";
 				INFOPLIST_FILE = "Newcastle Undead Society/Newcastle Undead Society-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A2D4690A-BF6D-4D62-A237-8A68D6984F36";
+				PROVISIONING_PROFILE = "EAB57CD7-3139-4E6E-87B4-019760260B09";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
