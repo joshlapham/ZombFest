@@ -67,6 +67,9 @@
     webViewController.URL = socialLinkUrl;
     webViewController.title = socialLinkTitle;
     
+    // Set back button of navbar to have no text
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     // Show web view controller with social media link
     [self.navigationController pushViewController:webViewController animated:YES];
 }
