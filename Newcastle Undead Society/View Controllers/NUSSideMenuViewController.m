@@ -13,6 +13,7 @@
 #import "NUSGalleryViewController.h"
 #import "NUSAboutViewController.h"
 #import "NUSContactViewController.h"
+#import "NUSVideosViewController.h"
 
 @interface NUSSideMenuViewController () {
     NSArray *cellArray;
@@ -63,7 +64,7 @@
             
         case 3:
             // Videos was selected
-            // Code here ..
+            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSVideosViewController alloc] init]];
             break;
             
         case 4:

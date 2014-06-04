@@ -11,6 +11,8 @@
 		6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */; };
 		680E749D193F16FA00457BA2 /* NUSContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680E749C193F16FA00457BA2 /* NUSContactCell.xib */; };
 		680E74A0193F1D6E00457BA2 /* NUSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 680E749F193F1D6E00457BA2 /* NUSConstants.m */; };
+		681894C1193F34E500A7B73B /* NUSVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681894C0193F34E500A7B73B /* NUSVideosViewController.m */; };
+		681894C3193F35A400A7B73B /* NUSVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681894C2193F35A400A7B73B /* NUSVideoCell.xib */; };
 		6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */; };
 		684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 684AF03418F028C100AE304F /* NUSSideMenuViewController.m */; };
 		688CCF02193F12E7007C01D9 /* NUSContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688CCF01193F12E7007C01D9 /* NUSContactViewController.m */; };
@@ -51,6 +53,9 @@
 		680E749C193F16FA00457BA2 /* NUSContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSContactCell.xib; path = Cells/NUSContactCell.xib; sourceTree = "<group>"; };
 		680E749E193F1D6E00457BA2 /* NUSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSConstants.h; sourceTree = "<group>"; };
 		680E749F193F1D6E00457BA2 /* NUSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSConstants.m; sourceTree = "<group>"; };
+		681894BF193F34E500A7B73B /* NUSVideosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSVideosViewController.h; path = "View Controllers/NUSVideosViewController.h"; sourceTree = "<group>"; };
+		681894C0193F34E500A7B73B /* NUSVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSVideosViewController.m; path = "View Controllers/NUSVideosViewController.m"; sourceTree = "<group>"; };
+		681894C2193F35A400A7B73B /* NUSVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSVideoCell.xib; path = Cells/NUSVideoCell.xib; sourceTree = "<group>"; };
 		6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSidePanelController.h; path = "View Controllers/NUSSidePanelController.h"; sourceTree = "<group>"; };
 		6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSSidePanelController.m; path = "View Controllers/NUSSidePanelController.m"; sourceTree = "<group>"; };
 		684AF03318F028C100AE304F /* NUSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSideMenuViewController.h; path = "View Controllers/NUSSideMenuViewController.h"; sourceTree = "<group>"; };
@@ -196,6 +201,7 @@
 				68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */,
 				68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */,
 				680E749C193F16FA00457BA2 /* NUSContactCell.xib */,
+				681894C2193F35A400A7B73B /* NUSVideoCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 				68FF3876193EE30200DA9438 /* NUSAboutViewController.m */,
 				68C22774193ED03700764274 /* NUSGalleryViewController.h */,
 				68C22775193ED03700764274 /* NUSGalleryViewController.m */,
+				681894BF193F34E500A7B73B /* NUSVideosViewController.h */,
+				681894C0193F34E500A7B73B /* NUSVideosViewController.m */,
 				688CCF00193F12E7007C01D9 /* NUSContactViewController.h */,
 				688CCF01193F12E7007C01D9 /* NUSContactViewController.m */,
 				6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */,
@@ -302,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */,
+				681894C3193F35A400A7B73B /* NUSVideoCell.xib in Resources */,
 				6892E79918CF31A600D60787 /* Main_iPad.storyboard in Resources */,
 				6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */,
 				68C22778193ED13F00764274 /* NUSGalleryTitleCell.xib in Resources */,
@@ -369,6 +378,7 @@
 				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,
 				688CCF02193F12E7007C01D9 /* NUSContactViewController.m in Sources */,
 				6892E79318CF31A600D60787 /* NUSAppDelegate.m in Sources */,
+				681894C1193F34E500A7B73B /* NUSVideosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
