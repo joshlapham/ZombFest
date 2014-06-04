@@ -26,6 +26,8 @@
 		6892E7AF18CF31A600D60787 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6892E7AD18CF31A600D60787 /* InfoPlist.strings */; };
 		6892E7B118CF31A600D60787 /* Newcastle_Undead_SocietyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */; };
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
+		68C22776193ED03700764274 /* NUSGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSGalleryViewController.m */; };
+		68C22778193ED13F00764274 /* NUSGalleryTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,9 @@
 		6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Newcastle_Undead_SocietyTests.m; sourceTree = "<group>"; };
 		68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsFeedViewController.h; path = "View Controllers/NUSNewsFeedViewController.h"; sourceTree = "<group>"; };
 		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
+		68C22774193ED03700764274 /* NUSGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSGalleryViewController.h; path = "View Controllers/NUSGalleryViewController.h"; sourceTree = "<group>"; };
+		68C22775193ED03700764274 /* NUSGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSGalleryViewController.m; path = "View Controllers/NUSGalleryViewController.m"; sourceTree = "<group>"; };
+		68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSGalleryTitleCell.xib; path = Cells/NUSGalleryTitleCell.xib; sourceTree = "<group>"; };
 		BD791ACED0144B6F90DD56EE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */,
+				68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -182,6 +188,8 @@
 			children = (
 				68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */,
 				68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */,
+				68C22774193ED03700764274 /* NUSGalleryViewController.h */,
+				68C22775193ED03700764274 /* NUSGalleryViewController.m */,
 				6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */,
 				6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */,
 				684AF03318F028C100AE304F /* NUSSideMenuViewController.h */,
@@ -271,6 +279,7 @@
 			files = (
 				6892E79918CF31A600D60787 /* Main_iPad.storyboard in Resources */,
 				6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */,
+				68C22778193ED13F00764274 /* NUSGalleryTitleCell.xib in Resources */,
 				6892E79E18CF31A600D60787 /* Images.xcassets in Resources */,
 				6892E79618CF31A600D60787 /* Main_iPhone.storyboard in Resources */,
 				6892E78D18CF31A600D60787 /* InfoPlist.strings in Resources */,
@@ -325,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C22776193ED03700764274 /* NUSGalleryViewController.m in Sources */,
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,

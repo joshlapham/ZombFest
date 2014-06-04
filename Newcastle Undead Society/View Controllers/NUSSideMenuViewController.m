@@ -10,6 +10,7 @@
 #import "JASidePanelController.h"
 #import "UIViewController+JASidePanel.h"
 #import "NUSNewsFeedViewController.h"
+#import "NUSGalleryViewController.h"
 
 @interface NUSSideMenuViewController () {
     NSArray *cellArray;
@@ -47,6 +48,11 @@
             self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSNewsFeedViewController alloc] init]];
             break;
             
+        case 2:
+            // Gallery was selected
+            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSGalleryViewController alloc] init]];
+            break;
+            
         default:
             break;
     }
@@ -64,7 +70,7 @@
     [super viewDidLoad];
     
     // Init cellArray
-    cellArray = [NSArray arrayWithObjects:@"News", @"About", @"Past Events", @"Videos", @"Contact", nil];
+    cellArray = [NSArray arrayWithObjects:@"News", @"About", @"Gallery", @"Videos", @"Contact", nil];
     
     // Set background colour of menu to dark gray
     [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
