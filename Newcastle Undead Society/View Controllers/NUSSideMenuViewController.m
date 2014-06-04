@@ -94,6 +94,8 @@
     // Set background colour of tableView
     [self.tableView setBackgroundColor:[UIColor colorWithRed:0.4 green:0.38 blue:0.35 alpha:1]];
     
+    [self.tableView setScrollEnabled:NO];
+    
     // Set navbar colour
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.4 green:0.38 blue:0.35 alpha:1]];
     
