@@ -7,12 +7,19 @@
 //
 
 #import "NUSAppDelegate.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 @implementation NUSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // CocoaLumberjack
+    // Setup XCode console logger
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
     return YES;
 }
 							

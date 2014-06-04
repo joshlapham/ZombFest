@@ -6,7 +6,7 @@ pod 'JASidePanels', '~> 1.3.2'
 #pod 'MagicalRecord', :git => 'https://github.com/magicalpanda/MagicalRecord.git', :commit => '6863ec67fb08d81f4bf1090df1fbaa9e6c945fe5'
 pod 'SDWebImage', '~> 3.5'
 #pod 'Reachability', '~> 3.1'
-#pod 'CocoaLumberjack', '~> 1.8'
+pod 'CocoaLumberjack', '~> 1.8'
 #pod 'CrashlyticsFramework', '~> 2.1'
 pod 'Reveal-iOS-SDK', '~> 1.0'
 
