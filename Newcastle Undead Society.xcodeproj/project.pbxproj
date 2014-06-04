@@ -31,7 +31,7 @@
 		6892E7AF18CF31A600D60787 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6892E7AD18CF31A600D60787 /* InfoPlist.strings */; };
 		6892E7B118CF31A600D60787 /* Newcastle_Undead_SocietyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */; };
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
-		68C22776193ED03700764274 /* NUSGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSGalleryViewController.m */; };
+		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
 		68C22778193ED13F00764274 /* NUSGalleryTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */; };
 		68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */; };
 		68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FF3876193EE30200DA9438 /* NUSAboutViewController.m */; };
@@ -82,8 +82,8 @@
 		6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Newcastle_Undead_SocietyTests.m; sourceTree = "<group>"; };
 		68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsFeedViewController.h; path = "View Controllers/NUSNewsFeedViewController.h"; sourceTree = "<group>"; };
 		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
-		68C22774193ED03700764274 /* NUSGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSGalleryViewController.h; path = "View Controllers/NUSGalleryViewController.h"; sourceTree = "<group>"; };
-		68C22775193ED03700764274 /* NUSGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSGalleryViewController.m; path = "View Controllers/NUSGalleryViewController.m"; sourceTree = "<group>"; };
+		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
+		68C22775193ED03700764274 /* NUSEventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventListViewController.m; path = "View Controllers/NUSEventListViewController.m"; sourceTree = "<group>"; };
 		68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSGalleryTitleCell.xib; path = Cells/NUSGalleryTitleCell.xib; sourceTree = "<group>"; };
 		68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSAboutCell.xib; path = Cells/NUSAboutCell.xib; sourceTree = "<group>"; };
 		68FF3875193EE30200DA9438 /* NUSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSAboutViewController.h; path = "View Controllers/NUSAboutViewController.h"; sourceTree = "<group>"; };
@@ -213,8 +213,8 @@
 				68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */,
 				68FF3875193EE30200DA9438 /* NUSAboutViewController.h */,
 				68FF3876193EE30200DA9438 /* NUSAboutViewController.m */,
-				68C22774193ED03700764274 /* NUSGalleryViewController.h */,
-				68C22775193ED03700764274 /* NUSGalleryViewController.m */,
+				68C22774193ED03700764274 /* NUSEventListViewController.h */,
+				68C22775193ED03700764274 /* NUSEventListViewController.m */,
 				681894BF193F34E500A7B73B /* NUSVideosViewController.h */,
 				681894C0193F34E500A7B73B /* NUSVideosViewController.m */,
 				688CCF00193F12E7007C01D9 /* NUSContactViewController.h */,
@@ -369,7 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68C22776193ED03700764274 /* NUSGalleryViewController.m in Sources */,
+				68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */,
 				680E74A0193F1D6E00457BA2 /* NUSConstants.m in Sources */,
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,

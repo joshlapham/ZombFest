@@ -1,21 +1,21 @@
 //
-//  NUSGalleryViewController.m
+//  NUSEventListViewController.m
 //  Newcastle Undead Society
 //
 //  Created by jl on 4/06/2014.
 //  Copyright (c) 2014 Josh Lapham. All rights reserved.
 //
 
-#import "NUSGalleryViewController.h"
+#import "NUSEventListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface NUSGalleryViewController () {
+@interface NUSEventListViewController () {
     NSMutableArray *cellArray;
 }
 
 @end
 
-@implementation NUSGalleryViewController
+@implementation NUSEventListViewController
 
 #pragma mark - UITableViewDataSource delegate methods
 

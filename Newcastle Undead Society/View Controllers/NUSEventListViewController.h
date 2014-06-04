@@ -1,5 +1,5 @@
 //
-//  NUSGalleryViewController.h
+//  NUSEventListViewController.h
 //  Newcastle Undead Society
 //
 //  Created by jl on 4/06/2014.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NUSGalleryViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface NUSEventListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

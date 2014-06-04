@@ -10,7 +10,7 @@
 #import "JASidePanelController.h"
 #import "UIViewController+JASidePanel.h"
 #import "NUSNewsFeedViewController.h"
-#import "NUSGalleryViewController.h"
+#import "NUSEventListViewController.h"
 #import "NUSAboutViewController.h"
 #import "NUSContactViewController.h"
 #import "NUSVideosViewController.h"
@@ -64,7 +64,7 @@
             
         case 2:
             // Events was selected
-            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSGalleryViewController alloc] init]];
+            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSEventListViewController alloc] init]];
             break;
             
         case 3:
