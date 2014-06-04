@@ -17,7 +17,7 @@
 
 @implementation NUSGalleryViewController
 
-#pragma mark - UITableViewDataSource
+#pragma mark - UITableViewDataSource delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -91,9 +91,6 @@
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSGalleryTitleCell" bundle:nil] forCellReuseIdentifier:@"GalleryTitleCell"];
     
-    // Remove seperator insets from tableView
-    //[self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    
     // Init cellArray data source
     [self initCellArrayDataSource];
 }
@@ -103,8 +100,11 @@
     // Init with grouped table style
     self = [super initWithStyle:UITableViewStyleGrouped];
     
-    if (!self) {
-        // Init code
+    if (self) {
+        // Remove seperator insets from tableView
+        // NOTE - not working
+        [self.tableView setSeparatorColor:[UIColor clearColor]];
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     return self;
 }

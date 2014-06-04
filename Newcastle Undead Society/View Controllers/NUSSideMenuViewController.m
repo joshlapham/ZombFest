@@ -11,6 +11,7 @@
 #import "UIViewController+JASidePanel.h"
 #import "NUSNewsFeedViewController.h"
 #import "NUSGalleryViewController.h"
+#import "NUSAboutViewController.h"
 
 @interface NUSSideMenuViewController () {
     NSArray *cellArray;
@@ -46,6 +47,11 @@
         case 0:
             // News was selected
             self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSNewsFeedViewController alloc] init]];
+            break;
+            
+        case 1:
+            // About was selected
+            self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSAboutViewController alloc] init]];
             break;
             
         case 2:
