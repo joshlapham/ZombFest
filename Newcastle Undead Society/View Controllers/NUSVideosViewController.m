@@ -74,15 +74,20 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
     UILabel *durationLabel = (UILabel *)[cell viewWithTag:102];
     UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:103];
+    UILabel *authorLabel = (UILabel *)[cell viewWithTag:104];
+    UILabel *yearLabel = (UILabel *)[cell viewWithTag:105];
     
     // TODO: cell label for author, year
     
-    // Ensure video title fits in label
+    // Ensure things fit in labels
     titleLabel.adjustsFontSizeToFitWidth = YES;
+    authorLabel.adjustsFontSizeToFitWidth = YES;
     
     // Set video title and duration
     titleLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"title"];
     durationLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"duration"];
+    authorLabel.text = [NSString stringWithFormat:@"By %@", [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"author"]];
+    yearLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"year"];
     
     // Set cell thumbnail using SDWebImage
     [cellImageView setImageWithURL:[NSURL URLWithString:[[sectionContents objectAtIndex:indexPath.row] objectForKey:@"thumbUrl"]]
@@ -106,7 +111,7 @@
     // Init string with title of social link
     NSString *videoLinkTitle = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"title"];
     
-    // Init NSURL with social link URL from cellArray
+    // Init NSURL with video link URL from cellArray
     NSURL *videoLinkUrl = [NSURL URLWithString:[[sectionContents objectAtIndex:indexPath.row] objectForKey:@"videoUrl"]];
     
     // Initialize the web view controller and set its' URL
@@ -117,7 +122,7 @@
     // Set back button of navbar to have no text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    // Show web view controller with social media link
+    // Show web view controller with video link
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -163,20 +168,19 @@
     videoWinners = [[NSMutableArray alloc] init];
     otherVideos = [[NSMutableArray alloc] init];
     
-    // TODO: add author, year to data source
-    
     // Other Videos
-    NSDictionary *videoItem1 = @{@"title" : @"Zombies In Newcastle", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=l0su0qTwsuA", @"thumbUrl" : @"http://img.youtube.com/vi/l0su0qTwsuA/default.jpg"};
+    NSDictionary *videoItem1 = @{@"title" : @"Zombies In Newcastle", @"author" : @"Someone", @"year" : @"2010", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=l0su0qTwsuA", @"thumbUrl" : @"http://img.youtube.com/vi/l0su0qTwsuA/default.jpg"};
     
     // Scream Screen
-    NSDictionary *videoItem2 = @{@"title" : @"Ultimatum - 2013", @"duration" : @"3:00", @"videoUrl" : @"http://vimeo.com/79647932", @"thumbUrl" : @"http://i.vimeocdn.com/video/455392983_100x75.jpg"};
+    NSDictionary *videoItem2 = @{@"title" : @"Ultimatum", @"author" : @"Elevator5 Productions", @"year" : @"2013", @"duration" : @"3:00", @"videoUrl" : @"http://vimeo.com/79647932", @"thumbUrl" : @"http://i.vimeocdn.com/video/455392983_100x75.jpg"};
     
-    NSDictionary *videoItem3 = @{@"title" : @"Unconsumed - 2011", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=pZw3igUKDJU", @"thumbUrl" : @"http://img.youtube.com/vi/pZw3igUKDJU/default.jpg"};
+    NSDictionary *videoItem3 = @{@"title" : @"Unconsumed", @"author" : @"PureHDProduction", @"year" : @"2011", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=pZw3igUKDJU", @"thumbUrl" : @"http://img.youtube.com/vi/pZw3igUKDJU/default.jpg"};
     
-    NSDictionary *videoItem4 = @{@"title" : @"One Foot In The Grave", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=fHthaXXFNEA", @"thumbUrl" : @"http://img.youtube.com/vi/fHthaXXFNEA/default.jpg"};
+    NSDictionary *videoItem4 = @{@"title" : @"One Foot In The Grave", @"author" : @"Crimean Pictures", @"year" : @"2010", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=fHthaXXFNEA", @"thumbUrl" : @"http://img.youtube.com/vi/fHthaXXFNEA/default.jpg"};
     
-    // Author: Arf Power
-    NSDictionary *videoItem5 = @{@"title" : @"A Zombie Film", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=neszLIKQb_o", @"thumbUrl" : @"http://img.youtube.com/vi/neszLIKQb_o/default.jpg"};
+    NSDictionary *videoItem5 = @{@"title" : @"A Zombie Film", @"author" : @"Arf Power", @"year" : @"2013", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=neszLIKQb_o", @"thumbUrl" : @"http://img.youtube.com/vi/neszLIKQb_o/default.jpg"};
+    
+    NSDictionary *videoItem6 = @{@"title" : @"Abandoned", @"author" : @"Alexander Jacobs", @"year" : @"2013", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=sWiozy9FYEM", @"thumbUrl" : @"http://img.youtube.com/vi/sWiozy9FYEM/default.jpg"};
     
     // Scream Screen video winners
     [videoWinners addObject:videoItem2];
@@ -185,6 +189,7 @@
     // Scream Screen video entries
     [videoEntries addObject:videoItem4];
     [videoEntries addObject:videoItem5];
+    [videoEntries addObject:videoItem6];
     
     // Other video entries
     [otherVideos addObject:videoItem1];
