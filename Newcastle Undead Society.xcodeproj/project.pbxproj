@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3286E19C248E44EB8742593A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E52AA9D13145B0BFBCDE4A /* libPods.a */; };
+		6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */; };
 		6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */; };
 		684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 684AF03418F028C100AE304F /* NUSSideMenuViewController.m */; };
 		6892E78318CF31A600D60787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78218CF31A600D60787 /* Foundation.framework */; };
@@ -24,7 +25,7 @@
 		6892E7A718CF31A600D60787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78618CF31A600D60787 /* UIKit.framework */; };
 		6892E7AF18CF31A600D60787 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6892E7AD18CF31A600D60787 /* InfoPlist.strings */; };
 		6892E7B118CF31A600D60787 /* Newcastle_Undead_SocietyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */; };
-		6892E7BC18CF35CA00D60787 /* NUSSocialLinkListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7BB18CF35CA00D60787 /* NUSSocialLinkListViewController.m */; };
+		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +40,11 @@
 
 /* Begin PBXFileReference section */
 		11E52AA9D13145B0BFBCDE4A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSSidePanelController.h; sourceTree = "<group>"; };
-		6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSSidePanelController.m; sourceTree = "<group>"; };
-		684AF03318F028C100AE304F /* NUSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSSideMenuViewController.h; sourceTree = "<group>"; };
-		684AF03418F028C100AE304F /* NUSSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSSideMenuViewController.m; sourceTree = "<group>"; };
+		6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSNewsFeedCell.xib; path = Cells/NUSNewsFeedCell.xib; sourceTree = "<group>"; };
+		6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSidePanelController.h; path = "View Controllers/NUSSidePanelController.h"; sourceTree = "<group>"; };
+		6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSSidePanelController.m; path = "View Controllers/NUSSidePanelController.m"; sourceTree = "<group>"; };
+		684AF03318F028C100AE304F /* NUSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSideMenuViewController.h; path = "View Controllers/NUSSideMenuViewController.h"; sourceTree = "<group>"; };
+		684AF03418F028C100AE304F /* NUSSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSSideMenuViewController.m; path = "View Controllers/NUSSideMenuViewController.m"; sourceTree = "<group>"; };
 		6892E77F18CF31A600D60787 /* Newcastle Undead Society.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Newcastle Undead Society.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6892E78218CF31A600D60787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6892E78418CF31A600D60787 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,8 +63,8 @@
 		6892E7AC18CF31A600D60787 /* Newcastle Undead SocietyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Newcastle Undead SocietyTests-Info.plist"; sourceTree = "<group>"; };
 		6892E7AE18CF31A600D60787 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Newcastle_Undead_SocietyTests.m; sourceTree = "<group>"; };
-		6892E7BA18CF35CA00D60787 /* NUSSocialLinkListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSSocialLinkListViewController.h; sourceTree = "<group>"; };
-		6892E7BB18CF35CA00D60787 /* NUSSocialLinkListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSSocialLinkListViewController.m; sourceTree = "<group>"; };
+		68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsFeedViewController.h; path = "View Controllers/NUSNewsFeedViewController.h"; sourceTree = "<group>"; };
+		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
 		BD791ACED0144B6F90DD56EE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,17 +128,10 @@
 		6892E78818CF31A600D60787 /* Newcastle Undead Society */ = {
 			isa = PBXGroup;
 			children = (
-				6892E79118CF31A600D60787 /* NUSAppDelegate.h */,
-				6892E79218CF31A600D60787 /* NUSAppDelegate.m */,
-				6892E7BA18CF35CA00D60787 /* NUSSocialLinkListViewController.h */,
-				6892E7BB18CF35CA00D60787 /* NUSSocialLinkListViewController.m */,
-				6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */,
-				6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */,
-				684AF03318F028C100AE304F /* NUSSideMenuViewController.h */,
-				684AF03418F028C100AE304F /* NUSSideMenuViewController.m */,
 				6892E79418CF31A600D60787 /* Main_iPhone.storyboard */,
 				6892E79718CF31A600D60787 /* Main_iPad.storyboard */,
-				6892E79D18CF31A600D60787 /* Images.xcassets */,
+				68C22772193ECF5400764274 /* Cells */,
+				68C22773193ECF5A00764274 /* View Controllers */,
 				6892E78918CF31A600D60787 /* Supporting Files */,
 			);
 			path = "Newcastle Undead Society";
@@ -145,6 +140,9 @@
 		6892E78918CF31A600D60787 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6892E79118CF31A600D60787 /* NUSAppDelegate.h */,
+				6892E79218CF31A600D60787 /* NUSAppDelegate.m */,
+				6892E79D18CF31A600D60787 /* Images.xcassets */,
 				6892E78A18CF31A600D60787 /* Newcastle Undead Society-Info.plist */,
 				6892E78B18CF31A600D60787 /* InfoPlist.strings */,
 				6892E78E18CF31A600D60787 /* main.m */,
@@ -169,6 +167,27 @@
 				6892E7AD18CF31A600D60787 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		68C22772193ECF5400764274 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		68C22773193ECF5A00764274 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */,
+				68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */,
+				6829F6CE18DC449B00CEDBED /* NUSSidePanelController.h */,
+				6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */,
+				684AF03318F028C100AE304F /* NUSSideMenuViewController.h */,
+				684AF03418F028C100AE304F /* NUSSideMenuViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,7 +237,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = NUS;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Josh Lapham";
 				TargetAttributes = {
 					6892E7A218CF31A600D60787 = {
@@ -251,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6892E79918CF31A600D60787 /* Main_iPad.storyboard in Resources */,
+				6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */,
 				6892E79E18CF31A600D60787 /* Images.xcassets in Resources */,
 				6892E79618CF31A600D60787 /* Main_iPhone.storyboard in Resources */,
 				6892E78D18CF31A600D60787 /* InfoPlist.strings in Resources */,
@@ -306,9 +326,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
-				6892E7BC18CF35CA00D60787 /* NUSSocialLinkListViewController.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,
+				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,
 				6892E79318CF31A600D60787 /* NUSAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,7 +391,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -411,7 +430,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -474,7 +492,6 @@
 		6892E7B818CF31A600D60787 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Newcastle Undead Society.app/Newcastle Undead Society";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -497,7 +514,6 @@
 		6892E7B918CF31A600D60787 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Newcastle Undead Society.app/Newcastle Undead Society";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
