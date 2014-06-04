@@ -90,6 +90,14 @@
     [self initCellArrayDataSource];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    // Turn off navbar translucency
+    [self.navigationController.navigationBar setTranslucent:NO];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     // Init with grouped table style

@@ -63,6 +63,9 @@
 {
     [super viewDidLoad];
     
+    // Turn off navbar translucency
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
     // Set title
     self.title = @"News";
     

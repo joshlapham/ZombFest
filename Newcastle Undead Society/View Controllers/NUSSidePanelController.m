@@ -7,6 +7,7 @@
 //
 
 #import "NUSSidePanelController.h"
+#import "NUSNewsFeedViewController.h"
 
 @interface NUSSidePanelController ()
 
@@ -17,7 +18,7 @@
 - (void)awakeFromNib
 {
     [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
-    [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"centerViewController"]];
+    [self setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[NUSNewsFeedViewController alloc] init]]];
 }
 
 @end
