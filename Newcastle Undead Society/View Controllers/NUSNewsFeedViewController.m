@@ -72,6 +72,9 @@
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSNewsFeedCell" bundle:nil] forCellReuseIdentifier:@"NewsFeedCell"];
     
+    // Remove seperator insets from tableView
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     // Init cellArray data source
     [self initCellArrayDataSource];
 }

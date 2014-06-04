@@ -75,7 +75,7 @@
     [super viewDidLoad];
     
     // Set title
-    self.title = @"Gallery";
+    self.title = @"Events";
     
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSGalleryTitleCell" bundle:nil] forCellReuseIdentifier:@"GalleryTitleCell"];

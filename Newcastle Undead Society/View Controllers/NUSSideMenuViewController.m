@@ -48,6 +48,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Deselect so menu item doesn't stay selected
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     switch (indexPath.row) {
         case 0:
             // News was selected
@@ -60,7 +63,7 @@
             break;
             
         case 2:
-            // Gallery was selected
+            // Events was selected
             self.sidePanelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[NUSGalleryViewController alloc] init]];
             break;
             
@@ -95,7 +98,7 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.4 green:0.38 blue:0.35 alpha:1]];
     
     // Init cellArray
-    cellArray = [NSArray arrayWithObjects:@"News", @"About", @"Gallery", @"Videos", @"Contact", nil];
+    cellArray = [NSArray arrayWithObjects:@"News", @"About", @"Events", @"Videos", @"Contact", nil];
 }
 
 @end
