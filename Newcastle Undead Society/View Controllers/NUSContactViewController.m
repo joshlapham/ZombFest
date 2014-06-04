@@ -19,7 +19,6 @@
 
 #pragma mark - UITableViewDataSource delegate methods
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -48,6 +47,7 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
     UIImageView *iconImage = (UIImageView *)[cell viewWithTag:102];
     
+    // Set cell text and image
     titleLabel.text = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"title"];
     iconImage.image = [UIImage imageNamed:[[cellArray objectAtIndex:indexPath.row] objectForKey:@"image"]];
     
@@ -56,8 +56,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO - init web controller with url when tapped
-    
     // Init string with title of social link
     NSString *socialLinkTitle = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"title"];
     
@@ -69,7 +67,7 @@
     webViewController.URL = socialLinkUrl;
     webViewController.title = socialLinkTitle;
     
-    // Push it
+    // Show web view controller with social media link
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 

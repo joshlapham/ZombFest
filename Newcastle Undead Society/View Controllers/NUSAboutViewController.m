@@ -44,6 +44,7 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
     UILabel *contentLabel = (UILabel *)[cell viewWithTag:102];
     
+    // Ensure title and content fit in their respective labels
     titleLabel.adjustsFontSizeToFitWidth = YES;
     contentLabel.numberOfLines = 0;
     

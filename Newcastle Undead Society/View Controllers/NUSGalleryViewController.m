@@ -36,25 +36,14 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString *titleToReturn;
-    
-    switch (section) {
-        case 0:
-            // First and only section
-            titleToReturn = @"Past Events";
-            break;
-            
-        default:
-            titleToReturn = nil;
-            break;
-    }
-    return titleToReturn;
+    return @"Past Events";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GalleryTitleCell" forIndexPath:indexPath];
     
+    // Init cell labels
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
     UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:101];
     

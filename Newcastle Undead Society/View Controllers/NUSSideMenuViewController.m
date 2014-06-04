@@ -22,7 +22,7 @@
 
 @implementation NUSSideMenuViewController
 
-#pragma mark - UITableViewDataSource
+#pragma mark - UITableViewDataSource delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -37,7 +37,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuCell" forIndexPath:indexPath];
-    [self configureCell:cell forRowAtIndexPath:indexPath];
+    
+    cell.textLabel.text = [cellArray objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -73,11 +74,6 @@
         default:
             break;
     }
-}
-
-- (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    cell.textLabel.text = [cellArray objectAtIndex:indexPath.row];
 }
 
 #pragma mark - init methods

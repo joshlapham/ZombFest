@@ -80,8 +80,8 @@
     NSString *loremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium enim a elit convallis semper. Mauris ut sagittis velit. Nullam eget consequat augue. Curabitur porta vel elit ac suscipit. Aliquam sed sem non sapien accumsan suscipit ut at nunc. Aenean malesuada erat sit amet aliquam pretium. Mauris facilisis ut eros vitae egestas.";
     
     NSDictionary *newsItem1 = @{@"title" : @"A News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"14/06/14"};
-    NSDictionary *newsItem2 = @{@"title" : @"A News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"7/03/14"};
-    NSDictionary *newsItem3 = @{@"title" : @"A News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"14/01/14"};
+    NSDictionary *newsItem2 = @{@"title" : @"Another News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"7/03/14"};
+    NSDictionary *newsItem3 = @{@"title" : @"New News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"14/01/14"};
     
     cellArray = [[NSMutableArray alloc] init];
     

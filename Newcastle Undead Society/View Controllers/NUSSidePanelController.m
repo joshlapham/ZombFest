@@ -20,9 +20,4 @@
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"centerViewController"]];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 @end
