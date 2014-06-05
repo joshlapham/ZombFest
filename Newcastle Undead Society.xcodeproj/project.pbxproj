@@ -15,6 +15,7 @@
 		681894C3193F35A400A7B73B /* NUSVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681894C2193F35A400A7B73B /* NUSVideoCell.xib */; };
 		6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */; };
 		684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 684AF03418F028C100AE304F /* NUSSideMenuViewController.m */; };
+		686C0D5B193FF4BB00C54E3E /* NUSDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 686C0D5A193FF4BB00C54E3E /* NUSDataStore.m */; };
 		688CCF02193F12E7007C01D9 /* NUSContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688CCF01193F12E7007C01D9 /* NUSContactViewController.m */; };
 		6892E78318CF31A600D60787 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78218CF31A600D60787 /* Foundation.framework */; };
 		6892E78518CF31A600D60787 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78418CF31A600D60787 /* CoreGraphics.framework */; };
@@ -61,6 +62,8 @@
 		6829F6CF18DC449B00CEDBED /* NUSSidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSSidePanelController.m; path = "View Controllers/NUSSidePanelController.m"; sourceTree = "<group>"; };
 		684AF03318F028C100AE304F /* NUSSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSideMenuViewController.h; path = "View Controllers/NUSSideMenuViewController.h"; sourceTree = "<group>"; };
 		684AF03418F028C100AE304F /* NUSSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSSideMenuViewController.m; path = "View Controllers/NUSSideMenuViewController.m"; sourceTree = "<group>"; };
+		686C0D59193FF4BB00C54E3E /* NUSDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSDataStore.h; path = Stores/NUSDataStore.h; sourceTree = "<group>"; };
+		686C0D5A193FF4BB00C54E3E /* NUSDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSDataStore.m; path = Stores/NUSDataStore.m; sourceTree = "<group>"; };
 		688CCF00193F12E7007C01D9 /* NUSContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSContactViewController.h; path = "View Controllers/NUSContactViewController.h"; sourceTree = "<group>"; };
 		688CCF01193F12E7007C01D9 /* NUSContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContactViewController.m; path = "View Controllers/NUSContactViewController.m"; sourceTree = "<group>"; };
 		6892E77F18CF31A600D60787 /* Newcastle Undead Society.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Newcastle Undead Society.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +206,8 @@
 			children = (
 				689795EC193FF1AA00A6DC67 /* JPLReachabilityManager.h */,
 				689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */,
+				686C0D59193FF4BB00C54E3E /* NUSDataStore.h */,
+				686C0D5A193FF4BB00C54E3E /* NUSDataStore.m */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 			files = (
 				68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */,
 				680E74A0193F1D6E00457BA2 /* NUSConstants.m in Sources */,
+				686C0D5B193FF4BB00C54E3E /* NUSDataStore.m in Sources */,
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,

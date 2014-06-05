@@ -9,7 +9,9 @@
 #import "NUSAppDelegate.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "Reachability.h"
 #import "Stores/JPLReachabilityManager.h"
+#import "Stores/NUSDataStore.h"
 
 @implementation NUSAppDelegate
 
@@ -48,6 +50,17 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
 }
 
+#pragma mark - Reachability NSNotification method
+
+- (void)reachabilityDidChange
+{
+    if ([JPLReachabilityManager isReachable]) {
+        DDLogVerbose(@"Network reachability did change, and the network is available");
+    } else if ([JPLReachabilityManager isUnreachable]) {
+        DDLogVerbose(@"Network reachability did change, and no network is available");
+    }
+}
+
 #pragma mark - App Delegate methods
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -59,14 +72,23 @@
     // Setup XCode console logger
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
-    // Reachability
+    // Init dataStore
+    [NUSDataStore sharedStore];
+    
+    // Init reachability
     [JPLReachabilityManager sharedManager];
     
     if ([JPLReachabilityManager isReachable]) {
-        DDLogVerbose(@"DuckDuckGo.com is reachable");
+        DDLogVerbose(@"Network is available");
     } else if ([JPLReachabilityManager isUnreachable]) {
-        DDLogVerbose(@"DuckDuckGo.com is NOT reachable");
+        DDLogVerbose(@"No network is available");
     }
+    
+    // Register for reachability NSNotification
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityDidChange)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
     
     return YES;
 }
