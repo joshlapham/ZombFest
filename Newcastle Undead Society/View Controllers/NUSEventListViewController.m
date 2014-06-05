@@ -36,12 +36,12 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Past Events";
+    return NSLocalizedString(@"Past Events", nil);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GalleryTitleCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventListCell" forIndexPath:indexPath];
     
     // Init cell labels
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
@@ -58,9 +58,9 @@
                                              placeholderImage:nil
                                                     completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
                                                         if (cellImage && !error) {
-                                                            //DDLogVerbose(@"Comix: fetched comic thumbnail image");
+                                                            //DDLogVerbose(@"Fetched cell thumbnail image");
                                                         } else {
-                                                            //DDLogError(@"Comix: error fetching comic thumbnail image: %@", [error localizedDescription]);
+                                                            //DDLogError(@"Error fetching cell thumbnail image: %@", [error localizedDescription]);
                                                         // TODO: implement fallback
                                                         }
                                                     }];
@@ -75,10 +75,10 @@
     [super viewDidLoad];
     
     // Set title
-    self.title = @"Events";
+    self.title = NSLocalizedString(@"Events", nil);
     
     // Register cell with tableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"NUSGalleryTitleCell" bundle:nil] forCellReuseIdentifier:@"GalleryTitleCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NUSEventListCell" bundle:nil] forCellReuseIdentifier:@"EventListCell"];
     
     // Init cellArray data source
     [self initCellArrayDataSource];

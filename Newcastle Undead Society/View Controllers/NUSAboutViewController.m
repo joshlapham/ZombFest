@@ -49,7 +49,8 @@
     contentLabel.numberOfLines = 0;
     
     // Set cell text
-    titleLabel.text = @"About Newcastle Undead Society";
+    titleLabel.text = NSLocalizedString(@"About Newcastle Undead Society", @"Title for section displaying information about the app and the organization");
+    // TODO: localize content for About section
     contentLabel.text = [cellArray objectAtIndex:indexPath.row];
     
     return cell;
@@ -65,7 +66,7 @@
     [self.navigationController.navigationBar setTranslucent:NO];
     
     // Set title
-    self.title = @"About";
+    self.title = NSLocalizedString(@"About", nil);
     
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSAboutCell" bundle:nil] forCellReuseIdentifier:@"AboutCell"];

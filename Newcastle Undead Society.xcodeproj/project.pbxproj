@@ -32,7 +32,7 @@
 		6892E7B118CF31A600D60787 /* Newcastle_Undead_SocietyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */; };
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
 		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
-		68C22778193ED13F00764274 /* NUSGalleryTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */; };
+		68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSEventListCell.xib */; };
 		68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */; };
 		68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FF3876193EE30200DA9438 /* NUSAboutViewController.m */; };
 /* End PBXBuildFile section */
@@ -84,7 +84,7 @@
 		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
 		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
 		68C22775193ED03700764274 /* NUSEventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventListViewController.m; path = "View Controllers/NUSEventListViewController.m"; sourceTree = "<group>"; };
-		68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSGalleryTitleCell.xib; path = Cells/NUSGalleryTitleCell.xib; sourceTree = "<group>"; };
+		68C22777193ED13F00764274 /* NUSEventListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventListCell.xib; path = Cells/NUSEventListCell.xib; sourceTree = "<group>"; };
 		68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSAboutCell.xib; path = Cells/NUSAboutCell.xib; sourceTree = "<group>"; };
 		68FF3875193EE30200DA9438 /* NUSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSAboutViewController.h; path = "View Controllers/NUSAboutViewController.h"; sourceTree = "<group>"; };
 		68FF3876193EE30200DA9438 /* NUSAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSAboutViewController.m; path = "View Controllers/NUSAboutViewController.m"; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */,
-				68C22777193ED13F00764274 /* NUSGalleryTitleCell.xib */,
+				68C22777193ED13F00764274 /* NUSEventListCell.xib */,
 				68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */,
 				680E749C193F16FA00457BA2 /* NUSContactCell.xib */,
 				681894C2193F35A400A7B73B /* NUSVideoCell.xib */,
@@ -313,7 +313,7 @@
 				681894C3193F35A400A7B73B /* NUSVideoCell.xib in Resources */,
 				6892E79918CF31A600D60787 /* Main_iPad.storyboard in Resources */,
 				6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */,
-				68C22778193ED13F00764274 /* NUSGalleryTitleCell.xib in Resources */,
+				68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */,
 				6892E79E18CF31A600D60787 /* Images.xcassets in Resources */,
 				680E749D193F16FA00457BA2 /* NUSContactCell.xib in Resources */,
 				6892E79618CF31A600D60787 /* Main_iPhone.storyboard in Resources */,

@@ -67,7 +67,7 @@
     [self.navigationController.navigationBar setTranslucent:NO];
     
     // Set title
-    self.title = @"News";
+    self.title = NSLocalizedString(@"News", nil);
     
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSNewsFeedCell" bundle:nil] forCellReuseIdentifier:@"NewsFeedCell"];

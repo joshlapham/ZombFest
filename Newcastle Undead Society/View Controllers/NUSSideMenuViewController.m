@@ -16,7 +16,7 @@
 #import "NUSVideosViewController.h"
 
 @interface NUSSideMenuViewController () {
-    NSArray *cellArray;
+    NSMutableArray *cellArray;
 }
 
 @end
@@ -88,6 +88,10 @@
 {
     [super viewDidLoad];
     
+    // Set title
+    //self.title = NSLocalizedString(@"Menu", nil);
+    //self.title = NSLocalizedString(@"Newcastle Undead Society", @"Name of the organization");
+    
     // Turn off navbar translucency
     [self.navigationController.navigationBar setTranslucent:NO];
     
@@ -99,8 +103,27 @@
     // Set navbar colour
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.4 green:0.38 blue:0.35 alpha:1]];
     
-    // Init cellArray
-    cellArray = [NSArray arrayWithObjects:@"News", @"About", @"Events", @"Videos", @"Contact", nil];
+    // Init cellArray data source
+    [self initCellArrayDataSource];
+}
+
+#pragma mark - Init cellArray data source
+
+- (void)initCellArrayDataSource
+{
+    cellArray = [[NSMutableArray alloc] init];
+    
+    NSString *newsMenuItem = NSLocalizedString(@"News", nil);
+    NSString *aboutMenuItem = NSLocalizedString(@"About", nil);
+    NSString *eventsMenuItem = NSLocalizedString(@"Events", nil);
+    NSString *videosMenuItem = NSLocalizedString(@"Videos", nil);
+    NSString *contactMenuItem = NSLocalizedString(@"Contact", nil);
+    
+    [cellArray addObject:newsMenuItem];
+    [cellArray addObject:aboutMenuItem];
+    [cellArray addObject:eventsMenuItem];
+    [cellArray addObject:videosMenuItem];
+    [cellArray addObject:contactMenuItem];
 }
 
 @end

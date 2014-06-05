@@ -81,7 +81,7 @@
     [super viewDidLoad];
     
     // Set title
-    self.title = @"Contact";
+    self.title = NSLocalizedString(@"Contact", nil);
     
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSContactCell" bundle:nil] forCellReuseIdentifier:@"ContactCell"];

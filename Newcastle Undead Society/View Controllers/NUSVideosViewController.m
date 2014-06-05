@@ -40,17 +40,17 @@
     switch (section) {
         case 0:
             // Scream Screen winners
-            return @"Scream Screen Winners";
+            return NSLocalizedString(@"Scream Screen Winners", nil);
             break;
             
         case 1:
             // Scream Screen entries
-            return @"Scream Screen Entries";
+            return NSLocalizedString(@"Scream Screen Entries", nil);
             break;
             
         case 2:
             // Other Videos section
-            return @"Other Videos";
+            return NSLocalizedString(@"Other Videos", nil);
             break;
             
         default:
@@ -77,8 +77,6 @@
     UILabel *authorLabel = (UILabel *)[cell viewWithTag:104];
     UILabel *yearLabel = (UILabel *)[cell viewWithTag:105];
     
-    // TODO: cell label for author, year
-    
     // Ensure things fit in labels
     titleLabel.adjustsFontSizeToFitWidth = YES;
     authorLabel.adjustsFontSizeToFitWidth = YES;
@@ -86,6 +84,7 @@
     // Set video title and duration
     titleLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"title"];
     durationLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"duration"];
+    // Set author and year
     authorLabel.text = [NSString stringWithFormat:@"By %@", [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"author"]];
     yearLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"year"];
     
@@ -136,7 +135,7 @@
     [self.navigationController.navigationBar setTranslucent:NO];
     
     // Set title
-    self.title = @"Videos";
+    self.title = NSLocalizedString(@"Videos", nil);
     
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSVideoCell" bundle:nil] forCellReuseIdentifier:@"VideoCell"];
