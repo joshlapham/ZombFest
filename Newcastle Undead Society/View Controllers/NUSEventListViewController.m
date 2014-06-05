@@ -71,11 +71,14 @@
         // Init section header label
         UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:reusableView.bounds];
         sectionHeaderLabel.backgroundColor = [UIColor clearColor];
-        sectionHeaderLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
         sectionHeaderLabel.adjustsFontSizeToFitWidth = YES;
         sectionHeaderLabel.textAlignment = NSTextAlignmentCenter;
         sectionHeaderLabel.text = headerTitle;
         
+        // Set header text colour
+        sectionHeaderLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
+        
+        // Set header font
         UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
         sectionHeaderLabel.font = headerLabelFont;
         
@@ -99,6 +102,17 @@
     
     // Set cell title
     titleLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"title"];
+    
+    // Set title label text colour
+    titleLabel.textColor = [UIColor whiteColor];
+    
+    // Add shadow to title label text
+    titleLabel.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    titleLabel.shadowOffset = CGSizeMake(0, 1);
+    
+    // Set title label font
+    UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:44];
+    titleLabel.font = titleLabelFont;
     
     // Set cell thumbnail using SDWebImage
     [cellImageView setImageWithURL:[NSURL URLWithString:[[sectionContents objectAtIndex:indexPath.row] objectForKey:@"imageUrl"]]
