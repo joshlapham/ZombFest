@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NUSEventListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface NUSEventListViewController : UIViewController  <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
