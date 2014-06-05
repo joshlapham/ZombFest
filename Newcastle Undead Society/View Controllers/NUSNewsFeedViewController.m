@@ -38,7 +38,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NewsFeedCell" forIndexPath:indexPath];
     
     // Set cell background colour
-    [cell setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+    [cell setBackgroundColor:[UIColor whiteColor]];
     
     // Disable tapping of cells
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3286E19C248E44EB8742593A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E52AA9D13145B0BFBCDE4A /* libPods.a */; };
-		680332AA194032A900870EA2 /* NUSFutureEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 680332A9194032A900870EA2 /* NUSFutureEvent.m */; };
-		680332AD194033A000870EA2 /* NUSPastEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 680332AC194033A000870EA2 /* NUSPastEvent.m */; };
+		680332AD194033A000870EA2 /* NUSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 680332AC194033A000870EA2 /* NUSEvent.m */; };
+		680332B319403F7700870EA2 /* NUSEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680332B219403F7700870EA2 /* NUSEventDetailViewController.m */; };
 		6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */; };
 		680E749D193F16FA00457BA2 /* NUSContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680E749C193F16FA00457BA2 /* NUSContactCell.xib */; };
 		680E74A0193F1D6E00457BA2 /* NUSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 680E749F193F1D6E00457BA2 /* NUSConstants.m */; };
@@ -34,6 +34,7 @@
 		6892E7AF18CF31A600D60787 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6892E7AD18CF31A600D60787 /* InfoPlist.strings */; };
 		6892E7B118CF31A600D60787 /* Newcastle_Undead_SocietyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */; };
 		689795EE193FF1AA00A6DC67 /* JPLReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */; };
+		68A26E7619404D8100600911 /* NUSEventDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68A26E7519404D8100600911 /* NUSEventDetailCell.xib */; };
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
 		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
 		68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSEventListCell.xib */; };
@@ -53,10 +54,10 @@
 
 /* Begin PBXFileReference section */
 		11E52AA9D13145B0BFBCDE4A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		680332A8194032A900870EA2 /* NUSFutureEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSFutureEvent.h; path = Models/NUSFutureEvent.h; sourceTree = "<group>"; };
-		680332A9194032A900870EA2 /* NUSFutureEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSFutureEvent.m; path = Models/NUSFutureEvent.m; sourceTree = "<group>"; };
-		680332AB194033A000870EA2 /* NUSPastEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSPastEvent.h; path = Models/NUSPastEvent.h; sourceTree = "<group>"; };
-		680332AC194033A000870EA2 /* NUSPastEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSPastEvent.m; path = Models/NUSPastEvent.m; sourceTree = "<group>"; };
+		680332AB194033A000870EA2 /* NUSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEvent.h; path = Models/NUSEvent.h; sourceTree = "<group>"; };
+		680332AC194033A000870EA2 /* NUSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEvent.m; path = Models/NUSEvent.m; sourceTree = "<group>"; };
+		680332B119403F7700870EA2 /* NUSEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventDetailViewController.h; path = "View Controllers/NUSEventDetailViewController.h"; sourceTree = "<group>"; };
+		680332B219403F7700870EA2 /* NUSEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventDetailViewController.m; path = "View Controllers/NUSEventDetailViewController.m"; sourceTree = "<group>"; };
 		6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSNewsFeedCell.xib; path = Cells/NUSNewsFeedCell.xib; sourceTree = "<group>"; };
 		680E749C193F16FA00457BA2 /* NUSContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSContactCell.xib; path = Cells/NUSContactCell.xib; sourceTree = "<group>"; };
 		680E749E193F1D6E00457BA2 /* NUSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSConstants.h; sourceTree = "<group>"; };
@@ -92,6 +93,7 @@
 		6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Newcastle_Undead_SocietyTests.m; sourceTree = "<group>"; };
 		689795EC193FF1AA00A6DC67 /* JPLReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLReachabilityManager.h; path = Stores/JPLReachabilityManager.h; sourceTree = "<group>"; };
 		689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLReachabilityManager.m; path = Stores/JPLReachabilityManager.m; sourceTree = "<group>"; };
+		68A26E7519404D8100600911 /* NUSEventDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventDetailCell.xib; path = Cells/NUSEventDetailCell.xib; sourceTree = "<group>"; };
 		68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsFeedViewController.h; path = "View Controllers/NUSNewsFeedViewController.h"; sourceTree = "<group>"; };
 		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
 		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
@@ -131,10 +133,8 @@
 		6803329219402D3200870EA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				680332A8194032A900870EA2 /* NUSFutureEvent.h */,
-				680332A9194032A900870EA2 /* NUSFutureEvent.m */,
-				680332AB194033A000870EA2 /* NUSPastEvent.h */,
-				680332AC194033A000870EA2 /* NUSPastEvent.m */,
+				680332AB194033A000870EA2 /* NUSEvent.h */,
+				680332AC194033A000870EA2 /* NUSEvent.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -235,6 +235,7 @@
 			children = (
 				6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */,
 				68C22777193ED13F00764274 /* NUSEventListCell.xib */,
+				68A26E7519404D8100600911 /* NUSEventDetailCell.xib */,
 				68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */,
 				680E749C193F16FA00457BA2 /* NUSContactCell.xib */,
 				681894C2193F35A400A7B73B /* NUSVideoCell.xib */,
@@ -251,6 +252,8 @@
 				68FF3876193EE30200DA9438 /* NUSAboutViewController.m */,
 				68C22774193ED03700764274 /* NUSEventListViewController.h */,
 				68C22775193ED03700764274 /* NUSEventListViewController.m */,
+				680332B119403F7700870EA2 /* NUSEventDetailViewController.h */,
+				680332B219403F7700870EA2 /* NUSEventDetailViewController.m */,
 				681894BF193F34E500A7B73B /* NUSVideosViewController.h */,
 				681894C0193F34E500A7B73B /* NUSVideosViewController.m */,
 				688CCF00193F12E7007C01D9 /* NUSContactViewController.h */,
@@ -347,6 +350,7 @@
 			files = (
 				68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */,
 				681894C3193F35A400A7B73B /* NUSVideoCell.xib in Resources */,
+				68A26E7619404D8100600911 /* NUSEventDetailCell.xib in Resources */,
 				6892E79918CF31A600D60787 /* Main_iPad.storyboard in Resources */,
 				6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */,
 				68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */,
@@ -410,8 +414,8 @@
 				686C0D5B193FF4BB00C54E3E /* NUSDataStore.m in Sources */,
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,
-				680332AD194033A000870EA2 /* NUSPastEvent.m in Sources */,
-				680332AA194032A900870EA2 /* NUSFutureEvent.m in Sources */,
+				680332B319403F7700870EA2 /* NUSEventDetailViewController.m in Sources */,
+				680332AD194033A000870EA2 /* NUSEvent.m in Sources */,
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,
 				68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */,
 				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,

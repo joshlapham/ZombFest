@@ -1,18 +1,18 @@
 //
-//  NUSFutureEvent.m
+//  NUSEvent.m
 //  Newcastle Undead Society
 //
 //  Created by jl on 5/06/2014.
 //  Copyright (c) 2014 Josh Lapham. All rights reserved.
 //
 
-#import "NUSFutureEvent.h"
+#import "NUSEvent.h"
 
-@implementation NUSFutureEvent
+@implementation NUSEvent
 
 @synthesize eventYear, eventContent, isPastEvent, eventImageUrl;
 
-- (id)initWithYear:(NSString *)yearValue andContent:(NSString *)contentValue andImageUrl:(NSString *)imageUrlValue
+- (id)initWithYear:(NSString *)yearValue andContent:(NSString *)contentValue andImageUrl:(NSString *)imageUrlValue andIsPastEvent:(BOOL)pastEventOrNot
 {
     self = [super init];
     
@@ -20,12 +20,10 @@
         eventYear = yearValue;
         eventContent = contentValue;
         eventImageUrl = imageUrlValue;
-        
-        // Set this for every future event by default
-        isPastEvent = NO;
+        isPastEvent = pastEventOrNot;
     }
     
-    DDLogVerbose(@"init event: %@, content: %@, img url: %@", eventYear, eventContent, eventImageUrl);
+    DDLogVerbose(@"init event: %@, content: %@, is past or not: %hhd", eventYear, eventContent, isPastEvent);
     
     return self;
 }

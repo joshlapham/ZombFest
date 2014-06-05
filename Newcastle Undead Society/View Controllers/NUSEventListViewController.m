@@ -9,8 +9,10 @@
 #import "NUSEventListViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "NUSDataStore.h"
-#import "NUSFutureEvent.h"
-#import "NUSPastEvent.h"
+#import "NUSEvent.h"
+#import "NUSEventDetailViewController.h"
+#import "JASidePanelController.h"
+#import "UIViewController+JASidePanel.h"
 
 @interface NUSEventListViewController () {
     NSMutableArray *cellArray;
@@ -103,29 +105,11 @@
     // Scale image to fill cell
     cellImageView.contentMode = UIViewContentModeScaleToFill;
     
-    // Init string for our cell thumbnail URL
-    NSString *imageUrlToUseForCell;
+    // Is a future event
+    NUSEvent *cellData = [sectionContents objectAtIndex:indexPath.row];
     
-    // Check if cell is a NUSFutureEvent or NUSPastEvent ..
-    if ([[sectionContents objectAtIndex:indexPath.row] isKindOfClass:[NUSFutureEvent class]]) {
-        // Is a future event
-        NUSFutureEvent *cellData = [sectionContents objectAtIndex:indexPath.row];
-        
-        // Set cell thumb image URL
-        imageUrlToUseForCell = cellData.eventImageUrl;
-        
-        // Set cell title
-        titleLabel.text = cellData.eventYear;
-    } else if ([[sectionContents objectAtIndex:indexPath.row] isKindOfClass:[NUSPastEvent class]]) {
-        // Is a past event
-        NUSPastEvent *cellData = [sectionContents objectAtIndex:indexPath.row];
-        
-        // Set cell thumb image URL
-        imageUrlToUseForCell = cellData.eventImageUrl;
-        
-        // Set cell title
-        titleLabel.text = cellData.eventYear;
-    }
+    // Set cell title
+    titleLabel.text = cellData.eventYear;
     
     // Set title label text colour
     titleLabel.textColor = [UIColor whiteColor];
@@ -144,7 +128,7 @@
     
     // Set cell thumbnail using SDWebImage
     // TODO: run this method on cellImageView after removal of convert to grayscale method
-    [thumbImage setImageWithURL:[NSURL URLWithString:imageUrlToUseForCell]
+    [thumbImage setImageWithURL:[NSURL URLWithString:cellData.eventImageUrl]
                placeholderImage:nil
                       completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
                              if (cellImage && !error) {
@@ -159,6 +143,15 @@
                          }];
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
+    
+    NUSEvent *cellData = [sectionContents objectAtIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:[[NUSEventDetailViewController alloc] initWithChosenEventItem:cellData] animated:YES];
 }
 
 #pragma mark - Init method

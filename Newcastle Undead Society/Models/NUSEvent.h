@@ -1,5 +1,5 @@
 //
-//  NUSPastEvent.h
+//  NUSEvent.h
 //  Newcastle Undead Society
 //
 //  Created by jl on 5/06/2014.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NUSPastEvent : NSObject
+@interface NUSEvent : NSObject
 
 @property (nonatomic, strong) NSString *eventYear;
 @property (nonatomic, strong) NSString *eventContent;
@@ -16,6 +16,6 @@
 @property (nonatomic) BOOL isPastEvent;
 
 // Init method
-- (id)initWithYear:(NSString *)yearValue andContent:(NSString *)contentValue andImageUrl:(NSString *)imageUrlValue;
+- (id)initWithYear:(NSString *)yearValue andContent:(NSString *)contentValue andImageUrl:(NSString *)imageUrlValue andIsPastEvent:(BOOL)pastEventOrNot;
 
 @end
