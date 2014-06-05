@@ -7,8 +7,50 @@
 //
 
 #import "NUSDataStore.h"
+#import "NUSFutureEvent.h"
+#import "NUSPastEvent.h"
 
 @implementation NUSDataStore
+
+#pragma mark - Return future and past events methods
+
++ (NSArray *)returnFutureEvents
+{
+    NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
+    
+    // TODO: implement
+    
+    // NOTE: this is just test data
+    
+    NUSFutureEvent *futureEvent2014 = [[NUSFutureEvent alloc] initWithYear:@"2014" andContent:@"This is some info about the 2014 event" andImageUrl:@"https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1185656_658729170838669_745513690_n.jpg"];
+    
+    [tmpArray addObject:futureEvent2014];
+    
+    return [NSArray arrayWithArray:tmpArray];
+}
+
++ (NSArray *)returnPastEvents
+{
+    NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
+    
+    // TODO: implement
+    
+    // NOTE: this is just test data
+    
+    NUSFutureEvent *pastEvent2009 = [[NUSFutureEvent alloc] initWithYear:@"2009" andContent:@"This is some info about the 2009 event" andImageUrl:@"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/33518_127658320612426_6225652_n.jpg"];
+    NUSFutureEvent *pastEvent2010 = [[NUSFutureEvent alloc] initWithYear:@"2010" andContent:@"This is some info about the 2010 event" andImageUrl:@"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/262887_224862680891989_6260150_n.jpg"];
+    NUSFutureEvent *pastEvent2011 = [[NUSFutureEvent alloc] initWithYear:@"2011" andContent:@"This is some info about the 2011 event" andImageUrl:@"https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/315710_259496494095274_1257647121_n.jpg"];
+    NUSFutureEvent *pastEvent2012 = [[NUSFutureEvent alloc] initWithYear:@"2012" andContent:@"This is some info about the 2012 event" andImageUrl:@"https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/536424_474541165924138_1749738981_n.jpg"];
+    NUSFutureEvent *pastEvent2013 = [[NUSFutureEvent alloc] initWithYear:@"2013" andContent:@"This is some info about the 2013 event" andImageUrl:@"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xfa1/t1.0-9/1453493_658726834172236_1271715398_n.jpg"];
+    
+    [tmpArray addObject:pastEvent2013];
+    [tmpArray addObject:pastEvent2012];
+    [tmpArray addObject:pastEvent2011];
+    [tmpArray addObject:pastEvent2010];
+    [tmpArray addObject:pastEvent2009];
+    
+    return [NSArray arrayWithArray:tmpArray];
+}
 
 #pragma mark - Fetch data method
 

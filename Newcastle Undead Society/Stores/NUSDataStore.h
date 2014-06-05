@@ -15,5 +15,7 @@
 
 // Class methods
 + (void)fetchData;
++ (NSArray *)returnFutureEvents;
++ (NSArray *)returnPastEvents;
 
 @end
