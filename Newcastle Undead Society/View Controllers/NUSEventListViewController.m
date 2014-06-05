@@ -40,7 +40,8 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(320, 44);
+    // NOTE - this is set to height 60 to align with other tableView-based VCs
+    return CGSizeMake(320, 60);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -149,7 +150,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-    // NOTE - this adds some space to the bottom of the collectionView
+    // NOTE - this adds some space to the top & bottom of the collectionView
     [self.collectionView setContentInset:UIEdgeInsetsMake(0, 0, 80, 0)];
     
     // Set collectionView background colour
@@ -158,6 +159,7 @@
     // Register cell with collectionView
     [self.collectionView registerNib:[UINib nibWithNibName:@"NUSEventListCell" bundle:nil] forCellWithReuseIdentifier:@"EventListCell"];
     
+    // Register header view cell with collectionView
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SectionHeader"];
     
     // Add collectionView to view

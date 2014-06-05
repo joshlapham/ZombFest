@@ -29,14 +29,41 @@
     return [cellArray count];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    // Since we only have one section, we can skip checking the section index
+    NSString *headerText = NSLocalizedString(@"Social Media", nil);
+    
+    // Init custom header view
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
+    
+    // Init header label
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
+    headerLabel.backgroundColor = [UIColor clearColor];
+    headerLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
+    headerLabel.adjustsFontSizeToFitWidth = YES;
+    headerLabel.textAlignment = NSTextAlignmentCenter;
+    
+    // Set header label font
+    UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
+    headerLabel.font = headerLabelFont;
+    
+    // Set header label text
+    headerLabel.text = headerText;
+    
+    [headerView addSubview:headerLabel];
+    
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Social Media";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,6 +137,9 @@
         
         // Set tableView background colour
         [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+        
+        // Set tableView to have a bit of padding at the top so section header looks right
+        [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
         
         // Disable scrolling on tableView
         [self.tableView setScrollEnabled:NO];
