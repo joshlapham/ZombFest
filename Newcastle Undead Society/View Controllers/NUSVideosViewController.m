@@ -153,6 +153,9 @@
         // Remove seperator insets from tableView
         //[self.tableView setSeparatorColor:[UIColor clearColor]];
         //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        
+        // Set tableView background colour
+        [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
     }
     return self;
 }

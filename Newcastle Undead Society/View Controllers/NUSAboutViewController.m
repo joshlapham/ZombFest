@@ -37,6 +37,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AboutCell" forIndexPath:indexPath];
     
+    // Set cell background colour
+    [cell setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+    
     // Disable tapping of cells
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
@@ -47,6 +50,13 @@
     // Ensure title and content fit in their respective labels
     titleLabel.adjustsFontSizeToFitWidth = YES;
     contentLabel.numberOfLines = 0;
+    
+    // Set text colour of titleLabel
+    titleLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
+    
+    // Set font of titleLabel
+    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
+    titleLabel.font = titleFont;
     
     // Set cell text
     titleLabel.text = NSLocalizedString(@"About Newcastle Undead Society", @"Title for section displaying information about the app and the organization");
@@ -70,6 +80,9 @@
     
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSAboutCell" bundle:nil] forCellReuseIdentifier:@"AboutCell"];
+    
+    // Set tableView background colour
+    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
     
     // Init cellArray data source
     [self initCellArrayDataSource];

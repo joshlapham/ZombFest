@@ -37,6 +37,9 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NewsFeedCell" forIndexPath:indexPath];
     
+    // Set cell background colour
+    [cell setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+    
     // Disable tapping of cells
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
@@ -48,6 +51,14 @@
     // Ensure content fits in label
     contentLabel.numberOfLines = 0;
     contentLabel.adjustsFontSizeToFitWidth = YES;
+    
+    // Set text colour of title and date labels
+    titleLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
+    dateLabel.textColor = [UIColor darkGrayColor];
+    
+    // Set font of titleLabel
+    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
+    titleLabel.font = titleFont;
     
     // Set label text
     titleLabel.text = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"title"];
@@ -74,6 +85,9 @@
     
     // Remove seperator insets from tableView
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    // Set tableView background colour
+    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
     
     // Init cellArray data source
     [self initCellArrayDataSource];
