@@ -30,6 +30,7 @@
 		6892E7A718CF31A600D60787 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6892E78618CF31A600D60787 /* UIKit.framework */; };
 		6892E7AF18CF31A600D60787 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6892E7AD18CF31A600D60787 /* InfoPlist.strings */; };
 		6892E7B118CF31A600D60787 /* Newcastle_Undead_SocietyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */; };
+		689795EE193FF1AA00A6DC67 /* JPLReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */; };
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
 		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
 		68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSEventListCell.xib */; };
@@ -80,6 +81,8 @@
 		6892E7AC18CF31A600D60787 /* Newcastle Undead SocietyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Newcastle Undead SocietyTests-Info.plist"; sourceTree = "<group>"; };
 		6892E7AE18CF31A600D60787 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Newcastle_Undead_SocietyTests.m; sourceTree = "<group>"; };
+		689795EC193FF1AA00A6DC67 /* JPLReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLReachabilityManager.h; path = Stores/JPLReachabilityManager.h; sourceTree = "<group>"; };
+		689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLReachabilityManager.m; path = Stores/JPLReachabilityManager.m; sourceTree = "<group>"; };
 		68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsFeedViewController.h; path = "View Controllers/NUSNewsFeedViewController.h"; sourceTree = "<group>"; };
 		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
 		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 				6892E79418CF31A600D60787 /* Main_iPhone.storyboard */,
 				6892E79718CF31A600D60787 /* Main_iPad.storyboard */,
 				68C22772193ECF5400764274 /* Cells */,
+				689795EF193FF1BF00A6DC67 /* Stores */,
 				68C22773193ECF5A00764274 /* View Controllers */,
 				6892E78918CF31A600D60787 /* Supporting Files */,
 			);
@@ -192,6 +196,15 @@
 				6892E7AD18CF31A600D60787 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		689795EF193FF1BF00A6DC67 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				689795EC193FF1AA00A6DC67 /* JPLReachabilityManager.h */,
+				689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */,
+			);
+			name = Stores;
 			sourceTree = "<group>";
 		};
 		68C22772193ECF5400764274 /* Cells */ = {
@@ -378,6 +391,7 @@
 				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,
 				688CCF02193F12E7007C01D9 /* NUSContactViewController.m in Sources */,
 				6892E79318CF31A600D60787 /* NUSAppDelegate.m in Sources */,
+				689795EE193FF1AA00A6DC67 /* JPLReachabilityManager.m in Sources */,
 				681894C1193F34E500A7B73B /* NUSVideosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

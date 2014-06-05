@@ -9,6 +9,7 @@
 #import "NUSAppDelegate.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "Stores/JPLReachabilityManager.h"
 
 @implementation NUSAppDelegate
 
@@ -51,14 +52,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
     // Setup UI
     [self setupUI];
     
     // CocoaLumberjack
     // Setup XCode console logger
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
+    // Reachability
+    [JPLReachabilityManager sharedManager];
+    
+    if ([JPLReachabilityManager isReachable]) {
+        DDLogVerbose(@"DuckDuckGo.com is reachable");
+    } else if ([JPLReachabilityManager isUnreachable]) {
+        DDLogVerbose(@"DuckDuckGo.com is NOT reachable");
+    }
     
     return YES;
 }
