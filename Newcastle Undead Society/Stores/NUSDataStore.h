@@ -17,5 +17,6 @@
 + (void)fetchData;
 + (NSArray *)returnFutureEvents;
 + (NSArray *)returnPastEvents;
++ (void)preloadGalleryImagesForAllEvents;
 
 @end

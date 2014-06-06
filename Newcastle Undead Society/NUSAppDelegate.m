@@ -56,8 +56,24 @@
 {
     if ([JPLReachabilityManager isReachable]) {
         DDLogVerbose(@"Network reachability did change, and the network is available");
+        
+        // Preload all gallery images
+        [self preloadAllGalleryImages];
+        
     } else if ([JPLReachabilityManager isUnreachable]) {
         DDLogVerbose(@"Network reachability did change, and no network is available");
+    }
+}
+
+#pragma mark - Preload all gallery images method
+
+- (void)preloadAllGalleryImages
+{
+    // Preload all gallery images if on WiFi
+    if ([JPLReachabilityManager isReachableViaWiFi]) {
+        [NUSDataStore preloadGalleryImagesForAllEvents];
+    } else {
+        DDLogVerbose(@"Not on WiFi, so not preloading all gallery images");
     }
 }
 
@@ -89,6 +105,9 @@
                                              selector:@selector(reachabilityDidChange)
                                                  name:kReachabilityChangedNotification
                                                object:nil];
+    
+    // Preload all gallery images
+    [self preloadAllGalleryImages];
     
     return YES;
 }
