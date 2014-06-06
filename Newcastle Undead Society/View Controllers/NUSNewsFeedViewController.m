@@ -30,7 +30,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 190;
+    return 220;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,7 +50,7 @@
     
     // Ensure content fits in label
     contentLabel.numberOfLines = 0;
-    contentLabel.adjustsFontSizeToFitWidth = YES;
+    //contentLabel.adjustsFontSizeToFitWidth = YES;
     
     // Set text colour of title and date labels
     titleLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];

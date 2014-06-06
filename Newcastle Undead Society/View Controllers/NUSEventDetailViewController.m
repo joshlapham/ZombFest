@@ -274,13 +274,17 @@
     
     // Init MWPhotoBrowser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    //[browser setModalPresentationCapturesStatusBarAppearance:YES];
     
     // Start on chosen photo
     [browser setCurrentPhotoIndex:chosenPhotoIndex.row];
     
-    // Present photo browser
+    // Present photo browser (push)
     [self.navigationController pushViewController:browser animated:YES];
+    
+    // Present photo browser (modal)
+    //UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    //nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //[self presentViewController:nc animated:YES completion:nil];
 }
 
 @end
