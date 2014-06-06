@@ -14,9 +14,15 @@
 @property (nonatomic, strong) NSString *eventContent;
 @property (nonatomic, strong) NSString *eventImageUrl;
 @property (nonatomic, strong) NSArray *eventGalleryImageUrls;
+@property (nonatomic, strong) NSArray *eventTimes;
 @property (nonatomic) BOOL isPastEvent;
 
 // Init method
-- (id)initWithYear:(NSString *)yearValue andContent:(NSString *)contentValue andImageUrl:(NSString *)imageUrlValue andGalleryImageUrls:(NSArray *)galleryImageUrlsValue andIsPastEvent:(BOOL)pastEventOrNot;
+- (id)initWithYear:(NSString *)yearValue
+        andContent:(NSString *)contentValue
+       andImageUrl:(NSString *)imageUrlValue
+andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
+          andTimes:(NSArray *)eventTimesValue
+    andIsPastEvent:(BOOL)pastEventOrNot;
 
 @end

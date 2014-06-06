@@ -38,6 +38,8 @@
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
 		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
 		68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSEventListCell.xib */; };
+		68DCC2D71941852100A047FD /* NUSEventMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68DCC2D61941852100A047FD /* NUSEventMapCell.xib */; };
+		68DCC2D91941865F00A047FD /* NUSEventTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68DCC2D81941865F00A047FD /* NUSEventTimeCell.xib */; };
 		68DE949F19407C3C00DC96B6 /* NUSContainerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68DE949E19407C3C00DC96B6 /* NUSContainerCellView.xib */; };
 		68DE94A219407C8500DC96B6 /* NUSContainerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE94A119407C8500DC96B6 /* NUSContainerCellView.m */; };
 		68DE94A4194080B600DC96B6 /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68DE94A3194080B600DC96B6 /* ArticleCollectionViewCell.xib */; };
@@ -104,6 +106,8 @@
 		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
 		68C22775193ED03700764274 /* NUSEventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventListViewController.m; path = "View Controllers/NUSEventListViewController.m"; sourceTree = "<group>"; };
 		68C22777193ED13F00764274 /* NUSEventListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventListCell.xib; path = Cells/NUSEventListCell.xib; sourceTree = "<group>"; };
+		68DCC2D61941852100A047FD /* NUSEventMapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventMapCell.xib; path = Cells/NUSEventMapCell.xib; sourceTree = "<group>"; };
+		68DCC2D81941865F00A047FD /* NUSEventTimeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventTimeCell.xib; path = Cells/NUSEventTimeCell.xib; sourceTree = "<group>"; };
 		68DE949E19407C3C00DC96B6 /* NUSContainerCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSContainerCellView.xib; path = Cells/NUSContainerCellView.xib; sourceTree = "<group>"; };
 		68DE94A019407C8500DC96B6 /* NUSContainerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSContainerCellView.h; path = Cells/NUSContainerCellView.h; sourceTree = "<group>"; };
 		68DE94A119407C8500DC96B6 /* NUSContainerCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContainerCellView.m; path = Cells/NUSContainerCellView.m; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 				6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */,
 				68C22777193ED13F00764274 /* NUSEventListCell.xib */,
 				68A26E7519404D8100600911 /* NUSEventDetailCell.xib */,
+				68DCC2D61941852100A047FD /* NUSEventMapCell.xib */,
+				68DCC2D81941865F00A047FD /* NUSEventTimeCell.xib */,
 				68DE949E19407C3C00DC96B6 /* NUSContainerCellView.xib */,
 				68DE94A019407C8500DC96B6 /* NUSContainerCellView.h */,
 				68DE94A119407C8500DC96B6 /* NUSContainerCellView.m */,
@@ -369,11 +375,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68DCC2D71941852100A047FD /* NUSEventMapCell.xib in Resources */,
 				68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */,
 				68DE94A4194080B600DC96B6 /* ArticleCollectionViewCell.xib in Resources */,
 				681894C3193F35A400A7B73B /* NUSVideoCell.xib in Resources */,
 				68A26E7619404D8100600911 /* NUSEventDetailCell.xib in Resources */,
 				6892E79918CF31A600D60787 /* Main_iPad.storyboard in Resources */,
+				68DCC2D91941865F00A047FD /* NUSEventTimeCell.xib in Resources */,
 				6804DE1C193EC34B001DC26B /* NUSNewsFeedCell.xib in Resources */,
 				68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */,
 				6892E79E18CF31A600D60787 /* Images.xcassets in Resources */,

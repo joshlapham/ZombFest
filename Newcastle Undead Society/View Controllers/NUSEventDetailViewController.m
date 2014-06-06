@@ -19,8 +19,8 @@
     NSMutableArray *cellArray;
     NSMutableArray *eventTimes;
     NSMutableArray *eventDetails;
-    NSMutableArray *eventGallery;
     NSMutableArray *photosForBrowser;
+    NSMutableArray *eventMap;
 }
 
 @synthesize eventYear, chosenEvent;
@@ -34,16 +34,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *sectionContents = [cellArray objectAtIndex:section];
-    
-    return [sectionContents count];
+    if (section == 2 && chosenEvent.isPastEvent == YES) {
+        // Return 1 so gallery cell will show
+        return 1;
+    } else {
+        NSArray *sectionContents = [cellArray objectAtIndex:section];
+        
+        return [sectionContents count];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
+    if (indexPath.section == 2 && chosenEvent.isPastEvent == YES) {
         // For Gallery cell
         return 170;
+    } else if (indexPath.section == 2 && chosenEvent.isPastEvent == NO) {
+        // For Time cell
+        return 60;
+    } else if (indexPath.section == 0) {
+        // Map cell
+        return 88;
     } else {
         // For all other cells
         return 200;
@@ -60,12 +71,18 @@
     NSString *headerText;
     
     switch (section) {
+            
         case 0:
+            // Map section
+            headerText = NSLocalizedString(@"Map", nil);
+            break;
+            
+        case 1:
             // Details section
             headerText = NSLocalizedString(@"Details", nil);
             break;
             
-        case 1:
+        case 2:
             // Times (only for future events) or Gallery (for past events)
             if (chosenEvent.isPastEvent == NO) {
                 // Times
@@ -106,6 +123,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        // Map section
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventMapCell" forIndexPath:indexPath];
+        
+        // Disable tapping of cells
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        return cell;
+        
+    } else if (indexPath.section == 1) {
         // Details section
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
         
@@ -122,25 +148,25 @@
         
         return cell;
         
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         // Times/Gallery section
         
         // Times (only for future events)
         if (chosenEvent.isPastEvent == NO) {
             
             // Times cell
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventTimeCell" forIndexPath:indexPath];
             
             // Disable tapping of cells
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             
             NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
             
-            UILabel *contentLabel = (UILabel *)[cell viewWithTag:101];
+            UILabel *locationLabel = (UILabel *)[cell viewWithTag:101];
+            UILabel *timeLabel = (UILabel *)[cell viewWithTag:102];
             
-            contentLabel.numberOfLines = 0;
-            
-            contentLabel.text = [sectionContents objectAtIndex:indexPath.row];
+            locationLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"locationName"];
+            timeLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"startTime"];
             
             return cell;
             
@@ -160,13 +186,13 @@
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // If Gallery cell ..
-    if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
-        //
-    }
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // If Gallery cell ..
+//    if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
+//        //
+//    }
+//}
 
 #pragma mark - Init methods
 
@@ -202,7 +228,15 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // Register cells with tableView
+    // Event Detail cell
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSEventDetailCell" bundle:nil] forCellReuseIdentifier:@"EventDetailCell"];
+    
+    // Map cell
+    [self.tableView registerNib:[UINib nibWithNibName:@"NUSEventMapCell" bundle:nil] forCellReuseIdentifier:@"EventMapCell"];
+    
+    // Event Time cell
+    [self.tableView registerNib:[UINib nibWithNibName:@"NUSEventTimeCell" bundle:nil] forCellReuseIdentifier:@"EventTimeCell"];
+    
     // Gallery cell
     [self.tableView registerClass:[NUSContainerTableCell class] forCellReuseIdentifier:@"ContainerTableCell"];
     
@@ -228,17 +262,21 @@
     cellArray = [[NSMutableArray alloc] init];
     eventDetails = [[NSMutableArray alloc] init];
     eventTimes = [[NSMutableArray alloc] init];
-    eventGallery = [[NSMutableArray alloc] init];
+    eventMap = [[NSMutableArray alloc] init];
+    
+    // TODO: implement map better
+    [eventMap addObject:@"placeholder-for-map-image-object"];
     
     // TODO: add stuff to event details, times and gallery
     [eventDetails addObject:chosenEvent.eventContent];
-    // TODO: add values from chosen event object
-    [eventTimes addObject:@"event times"];
-    [eventGallery addObject:@"gallery links"];
     
+    for (NSString *eventTime in chosenEvent.eventTimes) {
+        [eventTimes addObject:eventTime];
+    }
+    
+    [cellArray addObject:eventMap];
     [cellArray addObject:eventDetails];
-    //[cellArray addObject:eventTimes];
-    [cellArray addObject:eventGallery];
+    [cellArray addObject:eventTimes];
     
     // MWPhotoBrowser
     photosForBrowser = [[NSMutableArray alloc] init];
