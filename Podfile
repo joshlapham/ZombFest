@@ -8,7 +8,5 @@ pod 'SDWebImage', '~> 3.5'
 pod 'Reachability', '~> 3.1'
 pod 'CocoaLumberjack', '~> 1.8'
 #pod 'CrashlyticsFramework', '~> 2.1'
-#pod 'Reveal-iOS-SDK', '~> 1.0'
+pod 'Reveal-iOS-SDK', '~> 1.0'
 pod 'MWPhotoBrowser', '~> 1.4'
-#pod 'MWPhotoBrowser', :git => 'https://github.com/tonyzonghui/MWPhotoBrowser.git', :commit => '300ea27fb6b4d0160e08a682bab92daa2596ad49'
-

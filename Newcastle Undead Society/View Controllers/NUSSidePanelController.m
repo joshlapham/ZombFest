@@ -21,4 +21,10 @@
     [self setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[NUSNewsFeedViewController alloc] init]]];
 }
 
+- (void)stylePanel:(UIView *)panel {
+    // Remove rounded corners that JASidePanels applies by default
+    panel.layer.cornerRadius = 0;
+    panel.clipsToBounds = YES;
+}
+
 @end

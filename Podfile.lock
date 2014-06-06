@@ -15,6 +15,7 @@ PODS:
   - PBWebViewController (0.2)
   - PSTCollectionView (1.2.0)
   - Reachability (3.1.1)
+  - Reveal-iOS-SDK (1.0.4)
   - SDWebImage (3.6):
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 1.4)
   - PBWebViewController (~> 0.1)
   - Reachability (~> 3.1)
+  - Reveal-iOS-SDK (~> 1.0)
   - SDWebImage (~> 3.5)
 
 SPEC CHECKSUMS:
@@ -36,6 +38,7 @@ SPEC CHECKSUMS:
   PBWebViewController: 4ce33129c0f0adfce9cec105be4d48c7c9b70026
   PSTCollectionView: e82c1a71ec6469f88490b674c0f66f0bbf1de001
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
+  Reveal-iOS-SDK: d3c8e109d42219daaa7a6e1ad2de34f0bdbb7a88
   SDWebImage: c6989652c1cdf27cbdf3f56957e2030f825af5bc
 
 COCOAPODS: 0.33.1
