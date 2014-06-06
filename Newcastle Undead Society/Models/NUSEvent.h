@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *eventYear;
 @property (nonatomic, strong) NSString *eventContent;
 @property (nonatomic, strong) NSString *eventImageUrl;
+@property (nonatomic, strong) NSString *eventMapImageUrl;
 @property (nonatomic, strong) NSArray *eventGalleryImageUrls;
 @property (nonatomic, strong) NSArray *eventTimes;
 @property (nonatomic) BOOL isPastEvent;

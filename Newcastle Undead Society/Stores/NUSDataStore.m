@@ -35,7 +35,7 @@
     
     NUSEvent *futureEvent2014 = [[NUSEvent alloc] initWithYear:@"2014"
                                                     andContent:loremIpsumShort
-                                                   andImageUrl:@"https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1185656_658729170838669_745513690_n.jpg"
+                                                   andImageUrl:@"http://leagueofevil.org/nus-img/2014.jpg"
                                            andGalleryImageUrls:nil
                                                       andTimes:eventTimes2014
                                                 andIsPastEvent:NO];
@@ -72,35 +72,35 @@
     
     NUSEvent *pastEvent2009 = [[NUSEvent alloc] initWithYear:@"2009"
                                                   andContent:loremIpsumShort
-                                                 andImageUrl:@"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/33518_127658320612426_6225652_n.jpg"
+                                                 andImageUrl:@"http://leagueofevil.org/nus-img/2009.jpg"
                                          andGalleryImageUrls:galleryUrls2009
                                                     andTimes:nil
                                               andIsPastEvent:YES];
     
     NUSEvent *pastEvent2010 = [[NUSEvent alloc] initWithYear:@"2010"
                                                   andContent:loremIpsumShort
-                                                 andImageUrl:@"https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/262887_224862680891989_6260150_n.jpg"
+                                                 andImageUrl:@"http://leagueofevil.org/nus-img/2010.jpg"
                                          andGalleryImageUrls:galleryUrls2010
                                                     andTimes:nil
                                               andIsPastEvent:YES];
     
     NUSEvent *pastEvent2011 = [[NUSEvent alloc] initWithYear:@"2011"
                                                   andContent:loremIpsumShort
-                                                 andImageUrl:@"https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/315710_259496494095274_1257647121_n.jpg"
+                                                 andImageUrl:@"http://leagueofevil.org/nus-img/2011.jpg"
                                          andGalleryImageUrls:galleryUrls2011
                                                     andTimes:nil
                                               andIsPastEvent:YES];
     
     NUSEvent *pastEvent2012 = [[NUSEvent alloc] initWithYear:@"2012"
                                                   andContent:loremIpsumShort
-                                                 andImageUrl:@"https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/536424_474541165924138_1749738981_n.jpg"
+                                                 andImageUrl:@"http://leagueofevil.org/nus-img/2012.jpg"
                                          andGalleryImageUrls:galleryUrls2012
                                                     andTimes:nil
                                               andIsPastEvent:YES];
     
     NUSEvent *pastEvent2013 = [[NUSEvent alloc] initWithYear:@"2013"
                                                   andContent:loremIpsumShort
-                                                 andImageUrl:@"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xfa1/t1.0-9/1453493_658726834172236_1271715398_n.jpg"
+                                                 andImageUrl:@"http://leagueofevil.org/nus-img/2013.jpg"
                                          andGalleryImageUrls:galleryUrls2013
                                                     andTimes:nil
                                               andIsPastEvent:YES];

@@ -10,6 +10,7 @@
 #import "NUSEvent.h"
 #import "NUSContainerTableCell.h"
 #import "MWPhotoBrowser.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface NUSEventDetailViewController () <MWPhotoBrowserDelegate>
 
@@ -53,8 +54,8 @@
         // For Time cell
         return 60;
     } else if (indexPath.section == 0) {
-        // Map cell
-        return 88;
+        // For Map cell
+        return 160;
     } else {
         // For all other cells
         return 200;
@@ -74,7 +75,7 @@
             
         case 0:
             // Map section
-            headerText = NSLocalizedString(@"Map", nil);
+            headerText = NSLocalizedString(@"Zombie March", nil);
             break;
             
         case 1:
@@ -128,6 +129,23 @@
         
         // Disable tapping of cells
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:101];
+        
+        // Scale image to fill cell
+        cellImageView.contentMode = UIViewContentModeScaleToFill;
+        
+        // Set map image on cell using SDWebImage
+        [cellImageView setImageWithURL:[NSURL URLWithString:chosenEvent.eventMapImageUrl]
+                      placeholderImage:nil
+                             completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
+                                 if (cellImage && !error) {
+                                     //DDLogVerbose(@"Fetched cell thumbnail image");
+                                 } else {
+                                     //DDLogError(@"Error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                     // TODO: implement fallback
+                                 }
+                             }];
         
         return cell;
         

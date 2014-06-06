@@ -10,7 +10,7 @@
 
 @implementation NUSEvent
 
-@synthesize eventYear, eventContent, eventImageUrl, eventGalleryImageUrls, eventTimes, isPastEvent;
+@synthesize eventYear, eventContent, eventImageUrl, eventMapImageUrl, eventGalleryImageUrls, eventTimes, isPastEvent;
 
 - (id)initWithYear:(NSString *)yearValue
         andContent:(NSString *)contentValue
@@ -28,6 +28,9 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
         eventGalleryImageUrls = galleryImageUrlsValue;
         eventTimes = eventTimesValue;
         isPastEvent = pastEventOrNot;
+        
+        // TODO: don't hardcode this one map image for all event objects, change it up a bit
+        eventMapImageUrl = @"http://leagueofevil.org/nus-img/map.jpg";
     }
     
     DDLogVerbose(@"Init event: %@, gallery URL count: %d, is past: %hhd", eventYear, [eventGalleryImageUrls count], isPastEvent);
