@@ -47,7 +47,7 @@
             
         case 1:
             // Scream Screen entries
-            headerText = NSLocalizedString(@"Scream Screen Entries", nil);
+            headerText = NSLocalizedString(@"Scream Screen Entrants", nil);
             break;
             
         case 2:
@@ -112,8 +112,10 @@
     // Set video title and duration
     titleLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"title"];
     durationLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"duration"];
+    
     // Set author and year
-    authorLabel.text = [NSString stringWithFormat:@"By %@", [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"author"]];
+    NSString *byString = NSLocalizedString(@"By", nil);
+    authorLabel.text = [NSString stringWithFormat:@"%@ %@", byString, [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"author"]];
     yearLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"year"];
     
     // Set cell thumbnail using SDWebImage
