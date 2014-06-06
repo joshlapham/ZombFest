@@ -8,6 +8,7 @@
 
 #import "NUSEventDetailViewController.h"
 #import "NUSEvent.h"
+#import "NUSContainerTableCell.h"
 
 @interface NUSEventDetailViewController ()
 
@@ -38,7 +39,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
+    if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
+        // For Gallery cell
+        return 170;
+    } else {
+        // For all other cells
+        return 200;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -52,18 +59,19 @@
     
     switch (section) {
         case 0:
-            // Scream Screen winners
+            // Details section
             headerText = NSLocalizedString(@"Details", nil);
             break;
             
         case 1:
-            // Scream Screen entries
-            headerText = NSLocalizedString(@"Times", nil);
-            break;
-            
-        case 2:
-            // Other Videos section
-            headerText = NSLocalizedString(@"Gallery", nil);
+            // Times (only for future events) or Gallery (for past events)
+            if (chosenEvent.isPastEvent == NO) {
+                // Times
+                headerText = NSLocalizedString(@"Times", nil);
+            } else if (chosenEvent.isPastEvent == YES) {
+                // Gallery
+                headerText = NSLocalizedString(@"Gallery", nil);
+            }
             break;
             
         default:
@@ -93,25 +101,61 @@
     return headerView;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
-    
-    //[cell setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
-    
-    // Disable tapping of cells
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
-    NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
-    
-    UILabel *contentLabel = (UILabel *)[cell viewWithTag:101];
-    
-    contentLabel.numberOfLines = 0;
-    
-    contentLabel.text = [sectionContents objectAtIndex:indexPath.row];
-    
-    return cell;
+    if (indexPath.section == 0) {
+        // Details section
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
+        
+        // Disable tapping of cells
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
+        
+        UILabel *contentLabel = (UILabel *)[cell viewWithTag:101];
+        
+        contentLabel.numberOfLines = 0;
+        
+        contentLabel.text = [sectionContents objectAtIndex:indexPath.row];
+        
+        return cell;
+        
+    } else if (indexPath.section == 1) {
+        // Times/Gallery section
+        
+        // Times (only for future events)
+        if (chosenEvent.isPastEvent == NO) {
+            
+            // Times cell
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
+            
+            // Disable tapping of cells
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            
+            NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
+            
+            UILabel *contentLabel = (UILabel *)[cell viewWithTag:101];
+            
+            contentLabel.numberOfLines = 0;
+            
+            contentLabel.text = [sectionContents objectAtIndex:indexPath.row];
+            
+            return cell;
+            
+        } else if (chosenEvent.isPastEvent == YES) {
+            
+            // Gallery cell
+            NUSContainerTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContainerTableCell" forIndexPath:indexPath];
+            
+            // Disable tapping of cells
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            
+            [cell setCollectionData:chosenEvent.eventGalleryImageUrls];
+            
+            return cell;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - Init methods
@@ -147,8 +191,10 @@
     [self.tableView setSeparatorColor:[UIColor clearColor]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    // Register cell with tableView
+    // Register cells with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSEventDetailCell" bundle:nil] forCellReuseIdentifier:@"EventDetailCell"];
+    // Gallery cell
+    [self.tableView registerClass:[NUSContainerTableCell class] forCellReuseIdentifier:@"ContainerTableCell"];
     
     // Add tableView to view
     [self.view addSubview:self.tableView];
@@ -173,7 +219,7 @@
     [eventGallery addObject:@"gallery links"];
     
     [cellArray addObject:eventDetails];
-    [cellArray addObject:eventTimes];
+    //[cellArray addObject:eventTimes];
     [cellArray addObject:eventGallery];
 }
 

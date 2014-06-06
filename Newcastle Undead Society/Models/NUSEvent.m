@@ -10,9 +10,9 @@
 
 @implementation NUSEvent
 
-@synthesize eventYear, eventContent, isPastEvent, eventImageUrl;
+@synthesize eventYear, eventContent, isPastEvent, eventImageUrl, eventGalleryImageUrls;
 
-- (id)initWithYear:(NSString *)yearValue andContent:(NSString *)contentValue andImageUrl:(NSString *)imageUrlValue andIsPastEvent:(BOOL)pastEventOrNot
+- (id)initWithYear:(NSString *)yearValue andContent:(NSString *)contentValue andImageUrl:(NSString *)imageUrlValue andGalleryImageUrls:(NSArray *)galleryImageUrlsValue andIsPastEvent:(BOOL)pastEventOrNot
 {
     self = [super init];
     
@@ -20,10 +20,11 @@
         eventYear = yearValue;
         eventContent = contentValue;
         eventImageUrl = imageUrlValue;
+        eventGalleryImageUrls = galleryImageUrlsValue;
         isPastEvent = pastEventOrNot;
     }
     
-    DDLogVerbose(@"init event: %@, content: %@, is past or not: %hhd", eventYear, eventContent, isPastEvent);
+    DDLogVerbose(@"init event: %@, content: %@, gallery url count: %d, is past or not: %hhd", eventYear, eventContent, [eventGalleryImageUrls count], isPastEvent);
     
     return self;
 }

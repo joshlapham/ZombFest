@@ -38,6 +38,11 @@
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
 		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
 		68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSEventListCell.xib */; };
+		68DE949F19407C3C00DC96B6 /* NUSContainerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68DE949E19407C3C00DC96B6 /* NUSContainerCellView.xib */; };
+		68DE94A219407C8500DC96B6 /* NUSContainerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE94A119407C8500DC96B6 /* NUSContainerCellView.m */; };
+		68DE94A4194080B600DC96B6 /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68DE94A3194080B600DC96B6 /* ArticleCollectionViewCell.xib */; };
+		68DE94A7194080EC00DC96B6 /* NUSArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE94A6194080EC00DC96B6 /* NUSArticleCollectionViewCell.m */; };
+		68DE94AA1940984A00DC96B6 /* NUSContainerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE94A91940984A00DC96B6 /* NUSContainerTableCell.m */; };
 		68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */; };
 		68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FF3876193EE30200DA9438 /* NUSAboutViewController.m */; };
 /* End PBXBuildFile section */
@@ -99,6 +104,14 @@
 		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
 		68C22775193ED03700764274 /* NUSEventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventListViewController.m; path = "View Controllers/NUSEventListViewController.m"; sourceTree = "<group>"; };
 		68C22777193ED13F00764274 /* NUSEventListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventListCell.xib; path = Cells/NUSEventListCell.xib; sourceTree = "<group>"; };
+		68DE949E19407C3C00DC96B6 /* NUSContainerCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSContainerCellView.xib; path = Cells/NUSContainerCellView.xib; sourceTree = "<group>"; };
+		68DE94A019407C8500DC96B6 /* NUSContainerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSContainerCellView.h; path = Cells/NUSContainerCellView.h; sourceTree = "<group>"; };
+		68DE94A119407C8500DC96B6 /* NUSContainerCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContainerCellView.m; path = Cells/NUSContainerCellView.m; sourceTree = "<group>"; };
+		68DE94A3194080B600DC96B6 /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArticleCollectionViewCell.xib; path = Cells/ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
+		68DE94A5194080EC00DC96B6 /* NUSArticleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSArticleCollectionViewCell.h; path = Cells/NUSArticleCollectionViewCell.h; sourceTree = "<group>"; };
+		68DE94A6194080EC00DC96B6 /* NUSArticleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSArticleCollectionViewCell.m; path = Cells/NUSArticleCollectionViewCell.m; sourceTree = "<group>"; };
+		68DE94A81940984A00DC96B6 /* NUSContainerTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSContainerTableCell.h; path = Cells/NUSContainerTableCell.h; sourceTree = "<group>"; };
+		68DE94A91940984A00DC96B6 /* NUSContainerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContainerTableCell.m; path = Cells/NUSContainerTableCell.m; sourceTree = "<group>"; };
 		68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSAboutCell.xib; path = Cells/NUSAboutCell.xib; sourceTree = "<group>"; };
 		68FF3875193EE30200DA9438 /* NUSAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSAboutViewController.h; path = "View Controllers/NUSAboutViewController.h"; sourceTree = "<group>"; };
 		68FF3876193EE30200DA9438 /* NUSAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSAboutViewController.m; path = "View Controllers/NUSAboutViewController.m"; sourceTree = "<group>"; };
@@ -236,6 +249,14 @@
 				6804DE1B193EC34B001DC26B /* NUSNewsFeedCell.xib */,
 				68C22777193ED13F00764274 /* NUSEventListCell.xib */,
 				68A26E7519404D8100600911 /* NUSEventDetailCell.xib */,
+				68DE949E19407C3C00DC96B6 /* NUSContainerCellView.xib */,
+				68DE94A019407C8500DC96B6 /* NUSContainerCellView.h */,
+				68DE94A119407C8500DC96B6 /* NUSContainerCellView.m */,
+				68DE94A81940984A00DC96B6 /* NUSContainerTableCell.h */,
+				68DE94A91940984A00DC96B6 /* NUSContainerTableCell.m */,
+				68DE94A3194080B600DC96B6 /* ArticleCollectionViewCell.xib */,
+				68DE94A5194080EC00DC96B6 /* NUSArticleCollectionViewCell.h */,
+				68DE94A6194080EC00DC96B6 /* NUSArticleCollectionViewCell.m */,
 				68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */,
 				680E749C193F16FA00457BA2 /* NUSContactCell.xib */,
 				681894C2193F35A400A7B73B /* NUSVideoCell.xib */,
@@ -349,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */,
+				68DE94A4194080B600DC96B6 /* ArticleCollectionViewCell.xib in Resources */,
 				681894C3193F35A400A7B73B /* NUSVideoCell.xib in Resources */,
 				68A26E7619404D8100600911 /* NUSEventDetailCell.xib in Resources */,
 				6892E79918CF31A600D60787 /* Main_iPad.storyboard in Resources */,
@@ -357,6 +379,7 @@
 				6892E79E18CF31A600D60787 /* Images.xcassets in Resources */,
 				680E749D193F16FA00457BA2 /* NUSContactCell.xib in Resources */,
 				6892E79618CF31A600D60787 /* Main_iPhone.storyboard in Resources */,
+				68DE949F19407C3C00DC96B6 /* NUSContainerCellView.xib in Resources */,
 				6892E78D18CF31A600D60787 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +435,7 @@
 				68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */,
 				680E74A0193F1D6E00457BA2 /* NUSConstants.m in Sources */,
 				686C0D5B193FF4BB00C54E3E /* NUSDataStore.m in Sources */,
+				68DE94AA1940984A00DC96B6 /* NUSContainerTableCell.m in Sources */,
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,
 				680332B319403F7700870EA2 /* NUSEventDetailViewController.m in Sources */,
@@ -419,9 +443,11 @@
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,
 				68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */,
 				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,
+				68DE94A7194080EC00DC96B6 /* NUSArticleCollectionViewCell.m in Sources */,
 				688CCF02193F12E7007C01D9 /* NUSContactViewController.m in Sources */,
 				6892E79318CF31A600D60787 /* NUSAppDelegate.m in Sources */,
 				689795EE193FF1AA00A6DC67 /* JPLReachabilityManager.m in Sources */,
+				68DE94A219407C8500DC96B6 /* NUSContainerCellView.m in Sources */,
 				681894C1193F34E500A7B73B /* NUSVideosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
