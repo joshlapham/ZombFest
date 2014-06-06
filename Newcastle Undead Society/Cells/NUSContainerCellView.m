@@ -34,6 +34,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     DDLogVerbose(@"%s", __FUNCTION__);
+    
+    // Pass indexPath to notification so MWPhotoBrowser can start on photo that was just tapped
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectItemFromCollectionView" object:indexPath];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

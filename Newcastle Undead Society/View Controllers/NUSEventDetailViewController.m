@@ -9,8 +9,9 @@
 #import "NUSEventDetailViewController.h"
 #import "NUSEvent.h"
 #import "NUSContainerTableCell.h"
+#import "MWPhotoBrowser.h"
 
-@interface NUSEventDetailViewController ()
+@interface NUSEventDetailViewController () <MWPhotoBrowserDelegate>
 
 @end
 
@@ -19,6 +20,7 @@
     NSMutableArray *eventTimes;
     NSMutableArray *eventDetails;
     NSMutableArray *eventGallery;
+    NSMutableArray *photosForBrowser;
 }
 
 @synthesize eventYear, chosenEvent;
@@ -158,6 +160,14 @@
     return nil;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If Gallery cell ..
+    if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
+        //
+    }
+}
+
 #pragma mark - Init methods
 
 - (id)initWithChosenEventItem:(NUSEvent *)chosenEventValue
@@ -201,6 +211,14 @@
     
     // Init cellArray data source
     [self initCellArrayDataSource];
+    
+    // Add observer that will allow the nested collection cell to trigger the view controller select row at index path
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectItemFromCollectionView:) name:@"didSelectItemFromCollectionView" object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didSelectItemFromCollectionView" object:nil];
 }
 
 #pragma mark - Init cellArray data source
@@ -221,6 +239,48 @@
     [cellArray addObject:eventDetails];
     //[cellArray addObject:eventTimes];
     [cellArray addObject:eventGallery];
+    
+    // MWPhotoBrowser
+    photosForBrowser = [[NSMutableArray alloc] init];
+    
+    // Loop over our chosenEvent's gallery URLs
+    for (NSString *imageUrl in chosenEvent.eventGalleryImageUrls) {
+        [photosForBrowser addObject:[MWPhoto photoWithURL:[NSURL URLWithString:imageUrl]]];
+    }
+    DDLogVerbose(@"photos for browser count: %d", [photosForBrowser count]);
+}
+
+#pragma mark - MWPhotoBrowser delegate methods
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
+{
+    return [photosForBrowser count];
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
+{
+    if (index < [photosForBrowser count]) {
+        return [photosForBrowser objectAtIndex:index];
+    }
+    return nil;
+}
+
+#pragma mark - NSNotification to select table cell
+
+- (void)didSelectItemFromCollectionView:(NSNotification *)notification
+{
+    // Index path for chosen photo
+    NSIndexPath *chosenPhotoIndex = [notification object];
+    
+    // Init MWPhotoBrowser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    //[browser setModalPresentationCapturesStatusBarAppearance:YES];
+    
+    // Start on chosen photo
+    [browser setCurrentPhotoIndex:chosenPhotoIndex.row];
+    
+    // Present photo browser
+    [self.navigationController pushViewController:browser animated:YES];
 }
 
 @end

@@ -4,10 +4,17 @@ PODS:
   - CocoaLumberjack/Core (1.9.0)
   - CocoaLumberjack/Extensions (1.9.0):
     - CocoaLumberjack/Core
+  - DACircularProgress (2.2.0)
   - JASidePanels (1.3.2)
+  - MBProgressHUD (0.8)
+  - MWPhotoBrowser (1.4.0):
+    - DACircularProgress
+    - MBProgressHUD (~> 0.8)
+    - PSTCollectionView (~> 1.2)
+    - SDWebImage (~> 3.5.4)
   - PBWebViewController (0.2)
+  - PSTCollectionView (1.2.0)
   - Reachability (3.1.1)
-  - Reveal-iOS-SDK (1.0.4)
   - SDWebImage (3.6):
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
@@ -15,17 +22,20 @@ PODS:
 DEPENDENCIES:
   - CocoaLumberjack (~> 1.8)
   - JASidePanels (~> 1.3.2)
+  - MWPhotoBrowser (~> 1.4)
   - PBWebViewController (~> 0.1)
   - Reachability (~> 3.1)
-  - Reveal-iOS-SDK (~> 1.0)
   - SDWebImage (~> 3.5)
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
+  DACircularProgress: 3b41941891a56dc6aa17971f5322a9a38a6f446e
   JASidePanels: ca943907d88a0738c80755204c6098969d43e4e9
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  MWPhotoBrowser: 4efcdb9da34751f97992128a5356f3929d1af537
   PBWebViewController: 4ce33129c0f0adfce9cec105be4d48c7c9b70026
+  PSTCollectionView: e82c1a71ec6469f88490b674c0f66f0bbf1de001
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
-  Reveal-iOS-SDK: d3c8e109d42219daaa7a6e1ad2de34f0bdbb7a88
   SDWebImage: c6989652c1cdf27cbdf3f56957e2030f825af5bc
 
 COCOAPODS: 0.33.1
