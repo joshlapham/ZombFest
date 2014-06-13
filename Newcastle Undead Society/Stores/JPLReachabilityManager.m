@@ -20,7 +20,7 @@
         _sharedManager = [[self alloc] init];
     });
     
-    DDLogVerbose(@"Init JPLReachabilityManager");
+    //DDLogVerbose(@"Init JPLReachabilityManager");
     
     return _sharedManager;
 }

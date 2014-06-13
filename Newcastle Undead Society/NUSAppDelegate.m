@@ -60,6 +60,11 @@
         // Preload all gallery images
         [self preloadAllGalleryImages];
         
+        // Refresh data
+        if ([NUSDataStore isCurrentlyFetchingZombieJSONDataFile] == NO) {
+            [NUSDataStore downloadZombieJSONDataFileToDevice];
+        }
+        
     } else if ([JPLReachabilityManager isUnreachable]) {
         DDLogVerbose(@"Network reachability did change, and no network is available");
     }
@@ -69,6 +74,8 @@
 
 - (void)preloadAllGalleryImages
 {
+    DDLogVerbose(@"%s", __FUNCTION__);
+    
     // Preload all gallery images if on WiFi
     if ([JPLReachabilityManager isReachableViaWiFi]) {
         [NUSDataStore preloadGalleryImagesForAllEvents];
@@ -106,8 +113,35 @@
                                                  name:kReachabilityChangedNotification
                                                object:nil];
     
-    // Preload all gallery images
-    [self preloadAllGalleryImages];
+    // Fetch data
+    // Check if this is first load, if so then use data file included with app instead
+    if ([NUSDataStore hasFirstDataFetchHappened] == YES) {
+        DDLogVerbose(@"First data fetch has happened");
+        
+        // Download new copy of data file
+        if ([JPLReachabilityManager isReachable]) {
+            
+            if ([NUSDataStore isCurrentlyFetchingZombieJSONDataFile] == NO) {
+                [NUSDataStore downloadZombieJSONDataFileToDevice];
+            }
+            
+            // Preload all gallery images
+            if ([NUSDataStore isCurrentlyPreloadingGalleryImages] == NO) {
+                [self preloadAllGalleryImages];
+            }
+            
+        }
+        
+    } else {
+        DDLogVerbose(@" First data fetch has NOT happened, using local data file");
+        // Is first load, use local data file
+        [NUSDataStore parseZombieJSONDataFileWithFilePath:[NUSDataStore returnPathToLocalZombieJSONDataFileIncludedOnDevice]];
+        
+        // Preload all gallery images
+        if ([NUSDataStore isCurrentlyPreloadingGalleryImages] == NO) {
+            [self preloadAllGalleryImages];
+        }
+    }
     
     return YES;
 }

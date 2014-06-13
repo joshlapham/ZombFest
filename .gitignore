@@ -1,6 +1,7 @@
 *.swp
 Pods/
 Newcastle Undead Society.xcworkspace
+Newcastle Undead Society/zombie-data.json
 
 ### OSX ###
 .DS_Store

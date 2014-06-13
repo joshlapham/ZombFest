@@ -19,6 +19,10 @@
 {
     [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
     [self setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[NUSNewsFeedViewController alloc] init]]];
+    
+    // Disable swipe to show menu
+    self.allowLeftSwipe = NO;
+    self.allowRightSwipe = NO;
 }
 
 - (void)stylePanel:(UIView *)panel {

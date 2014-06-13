@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NUSEvent : NSObject
+@interface NUSEvent : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *eventYear;
 @property (nonatomic, strong) NSString *eventContent;

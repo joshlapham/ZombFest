@@ -8,6 +8,9 @@
 
 #import "NUSContactViewController.h"
 #import "PBWebViewController.h"
+#import "NUSDataStore.h"
+#import "NUSSocialLink.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface NUSContactViewController () {
     NSMutableArray *cellArray;
@@ -74,31 +77,53 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
     UIImageView *iconImage = (UIImageView *)[cell viewWithTag:102];
     
-    // Set cell text and image
-    titleLabel.text = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"title"];
-    iconImage.image = [UIImage imageNamed:[[cellArray objectAtIndex:indexPath.row] objectForKey:@"image"]];
+    NUSSocialLink *cellData = [cellArray objectAtIndex:indexPath.row];
+    
+    // Set cell text
+    titleLabel.text = cellData.linkTitle;
+    
+    // Set cell thumbnail using SDWebImage
+    [iconImage setImageWithURL:[NSURL URLWithString:cellData.linkImageUrl]
+                  placeholderImage:nil
+                         completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
+                             if (cellImage && !error) {
+                                 //DDLogVerbose(@"Fetched cell thumbnail image");
+                             } else {
+                                 DDLogError(@"Error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                 // TODO: implement fallback
+                             }
+                         }];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Init string with title of social link
-    NSString *socialLinkTitle = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"title"];
+    NUSSocialLink *cellData = [cellArray objectAtIndex:indexPath.row];
     
     // Init NSURL with social link URL from cellArray
-    NSURL *socialLinkUrl = [NSURL URLWithString:[[cellArray objectAtIndex:indexPath.row] objectForKey:@"url"]];
+    NSURL *socialLinkUrl = [NSURL URLWithString:cellData.linkUrl];
     
-    // Initialize the web view controller and set its' URL
+    // Initialize the web view controller and set its' URL and title
     PBWebViewController *webViewController = [[PBWebViewController alloc] init];
     webViewController.URL = socialLinkUrl;
-    webViewController.title = socialLinkTitle;
+    webViewController.title = cellData.linkTitle;
     
     // Set back button of navbar to have no text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     // Show web view controller with social media link
     [self.navigationController pushViewController:webViewController animated:YES];
+}
+
+#pragma mark - NSNotification data fetch did happen method
+
+- (void)dataFetchDidHappen
+{
+    DDLogVerbose(@"%s", __FUNCTION__);
+    
+    [self initCellArrayDataSource];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Init methods
@@ -112,6 +137,13 @@
     
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSContactCell" bundle:nil] forCellReuseIdentifier:@"ContactCell"];
+    
+    // Register for data fetch did happen NSNotification
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataFetchDidHappen)
+                                                 name:notificationName
+                                               object:nil];
     
     // Init cellArray data source
     [self initCellArrayDataSource];
@@ -151,15 +183,7 @@
 
 - (void)initCellArrayDataSource
 {
-    cellArray = [[NSMutableArray alloc] init];
-    
-    NSDictionary *socialLink1 = @{@"title" : @"Facebook", @"url" : @"https://www.facebook.com/NewcastleUndeadSociety", @"image" : @"facebook-128-black.png"};
-    NSDictionary *socialLink2 = @{@"title" : @"Twitter", @"url" : @"https://twitter.com/undeadsociety", @"image" : @"twitter-128-black.png"};
-    NSDictionary *socialLink3 = @{@"title" : @"Tumblr", @"url" : @"http://newcastleundeadsociety.tumblr.com/", @"image" : @"tumblr-128-black.png"};
-    
-    [cellArray addObject:socialLink1];
-    [cellArray addObject:socialLink2];
-    [cellArray addObject:socialLink3];
+    cellArray = [[NSMutableArray alloc] initWithArray:[NUSDataStore returnSocialMediaLinksFromCache]];
 }
 
 @end

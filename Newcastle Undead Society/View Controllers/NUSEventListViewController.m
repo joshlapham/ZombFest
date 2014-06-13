@@ -205,17 +205,12 @@
     pastEvents = [[NSMutableArray alloc] init];
     futureEvents = [[NSMutableArray alloc] init];
     
-    futureEvents = [NSMutableArray arrayWithArray:[NUSDataStore returnFutureEvents]];
-    pastEvents = [NSMutableArray arrayWithArray:[NUSDataStore returnPastEvents]];
+    futureEvents = [NSMutableArray arrayWithArray:[NUSDataStore returnFutureEventsFromCache]];
+    pastEvents = [NSMutableArray arrayWithArray:[NUSDataStore returnPastEventsFromCache]];
     
-    // Temp array to hold our different arrays of data
-    NSMutableArray *tmpAllArray = [[NSMutableArray alloc] init];
     // NOTE - add futureEvents first so it's at the top
-    [tmpAllArray addObject:futureEvents];
-    [tmpAllArray addObject:pastEvents];
-    
-    // Init cellArray with all this data
-    [cellArray setArray:tmpAllArray];
+    [cellArray addObject:futureEvents];
+    [cellArray addObject:pastEvents];
     
     // Reload collectionView with data
     [self.collectionView reloadData];

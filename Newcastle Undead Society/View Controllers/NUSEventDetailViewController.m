@@ -204,14 +204,6 @@
     return nil;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // If Gallery cell ..
-//    if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
-//        //
-//    }
-//}
-
 #pragma mark - Init methods
 
 - (id)initWithChosenEventItem:(NUSEvent *)chosenEventValue
@@ -265,7 +257,9 @@
     [self initCellArrayDataSource];
     
     // Add observer that will allow the nested collection cell to trigger the view controller select row at index path
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectItemFromCollectionView:) name:@"didSelectItemFromCollectionView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSelectItemFromCollectionView:) name:@"didSelectItemFromCollectionView"
+                                               object:nil];
 }
 
 - (void)dealloc
@@ -282,10 +276,9 @@
     eventTimes = [[NSMutableArray alloc] init];
     eventMap = [[NSMutableArray alloc] init];
     
-    // TODO: implement map better
+    // TODO: implement this whole method better
     [eventMap addObject:@"placeholder-for-map-image-object"];
     
-    // TODO: add stuff to event details, times and gallery
     [eventDetails addObject:chosenEvent.eventContent];
     
     for (NSString *eventTime in chosenEvent.eventTimes) {

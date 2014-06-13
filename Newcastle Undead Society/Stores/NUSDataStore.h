@@ -14,9 +14,16 @@
 + (NUSDataStore *)sharedStore;
 
 // Class methods
-+ (void)fetchData;
-+ (NSArray *)returnFutureEvents;
-+ (NSArray *)returnPastEvents;
 + (void)preloadGalleryImagesForAllEvents;
++ (NSArray *)returnPastEventsFromCache;
++ (NSArray *)returnFutureEventsFromCache;
++ (NSArray *)returnSocialMediaLinksFromCache;
++ (BOOL)hasFirstDataFetchHappened;
++ (void)downloadZombieJSONDataFileToDevice;
++ (NSString *)returnPathToLocalZombieJSONDataFile;
++ (NSString *)returnPathToLocalZombieJSONDataFileIncludedOnDevice;
++ (void)parseZombieJSONDataFileWithFilePath:(NSString *)pathToJsonDataFile;
++ (BOOL)isCurrentlyFetchingZombieJSONDataFile;
++ (BOOL)isCurrentlyPreloadingGalleryImages;
 
 @end
