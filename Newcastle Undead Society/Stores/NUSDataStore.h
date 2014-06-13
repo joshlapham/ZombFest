@@ -19,6 +19,10 @@
 + (NSArray *)returnAboutSectionContent;
 + (NSArray *)returnPastEventsFromCache;
 + (NSArray *)returnFutureEventsFromCache;
++ (NSArray *)returnAllVideosFromCache;
++ (NSArray *)returnWinningVideosFromCache;
++ (NSArray *)returnEntrantVideosFromCache;
++ (NSArray *)returnOtherVideosFromCache;
 + (NSArray *)returnSocialMediaLinksFromCache;
 + (BOOL)hasFirstDataFetchHappened;
 + (void)downloadZombieJSONDataFileToDevice;

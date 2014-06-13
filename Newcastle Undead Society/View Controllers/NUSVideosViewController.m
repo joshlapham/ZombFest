@@ -9,6 +9,8 @@
 #import "NUSVideosViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PBWebViewController.h"
+#import "NUSDataStore.h"
+#import "NUSVideo.h"
 
 @interface NUSVideosViewController () {
     NSMutableArray *cellArray;
@@ -98,6 +100,8 @@
     
     NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
     
+    NUSVideo *cellData = [sectionContents objectAtIndex:indexPath.row];
+    
     // Init cell labels
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
     UILabel *durationLabel = (UILabel *)[cell viewWithTag:102];
@@ -110,16 +114,16 @@
     authorLabel.adjustsFontSizeToFitWidth = YES;
     
     // Set video title and duration
-    titleLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"title"];
-    durationLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"duration"];
+    titleLabel.text = cellData.title;
+    durationLabel.text = cellData.duration;
     
     // Set author and year
     NSString *byString = NSLocalizedString(@"By", nil);
-    authorLabel.text = [NSString stringWithFormat:@"%@ %@", byString, [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"author"]];
-    yearLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"year"];
+    authorLabel.text = [NSString stringWithFormat:@"%@ %@", byString, cellData.author];
+    yearLabel.text = cellData.year;
     
     // Set cell thumbnail using SDWebImage
-    [cellImageView setImageWithURL:[NSURL URLWithString:[[sectionContents objectAtIndex:indexPath.row] objectForKey:@"thumbUrl"]]
+    [cellImageView setImageWithURL:[NSURL URLWithString:cellData.thumbUrl]
                   placeholderImage:nil
                          completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
                              if (cellImage && !error) {
@@ -137,11 +141,13 @@
 {
     NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
     
+    NUSVideo *cellData = [sectionContents objectAtIndex:indexPath.row];
+    
     // Init string with title of social link
-    NSString *videoLinkTitle = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"title"];
+    NSString *videoLinkTitle = cellData.title;
     
     // Init NSURL with video link URL from cellArray
-    NSURL *videoLinkUrl = [NSURL URLWithString:[[sectionContents objectAtIndex:indexPath.row] objectForKey:@"videoUrl"]];
+    NSURL *videoLinkUrl = [NSURL URLWithString:cellData.videoUrl];
     
     // Initialize the web view controller and set its' URL
     PBWebViewController *webViewController = [[PBWebViewController alloc] init];
@@ -199,44 +205,13 @@
 {
     // Init arrays
     cellArray = [[NSMutableArray alloc] init];
-    videoEntries = [[NSMutableArray alloc] init];
-    videoWinners = [[NSMutableArray alloc] init];
-    otherVideos = [[NSMutableArray alloc] init];
+    videoEntries = [NSMutableArray arrayWithArray:[NUSDataStore returnEntrantVideosFromCache]];
+    videoWinners = [NSMutableArray arrayWithArray:[NUSDataStore returnWinningVideosFromCache]];
+    otherVideos = [NSMutableArray arrayWithArray:[NUSDataStore returnOtherVideosFromCache]];
     
-    // Other Videos
-    NSDictionary *videoItem1 = @{@"title" : @"Zombies In Newcastle", @"author" : @"Someone", @"year" : @"2010", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=l0su0qTwsuA", @"thumbUrl" : @"http://img.youtube.com/vi/l0su0qTwsuA/default.jpg"};
-    
-    // Scream Screen
-    NSDictionary *videoItem2 = @{@"title" : @"Ultimatum", @"author" : @"Elevator5 Productions", @"year" : @"2013", @"duration" : @"3:00", @"videoUrl" : @"http://vimeo.com/79647932", @"thumbUrl" : @"http://i.vimeocdn.com/video/455392983_100x75.jpg"};
-    
-    NSDictionary *videoItem3 = @{@"title" : @"Unconsumed", @"author" : @"PureHDProduction", @"year" : @"2011", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=pZw3igUKDJU", @"thumbUrl" : @"http://img.youtube.com/vi/pZw3igUKDJU/default.jpg"};
-    
-    NSDictionary *videoItem4 = @{@"title" : @"One Foot In The Grave", @"author" : @"Crimean Pictures", @"year" : @"2010", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=fHthaXXFNEA", @"thumbUrl" : @"http://img.youtube.com/vi/fHthaXXFNEA/default.jpg"};
-    
-    NSDictionary *videoItem5 = @{@"title" : @"A Zombie Film", @"author" : @"Arf Power", @"year" : @"2013", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=neszLIKQb_o", @"thumbUrl" : @"http://img.youtube.com/vi/neszLIKQb_o/default.jpg"};
-    
-    NSDictionary *videoItem6 = @{@"title" : @"Abandoned", @"author" : @"Alexander Jacobs", @"year" : @"2013", @"duration" : @"3:00", @"videoUrl" : @"https://www.youtube.com/watch?v=sWiozy9FYEM", @"thumbUrl" : @"http://img.youtube.com/vi/sWiozy9FYEM/default.jpg"};
-    
-    // Scream Screen video winners
-    [videoWinners addObject:videoItem2];
-    [videoWinners addObject:videoItem3];
-    
-    // Scream Screen video entries
-    [videoEntries addObject:videoItem4];
-    [videoEntries addObject:videoItem5];
-    [videoEntries addObject:videoItem6];
-    
-    // Other video entries
-    [otherVideos addObject:videoItem1];
-    
-    // Temp array to hold our different arrays of data
-    NSMutableArray *tmpAllArray = [[NSMutableArray alloc] init];
-    [tmpAllArray addObject:videoWinners];
-    [tmpAllArray addObject:videoEntries];
-    [tmpAllArray addObject:otherVideos];
-    
-    // Init cellArray with all this data
-    [cellArray setArray:tmpAllArray];
+    [cellArray addObject:videoWinners];
+    [cellArray addObject:videoEntries];
+    [cellArray addObject:otherVideos];
 }
 
 @end

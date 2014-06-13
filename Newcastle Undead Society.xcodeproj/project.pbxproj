@@ -48,6 +48,7 @@
 		68F90EDA19480B34005ED0D8 /* zombie-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 68F90ED919480B34005ED0D8 /* zombie-data.json */; };
 		68F90EDD194A9A1B005ED0D8 /* NUSNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F90EDC194A9A1B005ED0D8 /* NUSNewsItem.m */; };
 		68F90EE0194A9F5E005ED0D8 /* NUSAboutContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F90EDF194A9F5E005ED0D8 /* NUSAboutContent.m */; };
+		68F90EE3194AA950005ED0D8 /* NUSVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F90EE2194AA950005ED0D8 /* NUSVideo.m */; };
 		68FEB47219451DF300AEB463 /* NUSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FEB47119451DF300AEB463 /* NUSEvent.m */; };
 		68FEB47519454E2B00AEB463 /* NUSSocialLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FEB47419454E2B00AEB463 /* NUSSocialLink.m */; };
 		68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FF3876193EE30200DA9438 /* NUSAboutViewController.m */; };
@@ -124,6 +125,8 @@
 		68F90EDC194A9A1B005ED0D8 /* NUSNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsItem.m; path = Models/NUSNewsItem.m; sourceTree = "<group>"; };
 		68F90EDE194A9F5E005ED0D8 /* NUSAboutContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSAboutContent.h; path = Models/NUSAboutContent.h; sourceTree = "<group>"; };
 		68F90EDF194A9F5E005ED0D8 /* NUSAboutContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSAboutContent.m; path = Models/NUSAboutContent.m; sourceTree = "<group>"; };
+		68F90EE1194AA950005ED0D8 /* NUSVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSVideo.h; path = Models/NUSVideo.h; sourceTree = "<group>"; };
+		68F90EE2194AA950005ED0D8 /* NUSVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSVideo.m; path = Models/NUSVideo.m; sourceTree = "<group>"; };
 		68FEB47019451DF300AEB463 /* NUSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEvent.h; path = Models/NUSEvent.h; sourceTree = "<group>"; };
 		68FEB47119451DF300AEB463 /* NUSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEvent.m; path = Models/NUSEvent.m; sourceTree = "<group>"; };
 		68FEB47319454E2B00AEB463 /* NUSSocialLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSocialLink.h; path = Models/NUSSocialLink.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				68F90EDF194A9F5E005ED0D8 /* NUSAboutContent.m */,
 				68FEB47019451DF300AEB463 /* NUSEvent.h */,
 				68FEB47119451DF300AEB463 /* NUSEvent.m */,
+				68F90EE1194AA950005ED0D8 /* NUSVideo.h */,
+				68F90EE2194AA950005ED0D8 /* NUSVideo.m */,
 				68FEB47319454E2B00AEB463 /* NUSSocialLink.h */,
 				68FEB47419454E2B00AEB463 /* NUSSocialLink.m */,
 			);
@@ -466,6 +471,7 @@
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,
 				680332B319403F7700870EA2 /* NUSEventDetailViewController.m in Sources */,
+				68F90EE3194AA950005ED0D8 /* NUSVideo.m in Sources */,
 				68FEB47519454E2B00AEB463 /* NUSSocialLink.m in Sources */,
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,
 				68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */,

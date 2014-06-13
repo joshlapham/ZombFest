@@ -11,6 +11,7 @@
 #import "NUSSocialLink.h"
 #import "NUSNewsItem.h"
 #import "NUSAboutContent.h"
+#import "NUSVideo.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SDWebImagePrefetcher.h"
 #import "AFNetworking.h"
@@ -93,6 +94,71 @@
     NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:futureEventsData];
     
     DDLogVerbose(@"Return future events count: %d", [arrayToReturn count]);
+    
+    return arrayToReturn;
+}
+
+// Videos
++ (NSArray *)returnAllVideosFromCache
+{
+    NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
+    NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
+    
+    DDLogVerbose(@"Return all videos count: %d", [arrayToReturn count]);
+    
+    return arrayToReturn;
+}
+
++ (NSArray *)returnWinningVideosFromCache
+{
+    NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
+    NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
+    
+    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    
+    for (NUSVideo *video in allVideos) {
+        if (video.isWinner == YES) {
+            [arrayToReturn addObject:video];
+        }
+    }
+    
+    DDLogVerbose(@"Return winning videos count: %d", [arrayToReturn count]);
+    
+    return arrayToReturn;
+}
+
++ (NSArray *)returnEntrantVideosFromCache
+{
+    NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
+    NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
+    
+    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    
+    for (NUSVideo *video in allVideos) {
+        if (video.isEntrant == YES) {
+            [arrayToReturn addObject:video];
+        }
+    }
+    
+    DDLogVerbose(@"Return entrant videos count: %d", [arrayToReturn count]);
+    
+    return arrayToReturn;
+}
+
++ (NSArray *)returnOtherVideosFromCache
+{
+    NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
+    NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
+    
+    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    
+    for (NUSVideo *video in allVideos) {
+        if (video.isOther == YES) {
+            [arrayToReturn addObject:video];
+        }
+    }
+    
+    DDLogVerbose(@"Return other videos count: %d", [arrayToReturn count]);
     
     return arrayToReturn;
 }
@@ -208,6 +274,44 @@
         [aboutSectionResults addObject:fetchedAboutContent];
     }
     
+    // Videos
+    for (NSDictionary *video in [jsonLocalDataDict objectForKey:@"videos"]) {
+        BOOL isWinner;
+        BOOL isEntrant;
+        BOOL isOther;
+        
+        if ([[video objectForKey:@"isWinner"] isEqualToString:@"1"]) {
+            isWinner = YES;
+            isEntrant = NO;
+            isOther = NO;
+        } else if ([[video objectForKey:@"isEntrant"] isEqualToString:@"1"]) {
+            isWinner = NO;
+            isEntrant = YES;
+            isOther = NO;
+        } else if ([[video objectForKey:@"isOther"] isEqualToString:@"1"]) {
+            isWinner = NO;
+            isEntrant = NO;
+            isOther = YES;
+        } else {
+            // Default values
+            isWinner = NO;
+            isEntrant = NO;
+            isOther = NO;
+        }
+        
+        NUSVideo *fetchedVideo = [[NUSVideo alloc] initWithId:[video objectForKey:@"id"]
+                                                     andTitle:[video objectForKey:@"title"]
+                                                    andAuthor:[video objectForKey:@"author"]
+                                                      andYear:[video objectForKey:@"year"]
+                                                  andDuration:[video objectForKey:@"duration"]
+                                                       andUrl:[video objectForKey:@"videoUrl"]
+                                                  andThumbUrl:[video objectForKey:@"thumbUrl"]
+                                                     isWinner:isWinner isEntrant:isEntrant
+                                                      isOther:isOther];
+        
+        [videoResults addObject:fetchedVideo];
+    }
+    
     // Save data arrays to NSUserDefaults
     NSData *pastEventsToSave = [NSKeyedArchiver archivedDataWithRootObject:pastEventsResults];
     [[NSUserDefaults standardUserDefaults] setObject:pastEventsToSave forKey:@"pastEventResults"];
@@ -223,6 +327,9 @@
     
     NSData *aboutContentToSave = [NSKeyedArchiver archivedDataWithRootObject:aboutSectionResults];
     [[NSUserDefaults standardUserDefaults] setObject:aboutContentToSave forKey:@"aboutSectionResults"];
+    
+    NSData *videosToSave = [NSKeyedArchiver archivedDataWithRootObject:videoResults];
+    [[NSUserDefaults standardUserDefaults] setObject:videosToSave forKey:@"videoResults"];
     
     // Flag that first data fetch has happened
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstDataFetchDidHappen"];
