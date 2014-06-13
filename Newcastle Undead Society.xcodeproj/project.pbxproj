@@ -46,6 +46,7 @@
 		68DE94AA1940984A00DC96B6 /* NUSContainerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE94A91940984A00DC96B6 /* NUSContainerTableCell.m */; };
 		68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */; };
 		68F90EDA19480B34005ED0D8 /* zombie-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 68F90ED919480B34005ED0D8 /* zombie-data.json */; };
+		68F90EDD194A9A1B005ED0D8 /* NUSNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F90EDC194A9A1B005ED0D8 /* NUSNewsItem.m */; };
 		68FEB47219451DF300AEB463 /* NUSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FEB47119451DF300AEB463 /* NUSEvent.m */; };
 		68FEB47519454E2B00AEB463 /* NUSSocialLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FEB47419454E2B00AEB463 /* NUSSocialLink.m */; };
 		68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FF3876193EE30200DA9438 /* NUSAboutViewController.m */; };
@@ -118,6 +119,8 @@
 		68DE94A91940984A00DC96B6 /* NUSContainerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContainerTableCell.m; path = Cells/NUSContainerTableCell.m; sourceTree = "<group>"; };
 		68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSAboutCell.xib; path = Cells/NUSAboutCell.xib; sourceTree = "<group>"; };
 		68F90ED919480B34005ED0D8 /* zombie-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "zombie-data.json"; sourceTree = "<group>"; };
+		68F90EDB194A9A1B005ED0D8 /* NUSNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsItem.h; path = Models/NUSNewsItem.h; sourceTree = "<group>"; };
+		68F90EDC194A9A1B005ED0D8 /* NUSNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsItem.m; path = Models/NUSNewsItem.m; sourceTree = "<group>"; };
 		68FEB47019451DF300AEB463 /* NUSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEvent.h; path = Models/NUSEvent.h; sourceTree = "<group>"; };
 		68FEB47119451DF300AEB463 /* NUSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEvent.m; path = Models/NUSEvent.m; sourceTree = "<group>"; };
 		68FEB47319454E2B00AEB463 /* NUSSocialLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSSocialLink.h; path = Models/NUSSocialLink.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 		6803329219402D3200870EA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				68F90EDB194A9A1B005ED0D8 /* NUSNewsItem.h */,
+				68F90EDC194A9A1B005ED0D8 /* NUSNewsItem.m */,
 				68FEB47019451DF300AEB463 /* NUSEvent.h */,
 				68FEB47119451DF300AEB463 /* NUSEvent.m */,
 				68FEB47319454E2B00AEB463 /* NUSSocialLink.h */,
@@ -459,6 +464,7 @@
 				68FEB47519454E2B00AEB463 /* NUSSocialLink.m in Sources */,
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,
 				68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */,
+				68F90EDD194A9A1B005ED0D8 /* NUSNewsItem.m in Sources */,
 				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,
 				68FEB47219451DF300AEB463 /* NUSEvent.m in Sources */,
 				68DE94A7194080EC00DC96B6 /* NUSArticleCollectionViewCell.m in Sources */,

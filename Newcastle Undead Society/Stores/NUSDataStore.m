@@ -9,6 +9,7 @@
 #import "NUSDataStore.h"
 #import "NUSEvent.h"
 #import "NUSSocialLink.h"
+#import "NUSNewsItem.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SDWebImagePrefetcher.h"
 #import "AFNetworking.h"
@@ -49,6 +50,17 @@
         DDLogVerbose(@"dataStore NOT currently preloading gallery images");
         return NO;
     }
+}
+
+// News items
++ (NSArray *)returnNewsItemsFromCache
+{
+    NSData *newsItemData = [[NSUserDefaults standardUserDefaults] objectForKey:@"newsItemResults"];
+    NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:newsItemData];
+    
+    DDLogVerbose(@"Return news items count: %d", [arrayToReturn count]);
+    
+    return arrayToReturn;
 }
 
 // Past events
@@ -167,6 +179,16 @@
         [futureEventsResults addObject:fetchedFutureEvent];
     }
     
+    // News items
+    for (NSDictionary *newsItem in [jsonLocalDataDict objectForKey:@"newsItems"]) {
+        NUSNewsItem *fetchedNewsItem = [[NUSNewsItem alloc] initWithId:[newsItem objectForKey:@"id"]
+                                                              andTitle:[newsItem objectForKey:@"title"]
+                                                            andContent:[newsItem objectForKey:@"content"]
+                                                               andDate:[newsItem objectForKey:@"date"]];
+        
+        [newsItemsResults addObject:fetchedNewsItem];
+    }
+    
     // Save data arrays to NSUserDefaults
     NSData *pastEventsToSave = [NSKeyedArchiver archivedDataWithRootObject:pastEventsResults];
     [[NSUserDefaults standardUserDefaults] setObject:pastEventsToSave forKey:@"pastEventResults"];
@@ -176,6 +198,9 @@
     
     NSData *futureEventsToSave = [NSKeyedArchiver archivedDataWithRootObject:futureEventsResults];
     [[NSUserDefaults standardUserDefaults] setObject:futureEventsToSave forKey:@"futureEventResults"];
+    
+    NSData *newsItemsToSave = [NSKeyedArchiver archivedDataWithRootObject:newsItemsResults];
+    [[NSUserDefaults standardUserDefaults] setObject:newsItemsToSave forKey:@"newsItemResults"];
     
     // Flag that first data fetch has happened
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstDataFetchDidHappen"];

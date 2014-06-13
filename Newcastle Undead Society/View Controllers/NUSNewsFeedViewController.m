@@ -7,6 +7,8 @@
 //
 
 #import "NUSNewsFeedViewController.h"
+#import "NUSDataStore.h"
+#import "NUSNewsItem.h"
 
 @interface NUSNewsFeedViewController () {
     NSMutableArray *cellArray;
@@ -37,6 +39,8 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NewsFeedCell" forIndexPath:indexPath];
     
+    NUSNewsItem *cellData = [cellArray objectAtIndex:indexPath.row];
+    
     // Set cell background colour
     [cell setBackgroundColor:[UIColor whiteColor]];
     
@@ -61,9 +65,9 @@
     titleLabel.font = titleFont;
     
     // Set label text
-    titleLabel.text = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"title"];
-    contentLabel.text = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"content"];
-    dateLabel.text = [[cellArray objectAtIndex:indexPath.row] objectForKey:@"date"];
+    titleLabel.text = cellData.title;
+    contentLabel.text = cellData.content;
+    dateLabel.text = cellData.date;
     
     return cell;
 }
@@ -97,17 +101,7 @@
 
 - (void)initCellArrayDataSource
 {
-    NSString *loremIpsum = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium enim a elit convallis semper. Mauris ut sagittis velit. Nullam eget consequat augue. Curabitur porta vel elit ac suscipit. Aliquam sed sem non sapien accumsan suscipit ut at nunc. Aenean malesuada erat sit amet aliquam pretium. Mauris facilisis ut eros vitae egestas.";
-    
-    NSDictionary *newsItem1 = @{@"title" : @"A News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"14/06/14"};
-    NSDictionary *newsItem2 = @{@"title" : @"Another News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"7/03/14"};
-    NSDictionary *newsItem3 = @{@"title" : @"New News Item", @"content" : loremIpsum, @"url" : @"http://undeadsociety.org", @"date": @"14/01/14"};
-    
-    cellArray = [[NSMutableArray alloc] init];
-    
-    [cellArray addObject:newsItem1];
-    [cellArray addObject:newsItem2];
-    [cellArray addObject:newsItem3];
+    cellArray = [NSMutableArray arrayWithArray:[NUSDataStore returnNewsItemsFromCache]];
 }
 
 @end

@@ -15,6 +15,7 @@
 
 // Class methods
 + (void)preloadGalleryImagesForAllEvents;
++ (NSArray *)returnNewsItemsFromCache;
 + (NSArray *)returnPastEventsFromCache;
 + (NSArray *)returnFutureEventsFromCache;
 + (NSArray *)returnSocialMediaLinksFromCache;
