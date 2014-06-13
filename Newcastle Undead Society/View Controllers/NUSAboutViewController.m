@@ -7,6 +7,8 @@
 //
 
 #import "NUSAboutViewController.h"
+#import "NUSDataStore.h"
+#import "NUSAboutContent.h"
 
 @interface NUSAboutViewController () {
     NSMutableArray *cellArray;
@@ -37,6 +39,8 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AboutCell" forIndexPath:indexPath];
     
+    NUSAboutContent *cellData = [cellArray objectAtIndex:indexPath.row];
+    
     // Set cell background colour
     [cell setBackgroundColor:[UIColor whiteColor]];
     
@@ -59,9 +63,9 @@
     titleLabel.font = titleFont;
     
     // Set cell text
-    titleLabel.text = NSLocalizedString(@"About Newcastle Undead Society", @"Title for section displaying information about the app and the organization");
     // TODO: localize content for About section
-    contentLabel.text = [cellArray objectAtIndex:indexPath.row];
+    titleLabel.text = cellData.title;
+    contentLabel.text = cellData.content;
     
     return cell;
 }
@@ -92,11 +96,7 @@
 
 - (void)initCellArrayDataSource
 {
-    cellArray = [[NSMutableArray alloc] init];
-    
-    NSString *firstPara = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis urna semper faucibus fermentum. Nulla ligula augue, cursus a adipiscing id, luctus eu orci. Duis vitae leo lacus. Donec hendrerit orci eu nibh convallis consectetur. Pellentesque ullamcorper gravida orci, at dapibus nulla tincidunt quis. Proin vestibulum vel leo sed rhoncus. Curabitur eleifend nunc dui, in sagittis tellus dapibus eu. Suspendisse interdum vulputate dui, eget semper dui viverra at. \r\rUt faucibus congue nibh eget mollis. Pellentesque sed est in turpis iaculis facilisis. Cras volutpat, felis in semper pharetra, dui eros tempus mauris, a tristique quam leo vel tortor. Donec accumsan a nibh at ultricies. Etiam et feugiat arcu. Praesent at auctor mauris. In ipsum felis, egestas eu lacus quis, dictum dignissim leo.";
-    
-    [cellArray addObject:firstPara];
+    cellArray = [NSMutableArray arrayWithArray:[NUSDataStore returnAboutSectionContent]];
 }
 
 @end

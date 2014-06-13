@@ -10,6 +10,7 @@
 #import "NUSEvent.h"
 #import "NUSSocialLink.h"
 #import "NUSNewsItem.h"
+#import "NUSAboutContent.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SDWebImagePrefetcher.h"
 #import "AFNetworking.h"
@@ -59,6 +60,17 @@
     NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:newsItemData];
     
     DDLogVerbose(@"Return news items count: %d", [arrayToReturn count]);
+    
+    return arrayToReturn;
+}
+
+// About section content
++ (NSArray *)returnAboutSectionContent
+{
+    NSData *aboutSectionData = [[NSUserDefaults standardUserDefaults] objectForKey:@"aboutSectionResults"];
+    NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:aboutSectionData];
+    
+    DDLogVerbose(@"Return About section count: %d", [arrayToReturn count]);
     
     return arrayToReturn;
 }
@@ -189,6 +201,13 @@
         [newsItemsResults addObject:fetchedNewsItem];
     }
     
+    // About section
+    for (NSDictionary *aboutContent in [jsonLocalDataDict objectForKey:@"aboutContent"]) {
+        NUSAboutContent *fetchedAboutContent = [[NUSAboutContent alloc] initWithTitle:[aboutContent objectForKey:@"title"] andContent:[aboutContent objectForKey:@"content"]];
+        
+        [aboutSectionResults addObject:fetchedAboutContent];
+    }
+    
     // Save data arrays to NSUserDefaults
     NSData *pastEventsToSave = [NSKeyedArchiver archivedDataWithRootObject:pastEventsResults];
     [[NSUserDefaults standardUserDefaults] setObject:pastEventsToSave forKey:@"pastEventResults"];
@@ -201,6 +220,9 @@
     
     NSData *newsItemsToSave = [NSKeyedArchiver archivedDataWithRootObject:newsItemsResults];
     [[NSUserDefaults standardUserDefaults] setObject:newsItemsToSave forKey:@"newsItemResults"];
+    
+    NSData *aboutContentToSave = [NSKeyedArchiver archivedDataWithRootObject:aboutSectionResults];
+    [[NSUserDefaults standardUserDefaults] setObject:aboutContentToSave forKey:@"aboutSectionResults"];
     
     // Flag that first data fetch has happened
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstDataFetchDidHappen"];
