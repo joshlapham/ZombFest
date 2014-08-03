@@ -84,7 +84,10 @@
     
     DDLogVerbose(@"Return past events count: %d", [arrayToReturn count]);
     
-    return arrayToReturn;
+    NSArray *reversedArray = [[arrayToReturn reverseObjectEnumerator] allObjects];
+    
+    //return arrayToReturn;
+    return reversedArray;
 }
 
 // Future events
@@ -383,7 +386,7 @@
         NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
         
         if (error) {
-            DDLogVerbose(@"dataStore: %@", [error description]);
+            DDLogError(@"dataStore: %@", [error description]);
         } else {
             DDLogVerbose(@"%@", fileAttributes);
             
@@ -397,7 +400,7 @@
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        DDLogVerbose(@"dataStore: %@", [error description]);
+        DDLogError(@"dataStore: %@", [error description]);
     }];
     
     [operation start];

@@ -85,7 +85,7 @@
 		686C0D5A193FF4BB00C54E3E /* NUSDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSDataStore.m; path = Stores/NUSDataStore.m; sourceTree = "<group>"; };
 		688CCF00193F12E7007C01D9 /* NUSContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSContactViewController.h; path = "View Controllers/NUSContactViewController.h"; sourceTree = "<group>"; };
 		688CCF01193F12E7007C01D9 /* NUSContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContactViewController.m; path = "View Controllers/NUSContactViewController.m"; sourceTree = "<group>"; };
-		6892E77F18CF31A600D60787 /* Newcastle Undead Society.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Newcastle Undead Society.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6892E77F18CF31A600D60787 /* Zombfest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zombfest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6892E78218CF31A600D60787 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6892E78418CF31A600D60787 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6892E78618CF31A600D60787 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -198,7 +198,7 @@
 		6892E78018CF31A600D60787 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6892E77F18CF31A600D60787 /* Newcastle Undead Society.app */,
+				6892E77F18CF31A600D60787 /* Zombfest.app */,
 				6892E7A318CF31A600D60787 /* Newcastle Undead SocietyTests.xctest */,
 			);
 			name = Products;
@@ -344,7 +344,7 @@
 			);
 			name = "Newcastle Undead Society";
 			productName = "Newcastle Undead Society";
-			productReference = 6892E77F18CF31A600D60787 /* Newcastle Undead Society.app */;
+			productReference = 6892E77F18CF31A600D60787 /* Zombfest.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6892E7A218CF31A600D60787 /* Newcastle Undead SocietyTests */ = {
@@ -383,7 +383,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6892E77A18CF31A600D60787 /* Build configuration list for PBXProject "Newcastle Undead Society" */;
+			buildConfigurationList = 6892E77A18CF31A600D60787 /* Build configuration list for PBXProject "Zombfest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -635,7 +635,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Newcastle Undead Society/Newcastle Undead Society-Prefix.pch";
 				INFOPLIST_FILE = "Newcastle Undead Society/Newcastle Undead Society-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Zombfest;
 				PROVISIONING_PROFILE = "EAB57CD7-3139-4E6E-87B4-019760260B09";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -653,7 +653,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Newcastle Undead Society/Newcastle Undead Society-Prefix.pch";
 				INFOPLIST_FILE = "Newcastle Undead Society/Newcastle Undead Society-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Zombfest;
 				PROVISIONING_PROFILE = "EAB57CD7-3139-4E6E-87B4-019760260B09";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -703,7 +703,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6892E77A18CF31A600D60787 /* Build configuration list for PBXProject "Newcastle Undead Society" */ = {
+		6892E77A18CF31A600D60787 /* Build configuration list for PBXProject "Zombfest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6892E7B218CF31A600D60787 /* Debug */,
