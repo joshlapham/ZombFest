@@ -35,11 +35,22 @@
     return [cellArray count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuCell" forIndexPath:indexPath];
     
-    [cell setBackgroundColor:[UIColor colorWithRed:0.4 green:0.38 blue:0.35 alpha:1]];
+    // Set cell background colour
+    // Lynch
+    [cell setBackgroundColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
+    
+    // Set cell font
+    UIFont *cellFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
+    cell.textLabel.font = cellFont;
     
     cell.textLabel.text = [cellArray objectAtIndex:indexPath.row];
     
@@ -96,12 +107,14 @@
     [self.navigationController.navigationBar setTranslucent:NO];
     
     // Set background colour of tableView
-    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.4 green:0.38 blue:0.35 alpha:1]];
+    // Lynch
+    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
     
     [self.tableView setScrollEnabled:NO];
     
     // Set navbar colour
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.4 green:0.38 blue:0.35 alpha:1]];
+    // Lynch
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
     
     // Init cellArray data source
     [self initCellArrayDataSource];

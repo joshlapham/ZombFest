@@ -34,6 +34,8 @@
 		6892E7B118CF31A600D60787 /* Newcastle_Undead_SocietyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6892E7B018CF31A600D60787 /* Newcastle_Undead_SocietyTests.m */; };
 		689795EE193FF1AA00A6DC67 /* JPLReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */; };
 		68A26E7619404D8100600911 /* NUSEventDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68A26E7519404D8100600911 /* NUSEventDetailCell.xib */; };
+		68A9CD31198DFFCE00CBD57B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A9CD30198DFFCE00CBD57B /* MapKit.framework */; };
+		68A9CD34198E002900CBD57B /* NUSEventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A9CD33198E002900CBD57B /* NUSEventMapViewController.m */; };
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
 		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
 		68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSEventListCell.xib */; };
@@ -104,6 +106,9 @@
 		689795EC193FF1AA00A6DC67 /* JPLReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPLReachabilityManager.h; path = Stores/JPLReachabilityManager.h; sourceTree = "<group>"; };
 		689795ED193FF1AA00A6DC67 /* JPLReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPLReachabilityManager.m; path = Stores/JPLReachabilityManager.m; sourceTree = "<group>"; };
 		68A26E7519404D8100600911 /* NUSEventDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventDetailCell.xib; path = Cells/NUSEventDetailCell.xib; sourceTree = "<group>"; };
+		68A9CD30198DFFCE00CBD57B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		68A9CD32198E002900CBD57B /* NUSEventMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventMapViewController.h; path = "View Controllers/NUSEventMapViewController.h"; sourceTree = "<group>"; };
+		68A9CD33198E002900CBD57B /* NUSEventMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventMapViewController.m; path = "View Controllers/NUSEventMapViewController.m"; sourceTree = "<group>"; };
 		68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsFeedViewController.h; path = "View Controllers/NUSNewsFeedViewController.h"; sourceTree = "<group>"; };
 		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
 		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
@@ -141,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A9CD31198DFFCE00CBD57B /* MapKit.framework in Frameworks */,
 				6892E78518CF31A600D60787 /* CoreGraphics.framework in Frameworks */,
 				6892E78718CF31A600D60787 /* UIKit.framework in Frameworks */,
 				6892E78318CF31A600D60787 /* Foundation.framework in Frameworks */,
@@ -201,6 +207,7 @@
 		6892E78118CF31A600D60787 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68A9CD30198DFFCE00CBD57B /* MapKit.framework */,
 				6892E78218CF31A600D60787 /* Foundation.framework */,
 				6892E78418CF31A600D60787 /* CoreGraphics.framework */,
 				6892E78618CF31A600D60787 /* UIKit.framework */,
@@ -304,6 +311,8 @@
 				68C22775193ED03700764274 /* NUSEventListViewController.m */,
 				680332B119403F7700870EA2 /* NUSEventDetailViewController.h */,
 				680332B219403F7700870EA2 /* NUSEventDetailViewController.m */,
+				68A9CD32198E002900CBD57B /* NUSEventMapViewController.h */,
+				68A9CD33198E002900CBD57B /* NUSEventMapViewController.m */,
 				681894BF193F34E500A7B73B /* NUSVideosViewController.h */,
 				681894C0193F34E500A7B73B /* NUSVideosViewController.m */,
 				688CCF00193F12E7007C01D9 /* NUSContactViewController.h */,
@@ -465,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */,
+				68A9CD34198E002900CBD57B /* NUSEventMapViewController.m in Sources */,
 				680E74A0193F1D6E00457BA2 /* NUSConstants.m in Sources */,
 				686C0D5B193FF4BB00C54E3E /* NUSDataStore.m in Sources */,
 				68DE94AA1940984A00DC96B6 /* NUSContainerTableCell.m in Sources */,

@@ -23,6 +23,7 @@
 + (NSArray *)returnWinningVideosFromCache;
 + (NSArray *)returnEntrantVideosFromCache;
 + (NSArray *)returnOtherVideosFromCache;
++ (NSArray *)returnAllVideosFromCacheForYear:(NSString *)eventYear;
 + (NSArray *)returnSocialMediaLinksFromCache;
 + (BOOL)hasFirstDataFetchHappened;
 + (void)downloadZombieJSONDataFileToDevice;

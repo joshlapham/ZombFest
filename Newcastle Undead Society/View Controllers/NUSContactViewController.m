@@ -43,9 +43,12 @@
     // Init header label
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
     headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
     headerLabel.adjustsFontSizeToFitWidth = YES;
     headerLabel.textAlignment = NSTextAlignmentCenter;
+    
+    // Set header label font colour
+    // Dark Pastel Red
+    headerLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
     
     // Set header label font
     UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
@@ -66,18 +69,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 65;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactCell" forIndexPath:indexPath];
     
+    // Set cell background colour
+    // White (Gallery)
+    [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+    
     // Init cell labels
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
     UIImageView *iconImage = (UIImageView *)[cell viewWithTag:102];
     
     NUSSocialLink *cellData = [cellArray objectAtIndex:indexPath.row];
+    
+    // Set link title font
+    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18];
+    titleLabel.font = titleFont;
     
     // Set cell text
     titleLabel.text = cellData.linkTitle;
@@ -89,7 +100,7 @@
                              if (cellImage && !error) {
                                  //DDLogVerbose(@"Fetched cell thumbnail image");
                              } else {
-                                 DDLogError(@"Error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                 DDLogError(@"Contact: error fetching cell thumbnail image: %@", [error localizedDescription]);
                                  // TODO: implement fallback
                              }
                          }];
@@ -138,6 +149,9 @@
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSContactCell" bundle:nil] forCellReuseIdentifier:@"ContactCell"];
     
+    // Make tableView seperator insets extend to edges
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
     // Register for data fetch did happen NSNotification
     NSString *notificationName = @"NUSDataFetchDidHappen";
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -163,12 +177,9 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     
     if (self) {
-        // Remove seperator insets from tableView
-        //[self.tableView setSeparatorColor:[UIColor clearColor]];
-        //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        
         // Set tableView background colour
-        [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+        // White (Gallery)
+        [self.tableView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
         
         // Set tableView to have a bit of padding at the top so section header looks right
         [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];

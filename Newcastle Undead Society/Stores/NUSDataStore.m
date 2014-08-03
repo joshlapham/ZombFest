@@ -163,6 +163,24 @@
     return arrayToReturn;
 }
 
++ (NSArray *)returnAllVideosFromCacheForYear:(NSString *)eventYear
+{
+    NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
+    NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
+    
+    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    
+    for (NUSVideo *video in allVideos) {
+        if ([video.year isEqualToString:eventYear]) {
+            [arrayToReturn addObject:video];
+        }
+    }
+    
+    DDLogVerbose(@"Return videos for event year %@ count: %d", eventYear, [arrayToReturn count]);
+    
+    return arrayToReturn;
+}
+
 // Social media links
 + (NSArray *)returnSocialMediaLinksFromCache
 {
@@ -280,24 +298,11 @@
         BOOL isEntrant;
         BOOL isOther;
         
-        if ([[video objectForKey:@"isWinner"] isEqualToString:@"1"]) {
-            isWinner = YES;
-            isEntrant = NO;
-            isOther = NO;
-        } else if ([[video objectForKey:@"isEntrant"] isEqualToString:@"1"]) {
-            isWinner = NO;
-            isEntrant = YES;
-            isOther = NO;
-        } else if ([[video objectForKey:@"isOther"] isEqualToString:@"1"]) {
-            isWinner = NO;
-            isEntrant = NO;
-            isOther = YES;
-        } else {
-            // Default values
-            isWinner = NO;
-            isEntrant = NO;
-            isOther = NO;
-        }
+        DDLogVerbose(@"WINNER: %@, ENTRANT: %@, OTHER: %@", [video objectForKey:@"isWinner"], [video objectForKey:@"isEntrant"], [video objectForKey:@"isOther"]);
+        
+        isWinner = [[video objectForKey:@"isWinner"] boolValue];
+        isEntrant = [[video objectForKey:@"isEntrant"] boolValue];
+        isOther = [[video objectForKey:@"isOther"] boolValue];
         
         NUSVideo *fetchedVideo = [[NUSVideo alloc] initWithId:[video objectForKey:@"id"]
                                                      andTitle:[video objectForKey:@"title"]
@@ -306,7 +311,8 @@
                                                   andDuration:[video objectForKey:@"duration"]
                                                        andUrl:[video objectForKey:@"videoUrl"]
                                                   andThumbUrl:[video objectForKey:@"thumbUrl"]
-                                                     isWinner:isWinner isEntrant:isEntrant
+                                                     isWinner:isWinner
+                                                    isEntrant:isEntrant
                                                       isOther:isOther];
         
         [videoResults addObject:fetchedVideo];
@@ -351,7 +357,11 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     // Zombie data file URL to download
-    NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
+    // PRODUCTION
+    //NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
+    // DEVELOPMENT
+    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/api/data.json"];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -398,7 +408,7 @@
 + (NSString *)returnPathToLocalZombieJSONDataFile
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *localJsonDataFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"zombie-data.json"];
+    NSString *localJsonDataFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"data.json"];
     
     return localJsonDataFilePath;
 }

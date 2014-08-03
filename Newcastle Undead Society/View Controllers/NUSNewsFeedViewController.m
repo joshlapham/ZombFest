@@ -42,7 +42,8 @@
     NUSNewsItem *cellData = [cellArray objectAtIndex:indexPath.row];
     
     // Set cell background colour
-    [cell setBackgroundColor:[UIColor whiteColor]];
+    // White (Gallery)
+    [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
     
     // Disable tapping of cells
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -57,12 +58,18 @@
     //contentLabel.adjustsFontSizeToFitWidth = YES;
     
     // Set text colour of title and date labels
-    titleLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
+    // Dark Pastel Red
+    titleLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
     dateLabel.textColor = [UIColor darkGrayColor];
     
     // Set font of titleLabel
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
     titleLabel.font = titleFont;
+    
+    // Set font of date and content labels
+    UIFont *sharedDateAndContentFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    dateLabel.font = sharedDateAndContentFont;
+    contentLabel.font = sharedDateAndContentFont;
     
     // Set label text
     titleLabel.text = cellData.title;
@@ -87,11 +94,12 @@
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSNewsFeedCell" bundle:nil] forCellReuseIdentifier:@"NewsFeedCell"];
     
-    // Remove seperator insets from tableView
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    // Make tableView seperator insets extend to edges
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     
     // Set tableView background colour
-    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+    // White (Gallery)
+    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
     
     // Init cellArray data source
     [self initCellArrayDataSource];

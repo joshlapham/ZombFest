@@ -50,7 +50,7 @@
                              if (cellImage && !error) {
                                  //DDLogVerbose(@"Fetched cell thumbnail image");
                              } else {
-                                 //DDLogError(@"Error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                 DDLogError(@"Gallery: error fetching cell thumbnail image: %@", [error localizedDescription]);
                                  // TODO: implement fallback
                              }
                          }];
@@ -69,6 +69,10 @@
     [flowLayout setItemSize:CGSizeMake(130, 150)];
     
     [self.collectionView setCollectionViewLayout:flowLayout];
+    
+    // Set background colour
+    // White (Gallery)
+    [self.collectionView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"ArticleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"ArticleCollectionViewCell"];
 }

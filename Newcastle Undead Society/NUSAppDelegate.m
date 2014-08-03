@@ -23,21 +23,16 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     // Set navbar colour
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.29 green:0.29 blue:0.29 alpha:1]];
+    // Lynch
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
     
-    // Set navbar font
-    //NSShadow *shadow = [[NSShadow alloc] init];
-    //shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-    //shadow.shadowOffset = CGSizeMake(0, 1);
-    //NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"JohnRoderickPaine" size:21.0], NSFontAttributeName, nil];
-    //[[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];
+    // Navbar shadow
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
     
-    // Set navbar font colour to red
-    //NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1], NSForegroundColorAttributeName, nil];
-    //[[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];
-    
-    // Set navbar font colour to white
-    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    // Set navbar font colour to white; set font and apply shadow
+    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20], NSFontAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];
     
     // Set navbar items to white

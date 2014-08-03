@@ -68,13 +68,16 @@
     // Init header label
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
     headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
     headerLabel.adjustsFontSizeToFitWidth = YES;
     headerLabel.textAlignment = NSTextAlignmentCenter;
     
     // Set header label font
     UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
     headerLabel.font = headerLabelFont;
+    
+    // Set colour of header label font
+    // Dark Pastel Red
+    headerLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
     
     // Set header label text
     headerLabel.text = headerText;
@@ -98,6 +101,10 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoCell" forIndexPath:indexPath];
     
+    // Set cell background colour
+    // White (Gallery)
+    [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+    
     NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
     
     NUSVideo *cellData = [sectionContents objectAtIndex:indexPath.row];
@@ -117,6 +124,19 @@
     titleLabel.text = cellData.title;
     durationLabel.text = cellData.duration;
     
+    // Set video title font
+    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18];
+    titleLabel.font = titleFont;
+    
+    // Set video author font
+    UIFont *authorFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+    authorLabel.font = authorFont;
+    
+    // Set year and duration font
+    UIFont *sharedYearAndDurationFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+    yearLabel.font = sharedYearAndDurationFont;
+    durationLabel.font = sharedYearAndDurationFont;
+    
     // Set author and year
     NSString *byString = NSLocalizedString(@"By", nil);
     authorLabel.text = [NSString stringWithFormat:@"%@ %@", byString, cellData.author];
@@ -129,7 +149,7 @@
                              if (cellImage && !error) {
                                  //DDLogVerbose(@"Fetched cell thumbnail image");
                              } else {
-                                 //DDLogError(@"Error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                 DDLogError(@"Videos: error fetching cell thumbnail image: %@", [error localizedDescription]);
                                  // TODO: implement fallback
                              }
                          }];
@@ -176,6 +196,9 @@
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSVideoCell" bundle:nil] forCellReuseIdentifier:@"VideoCell"];
     
+    // Make tableView seperator insets extend to edges
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
     // Init cellArray data source
     [self initCellArrayDataSource];
 }
@@ -186,12 +209,9 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     
     if (self) {
-        // Remove seperator insets from tableView
-        //[self.tableView setSeparatorColor:[UIColor clearColor]];
-        //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        
         // Set tableView background colour
-        [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+        // White (Gallery)
+        [self.tableView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
         
         // Set tableView to have a bit of padding at the top so section header looks right
         [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];

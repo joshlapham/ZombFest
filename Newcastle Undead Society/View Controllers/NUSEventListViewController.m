@@ -81,7 +81,8 @@
         sectionHeaderLabel.text = headerTitle;
         
         // Set header text colour
-        sectionHeaderLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
+        // Dark Pastel Red
+        sectionHeaderLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
         
         // Set header font
         UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
@@ -129,7 +130,7 @@
                              if (cellImage && !error) {
                                  //DDLogVerbose(@"Fetched cell thumbnail image");
                              } else {
-                                 //DDLogError(@"Error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                 DDLogError(@"Events: error fetching cell thumbnail image: %@", [error localizedDescription]);
                                  // TODO: implement fallback
                              }
                          }];
@@ -142,6 +143,9 @@
     NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
     
     NUSEvent *cellData = [sectionContents objectAtIndex:indexPath.row];
+    
+    // Set this in every view controller so that the back button displays back instead of the root view controller name
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     [self.navigationController pushViewController:[[NUSEventDetailViewController alloc] initWithChosenEventItem:cellData] animated:YES];
 }
@@ -173,8 +177,10 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize:CGSizeMake(320, 110)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setMinimumInteritemSpacing:0];
-    [flowLayout setMinimumLineSpacing:0];
+    
+    // Remove spacing
+    [flowLayout setMinimumInteritemSpacing:0.0f];
+    [flowLayout setMinimumLineSpacing:0.0f];
     
     // Init collectionView
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
@@ -185,7 +191,9 @@
     [self.collectionView setContentInset:UIEdgeInsetsMake(0, 0, 80, 0)];
     
     // Set collectionView background colour
-    [self.collectionView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+    // White (Gallery)
+    [self.collectionView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+    
     
     // Register cell with collectionView
     [self.collectionView registerNib:[UINib nibWithNibName:@"NUSEventListCell" bundle:nil] forCellWithReuseIdentifier:@"EventListCell"];

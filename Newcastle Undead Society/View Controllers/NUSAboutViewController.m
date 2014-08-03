@@ -42,7 +42,8 @@
     NUSAboutContent *cellData = [cellArray objectAtIndex:indexPath.row];
     
     // Set cell background colour
-    [cell setBackgroundColor:[UIColor whiteColor]];
+    // White (Gallery)
+    [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
     
     // Disable tapping of cells
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -55,12 +56,17 @@
     titleLabel.adjustsFontSizeToFitWidth = YES;
     contentLabel.numberOfLines = 0;
     
-    // Set text colour of titleLabel
-    titleLabel.textColor = [UIColor colorWithRed:0.46 green:0.19 blue:0.18 alpha:1];
+    // Set font colour of titleLabel
+    // Dark Pastel Red
+    titleLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
     
     // Set font of titleLabel
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
     titleLabel.font = titleFont;
+    
+    // Set font of content label
+    UIFont *contentFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    contentLabel.font = contentFont;
     
     // Set cell text
     // TODO: localize content for About section
@@ -85,8 +91,12 @@
     // Register cell with tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSAboutCell" bundle:nil] forCellReuseIdentifier:@"AboutCell"];
     
+    // Remove seperator insets from tableView
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     // Set tableView background colour
-    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1]];
+    // White (Gallery)
+    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
     
     // Init cellArray data source
     [self initCellArrayDataSource];
