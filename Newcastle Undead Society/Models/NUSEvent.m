@@ -10,11 +10,12 @@
 
 @implementation NUSEvent
 
-@synthesize eventYear, eventContent, eventImageUrl, eventMapImageUrl, eventGalleryImageUrls, eventTimes, isPastEvent;
+@synthesize eventYear, eventDate, eventContent, eventImageUrl, eventGalleryImageUrls, eventTimes, isPastEvent;
 
 #pragma mark - Init method
 
 - (id)initWithYear:(NSString *)yearValue
+           andDate:(NSString *)dateValue
         andContent:(NSString *)contentValue
        andImageUrl:(NSString *)imageUrlValue
 andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
@@ -25,17 +26,15 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
     
     if (self) {
         eventYear = yearValue;
+        eventDate = dateValue;
         eventContent = contentValue;
         eventImageUrl = imageUrlValue;
         eventGalleryImageUrls = galleryImageUrlsValue;
         eventTimes = eventTimesValue;
         isPastEvent = pastEventOrNot;
-        
-        // TODO: don't hardcode this one map image for all event objects, change it up a bit
-        eventMapImageUrl = @"http://leagueofevil.org/nus/img/map.jpg";
     }
     
-    DDLogVerbose(@"Init event: %@, gallery URL count: %d, is past: %hhd, content: %@, imageUrl: %@", eventYear, [eventGalleryImageUrls count], isPastEvent, eventContent, eventImageUrl);
+    DDLogVerbose(@"Init event: %@, gallery URL count: %d, is past: %hhd, content: %@, imageUrl: %@, date: %@", eventYear, [eventGalleryImageUrls count], isPastEvent, eventContent, eventImageUrl, eventDate);
     
     return self;
 }
@@ -47,6 +46,7 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
     self = [super init];
     if (self) {
         eventYear = [aDecoder decodeObjectForKey:@"eventYear"];
+        eventDate = [aDecoder decodeObjectForKey:@"eventDate"];
         eventContent = [aDecoder decodeObjectForKey:@"eventContent"];
         eventImageUrl = [aDecoder decodeObjectForKey:@"eventImageUrl"];
         eventGalleryImageUrls = [aDecoder decodeObjectForKey:@"eventGalleryImageUrls"];
@@ -59,6 +59,7 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:eventYear forKey:@"eventYear"];
+    [aCoder encodeObject:eventDate forKey:@"eventDate"];
     [aCoder encodeObject:eventContent forKey:@"eventContent"];
     [aCoder encodeObject:eventImageUrl forKey:@"eventImageUrl"];
     [aCoder encodeObject:eventGalleryImageUrls forKey:@"eventGalleryImageUrls"];

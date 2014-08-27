@@ -235,6 +235,7 @@
         }
         
         NUSEvent *fetchedPastEvent = [[NUSEvent alloc] initWithYear:fetchedEventYear
+                                                            andDate:[pastEvent objectForKey:@"date"]
                                                          andContent:[pastEvent objectForKey:@"content"]
                                                         andImageUrl:[pastEvent objectForKey:@"imageUrl"]
                                                 andGalleryImageUrls:[NSArray arrayWithArray:fetchedEventGalleryUrls]
@@ -271,6 +272,7 @@
         }
         
         NUSEvent *fetchedFutureEvent = [[NUSEvent alloc] initWithYear:fetchedEventYear
+                                                              andDate:[futureEvent objectForKey:@"date"]
                                                            andContent:[futureEvent objectForKey:@"content"]
                                                           andImageUrl:[futureEvent objectForKey:@"imageUrl"]
                                                   andGalleryImageUrls:nil

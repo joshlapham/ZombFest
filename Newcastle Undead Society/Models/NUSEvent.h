@@ -11,15 +11,16 @@
 @interface NUSEvent : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *eventYear;
+@property (nonatomic, strong) NSString *eventDate;
 @property (nonatomic, strong) NSString *eventContent;
 @property (nonatomic, strong) NSString *eventImageUrl;
-@property (nonatomic, strong) NSString *eventMapImageUrl;
 @property (nonatomic, strong) NSArray *eventGalleryImageUrls;
 @property (nonatomic, strong) NSArray *eventTimes;
 @property (nonatomic) BOOL isPastEvent;
 
 // Init method
 - (id)initWithYear:(NSString *)yearValue
+           andDate:(NSString *)dateValue
         andContent:(NSString *)contentValue
        andImageUrl:(NSString *)imageUrlValue
 andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
