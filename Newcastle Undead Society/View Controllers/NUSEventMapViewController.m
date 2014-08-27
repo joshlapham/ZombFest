@@ -26,7 +26,7 @@
     self.mapView.delegate = self;
     
     // Center on Newcastle
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-32.9167, 151.7500), 10000.0, 10000.0) animated:YES];
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-32.929347, 151.778322), 3000.0, 3000.0) animated:YES];
     
     // Init lat and long
     CLLocationCoordinate2D location = CLLocationCoordinate2DMake([self.chosenLat doubleValue], [self.chosenLong doubleValue]);
