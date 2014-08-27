@@ -15,6 +15,8 @@
     NSMutableArray *_cellArray;
 }
 
+@property (nonatomic, strong) UITableViewCell *prototypeCell;
+
 @end
 
 @implementation NUSNewsFeedViewController
@@ -33,14 +35,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // NOTE - 133 is 44 * 3
-    return 133;
+    if (!self.prototypeCell) {
+        self.prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"NewsFeedCell"];
+    }
+    
+    [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath];
+    
+    [self.prototypeCell layoutIfNeeded];
+    CGSize size = [self.prototypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    
+    return size.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NewsFeedCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NewsFeedCell"];
     
+    // Configure the cell
+    [self configureCell:cell forRowAtIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NUSNewsItem *cellData = [_cellArray objectAtIndex:indexPath.row];
     
     // Set cell background colour
@@ -52,8 +70,9 @@
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:103];
     
     // Ensure content fits in label
-    contentLabel.numberOfLines = 0;
-    contentLabel.adjustsFontSizeToFitWidth = YES;
+    [contentLabel setNumberOfLines:0];
+    [contentLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    //contentLabel.adjustsFontSizeToFitWidth = YES;
     
     // Set text colour of title and date labels
     titleLabel.textColor = [UIColor newsFeedItemTitleColour];
@@ -72,8 +91,6 @@
     titleLabel.text = cellData.title;
     contentLabel.text = cellData.content;
     dateLabel.text = cellData.date;
-    
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
