@@ -9,9 +9,10 @@
 #import "NUSNewsFeedViewController.h"
 #import "NUSDataStore.h"
 #import "NUSNewsItem.h"
+#import "PBWebViewController.h"
 
 @interface NUSNewsFeedViewController () {
-    NSMutableArray *cellArray;
+    NSMutableArray *_cellArray;
 }
 
 @end
@@ -27,7 +28,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [cellArray count];
+    return [_cellArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -39,14 +40,10 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NewsFeedCell" forIndexPath:indexPath];
     
-    NUSNewsItem *cellData = [cellArray objectAtIndex:indexPath.row];
+    NUSNewsItem *cellData = [_cellArray objectAtIndex:indexPath.row];
     
     // Set cell background colour
-    // White (Gallery)
-    [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
-    
-    // Disable tapping of cells
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setBackgroundColor:[UIColor backgroundColorForMostViews]];
     
     // Init cell labels
     UILabel *titleLabel = titleLabel = (UILabel *)[cell viewWithTag:101];
@@ -58,16 +55,15 @@
     //contentLabel.adjustsFontSizeToFitWidth = YES;
     
     // Set text colour of title and date labels
-    // Dark Pastel Red
-    titleLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
-    dateLabel.textColor = [UIColor darkGrayColor];
+    titleLabel.textColor = [UIColor newsFeedItemTitleColour];
+    dateLabel.textColor = [UIColor newsFeedItemDateColour];
     
     // Set font of titleLabel
-    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
+    UIFont *titleFont = [UIFont newsFeedItemTitleFont];
     titleLabel.font = titleFont;
     
     // Set font of date and content labels
-    UIFont *sharedDateAndContentFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+    UIFont *sharedDateAndContentFont = [UIFont newsFeedItemDateFont];
     dateLabel.font = sharedDateAndContentFont;
     contentLabel.font = sharedDateAndContentFont;
     
@@ -77,6 +73,26 @@
     dateLabel.text = cellData.date;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NUSNewsItem *cellData = [_cellArray objectAtIndex:indexPath.row];
+    
+    // Init NSURL with social link URL from cellArray
+    NSURL *newsLinkUrl = [NSURL URLWithString:cellData.url];
+    
+    // Initialize the web view controller and set its' URL and title
+    PBWebViewController *webViewController = [[PBWebViewController alloc] init];
+    webViewController.URL = newsLinkUrl;
+    // TODO: what to use for title?
+    //webViewController.title = @"News";
+    
+    // Set back button of navbar
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"News", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    // Show web view controller with social media link
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 #pragma mark - Init method
@@ -98,8 +114,7 @@
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     
     // Set tableView background colour
-    // White (Gallery)
-    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+    [self.tableView setBackgroundColor:[UIColor backgroundColorForMostViews]];
     
     // Init cellArray data source
     [self initCellArrayDataSource];
@@ -109,7 +124,7 @@
 
 - (void)initCellArrayDataSource
 {
-    cellArray = [NSMutableArray arrayWithArray:[NUSDataStore returnNewsItemsFromCache]];
+    _cellArray = [NSMutableArray arrayWithArray:[NUSDataStore returnNewsItemsFromCache]];
 }
 
 @end

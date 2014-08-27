@@ -199,6 +199,8 @@
 
 + (void)parseZombieJSONDataFileWithFilePath:(NSString *)pathToJsonDataFile
 {
+    DDLogVerbose(@"dataStore: parsing fetched JSON data ..");
+    
     // Init results arrays
     NSMutableArray *newsItemsResults = [[NSMutableArray alloc] init];
     NSMutableArray *aboutSectionResults = [[NSMutableArray alloc] init];
@@ -283,7 +285,8 @@
         NUSNewsItem *fetchedNewsItem = [[NUSNewsItem alloc] initWithId:[newsItem objectForKey:@"id"]
                                                               andTitle:[newsItem objectForKey:@"title"]
                                                             andContent:[newsItem objectForKey:@"content"]
-                                                               andDate:[newsItem objectForKey:@"date"]];
+                                                               andDate:[newsItem objectForKey:@"date"]
+                                                                andURL:[newsItem objectForKey:@"url"]];
         
         [newsItemsResults addObject:fetchedNewsItem];
     }
@@ -301,7 +304,7 @@
         BOOL isEntrant;
         BOOL isOther;
         
-        DDLogVerbose(@"WINNER: %@, ENTRANT: %@, OTHER: %@", [video objectForKey:@"isWinner"], [video objectForKey:@"isEntrant"], [video objectForKey:@"isOther"]);
+        //DDLogVerbose(@"WINNER: %@, ENTRANT: %@, OTHER: %@", [video objectForKey:@"isWinner"], [video objectForKey:@"isEntrant"], [video objectForKey:@"isOther"]);
         
         isWinner = [[video objectForKey:@"isWinner"] boolValue];
         isEntrant = [[video objectForKey:@"isEntrant"] boolValue];
@@ -363,7 +366,7 @@
     // PRODUCTION
     //NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
     // DEVELOPMENT
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/api/data.json"];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.1.15:3000/api/data.json"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -393,6 +396,8 @@
             // Set isCurrentlyFetchingData flag in NSUserDefaults
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isCurrentlyFetchingData"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            DDLogVerbose(@"dataStore: finished fetching JSON data, now parsing ..");
             
             // Parse the data that was just downloaded to device
             [self parseZombieJSONDataFileWithFilePath:path];

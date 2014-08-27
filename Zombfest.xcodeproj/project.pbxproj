@@ -37,6 +37,8 @@
 		68A9CD31198DFFCE00CBD57B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A9CD30198DFFCE00CBD57B /* MapKit.framework */; };
 		68A9CD34198E002900CBD57B /* NUSEventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A9CD33198E002900CBD57B /* NUSEventMapViewController.m */; };
 		68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */; };
+		68B5D7CA19A0D30A00B1B569 /* UIFont+NUSFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B5D7C919A0D30A00B1B569 /* UIFont+NUSFonts.m */; };
+		68B5D7CD19A0D3CC00B1B569 /* UIColor+NUSColours.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B5D7CC19A0D3CC00B1B569 /* UIColor+NUSColours.m */; };
 		68C22776193ED03700764274 /* NUSEventListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C22775193ED03700764274 /* NUSEventListViewController.m */; };
 		68C22778193ED13F00764274 /* NUSEventListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C22777193ED13F00764274 /* NUSEventListCell.xib */; };
 		68DCC2D71941852100A047FD /* NUSEventMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68DCC2D61941852100A047FD /* NUSEventMapCell.xib */; };
@@ -111,6 +113,10 @@
 		68A9CD33198E002900CBD57B /* NUSEventMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventMapViewController.m; path = "View Controllers/NUSEventMapViewController.m"; sourceTree = "<group>"; };
 		68B535AA193EB61000E3967C /* NUSNewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsFeedViewController.h; path = "View Controllers/NUSNewsFeedViewController.h"; sourceTree = "<group>"; };
 		68B535AB193EB61000E3967C /* NUSNewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsFeedViewController.m; path = "View Controllers/NUSNewsFeedViewController.m"; sourceTree = "<group>"; };
+		68B5D7C819A0D30A00B1B569 /* UIFont+NUSFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+NUSFonts.h"; path = "Categories/UIFont+NUSFonts.h"; sourceTree = "<group>"; };
+		68B5D7C919A0D30A00B1B569 /* UIFont+NUSFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+NUSFonts.m"; path = "Categories/UIFont+NUSFonts.m"; sourceTree = "<group>"; };
+		68B5D7CB19A0D3CC00B1B569 /* UIColor+NUSColours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+NUSColours.h"; path = "Categories/UIColor+NUSColours.h"; sourceTree = "<group>"; };
+		68B5D7CC19A0D3CC00B1B569 /* UIColor+NUSColours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+NUSColours.m"; path = "Categories/UIColor+NUSColours.m"; sourceTree = "<group>"; };
 		68C22774193ED03700764274 /* NUSEventListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSEventListViewController.h; path = "View Controllers/NUSEventListViewController.h"; sourceTree = "<group>"; };
 		68C22775193ED03700764274 /* NUSEventListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSEventListViewController.m; path = "View Controllers/NUSEventListViewController.m"; sourceTree = "<group>"; };
 		68C22777193ED13F00764274 /* NUSEventListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSEventListCell.xib; path = Cells/NUSEventListCell.xib; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 				689795EF193FF1BF00A6DC67 /* Stores */,
 				68C22772193ECF5400764274 /* Cells */,
 				68C22773193ECF5A00764274 /* View Controllers */,
+				68B5D7CE19A0D3E200B1B569 /* Categories */,
 				6892E78918CF31A600D60787 /* Supporting Files */,
 			);
 			path = "Newcastle Undead Society";
@@ -275,6 +282,17 @@
 				686C0D5A193FF4BB00C54E3E /* NUSDataStore.m */,
 			);
 			name = Stores;
+			sourceTree = "<group>";
+		};
+		68B5D7CE19A0D3E200B1B569 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				68B5D7C819A0D30A00B1B569 /* UIFont+NUSFonts.h */,
+				68B5D7C919A0D30A00B1B569 /* UIFont+NUSFonts.m */,
+				68B5D7CB19A0D3CC00B1B569 /* UIColor+NUSColours.h */,
+				68B5D7CC19A0D3CC00B1B569 /* UIColor+NUSColours.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		68C22772193ECF5400764274 /* Cells */ = {
@@ -481,9 +499,11 @@
 				6892E78F18CF31A600D60787 /* main.m in Sources */,
 				684AF03518F028C100AE304F /* NUSSideMenuViewController.m in Sources */,
 				680332B319403F7700870EA2 /* NUSEventDetailViewController.m in Sources */,
+				68B5D7CA19A0D30A00B1B569 /* UIFont+NUSFonts.m in Sources */,
 				68F90EE3194AA950005ED0D8 /* NUSVideo.m in Sources */,
 				68FEB47519454E2B00AEB463 /* NUSSocialLink.m in Sources */,
 				6829F6D018DC449B00CEDBED /* NUSSidePanelController.m in Sources */,
+				68B5D7CD19A0D3CC00B1B569 /* UIColor+NUSColours.m in Sources */,
 				68FF3877193EE30200DA9438 /* NUSAboutViewController.m in Sources */,
 				68F90EDD194A9A1B005ED0D8 /* NUSNewsItem.m in Sources */,
 				68B535AC193EB61000E3967C /* NUSNewsFeedViewController.m in Sources */,

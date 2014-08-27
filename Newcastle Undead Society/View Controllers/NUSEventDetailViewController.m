@@ -308,8 +308,9 @@
         destViewController.markerTitle = [cellData objectForKey:@"locationName"];
         destViewController.markerSubtitle = [cellData objectForKey:@"startTime"];
         
-        // Set back button of navbar to have no text
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        // Set back button of navbar to chosen event year
+        // TODO: localize title, as we're using a year?
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:chosenEvent.eventYear style:UIBarButtonItemStylePlain target:nil action:nil];
         
         // Show map view controller
         [self.navigationController pushViewController:destViewController animated:YES];

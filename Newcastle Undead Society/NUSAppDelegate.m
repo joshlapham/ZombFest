@@ -23,8 +23,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     // Set navbar colour
-    // Lynch
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor navbarColour]];
     
     // Navbar shadow
     NSShadow *shadow = [[NSShadow alloc] init];
@@ -32,7 +31,8 @@
     shadow.shadowOffset = CGSizeMake(0, 1);
     
     // Set navbar font colour to white; set font and apply shadow
-    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20], NSFontAttributeName, nil];
+    UIFont *navbarFont = [UIFont navbarFont];
+    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, navbarFont, NSFontAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:titleAttributes];
     
     // Set navbar items to white

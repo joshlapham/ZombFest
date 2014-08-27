@@ -10,7 +10,7 @@
 
 @implementation NUSNewsItem
 
-@synthesize itemId, title, content, date;
+@synthesize itemId, title, content, date, url;
 
 #pragma mark - Init method
 
@@ -18,6 +18,7 @@
         andTitle:(NSString *)titleValue
       andContent:(NSString *)contentValue
          andDate:(NSString *)dateValue
+          andURL:(NSString *)urlValue
 {
     self = [super init];
     
@@ -26,6 +27,7 @@
         title = titleValue;
         content = contentValue;
         date = dateValue;
+        url = urlValue;
     }
     
     DDLogVerbose(@"Init news item: %@, date: %@", title, date);
@@ -43,6 +45,7 @@
         title = [aDecoder decodeObjectForKey:@"newsItemTitle"];
         content = [aDecoder decodeObjectForKey:@"newsItemContent"];
         date = [aDecoder decodeObjectForKey:@"newsItemDate"];
+        url = [aDecoder decodeObjectForKey:@"newsItemUrl"];
     }
     return self;
 }
@@ -53,6 +56,7 @@
     [aCoder encodeObject:title forKey:@"newsItemTitle"];
     [aCoder encodeObject:content forKey:@"newsItemContent"];
     [aCoder encodeObject:date forKey:@"newsItemDate"];
+    [aCoder encodeObject:url forKey:@"newsItemUrl"];
 }
 
 @end

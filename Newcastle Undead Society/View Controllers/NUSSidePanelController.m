@@ -17,12 +17,17 @@
 
 - (void)awakeFromNib
 {
+    // TODO: subclass the sidemenu controller with a custom NIB for menu item cells; rather than using Storyboards
     [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"leftViewController"]];
     [self setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[NUSNewsFeedViewController alloc] init]]];
     
     // Disable swipe to show menu
     self.allowLeftSwipe = NO;
     self.allowRightSwipe = NO;
+    
+    // Set menu to be a little bit smaller than the default
+    // NOTE - 160 is half the screen in portrait mode
+    self.leftFixedWidth = 160;
 }
 
 - (void)stylePanel:(UIView *)panel {

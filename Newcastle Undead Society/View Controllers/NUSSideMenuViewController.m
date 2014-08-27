@@ -16,7 +16,7 @@
 #import "NUSVideosViewController.h"
 
 @interface NUSSideMenuViewController () {
-    NSMutableArray *cellArray;
+    NSMutableArray *_cellArray;
 }
 
 @end
@@ -32,7 +32,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [cellArray count];
+    return [_cellArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -45,16 +45,61 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MenuCell" forIndexPath:indexPath];
     
     // Set cell background colour
-    // Lynch
-    [cell setBackgroundColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
+    [cell setBackgroundColor:[UIColor sidemenuItemColour]];
     
-    // Set cell font
-    UIFont *cellFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
-    cell.textLabel.font = cellFont;
+    // Init cell labels
+    UILabel *menuItemTitle = (UILabel *)[self.view viewWithTag:101];
+    UIImageView *menuItemImage = (UIImageView *)[self.view viewWithTag:102];
     
-    cell.textLabel.text = [cellArray objectAtIndex:indexPath.row];
+    // Set cell font and colour
+    UIFont *cellFont = [UIFont sidebarMenuItemFont];
+    menuItemTitle.font = cellFont;
+    menuItemTitle.textColor = [UIColor sidemenuItemFontColour];
+    
+    // Set cell contents
+    menuItemTitle.text = [_cellArray objectAtIndex:indexPath.row];
+    
+    // Set cell image
+    [menuItemImage setTintColor:[UIColor newsFeedItemTitleColour]];
+    menuItemImage.image = [self returnMenuItemImageForCellAtRow:indexPath.row];
     
     return cell;
+}
+
+- (UIImage *)returnMenuItemImageForCellAtRow:(NSInteger)row
+{
+    switch (row) {
+        case 0:
+            // News
+            return [UIImage imageNamed:@"menu-news"];
+            break;
+            
+        case 1:
+            // About
+            return [UIImage imageNamed:@"menu-about"];
+            break;
+            
+        case 2:
+            // Events
+            return [UIImage imageNamed:@"menu-events"];
+            break;
+            
+        case 3:
+            // Videos
+            return [UIImage imageNamed:@"menu-videos"];
+            break;
+            
+        case 4:
+            // Contact
+            return [UIImage imageNamed:@"menu-contact"];
+            break;
+            
+        default:
+            break;
+    }
+    // Return nil if nothing found
+    // TODO: review this
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,20 +146,16 @@
     
     // Set title
     //self.title = NSLocalizedString(@"Menu", nil);
-    //self.title = NSLocalizedString(@"Newcastle Undead Society", @"Name of the organization");
     
     // Turn off navbar translucency
     [self.navigationController.navigationBar setTranslucent:NO];
     
     // Set background colour of tableView
-    // Lynch
-    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
-    
+    [self.tableView setBackgroundColor:[UIColor sidemenuBackgroundColour]];
     [self.tableView setScrollEnabled:NO];
     
     // Set navbar colour
-    // Lynch
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.42 green:0.48 blue:0.54 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor sidemenuNavbarColour]];
     
     // Init cellArray data source
     [self initCellArrayDataSource];
@@ -124,7 +165,7 @@
 
 - (void)initCellArrayDataSource
 {
-    cellArray = [[NSMutableArray alloc] init];
+    _cellArray = [[NSMutableArray alloc] init];
     
     NSString *newsMenuItem = NSLocalizedString(@"News", nil);
     NSString *aboutMenuItem = NSLocalizedString(@"About", nil);
@@ -132,11 +173,11 @@
     NSString *videosMenuItem = NSLocalizedString(@"Videos", nil);
     NSString *contactMenuItem = NSLocalizedString(@"Contact", nil);
     
-    [cellArray addObject:newsMenuItem];
-    [cellArray addObject:aboutMenuItem];
-    [cellArray addObject:eventsMenuItem];
-    [cellArray addObject:videosMenuItem];
-    [cellArray addObject:contactMenuItem];
+    [_cellArray addObject:newsMenuItem];
+    [_cellArray addObject:aboutMenuItem];
+    [_cellArray addObject:eventsMenuItem];
+    [_cellArray addObject:videosMenuItem];
+    [_cellArray addObject:contactMenuItem];
 }
 
 @end

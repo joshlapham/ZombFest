@@ -14,11 +14,13 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *date;
+@property (nonatomic, strong) NSString *url;
 
 // Init method
 - (id)initWithId:(NSString *)idValue
         andTitle:(NSString *)titleValue
       andContent:(NSString *)contentValue
-         andDate:(NSString *)dateValue;
+         andDate:(NSString *)dateValue
+          andURL:(NSString *)urlValue;
 
 @end

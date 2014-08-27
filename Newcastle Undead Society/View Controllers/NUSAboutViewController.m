@@ -18,64 +18,6 @@
 
 @implementation NUSAboutViewController
 
-#pragma mark - UITableViewDataSource delegate methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [cellArray count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 600;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AboutCell" forIndexPath:indexPath];
-    
-    NUSAboutContent *cellData = [cellArray objectAtIndex:indexPath.row];
-    
-    // Set cell background colour
-    // White (Gallery)
-    [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
-    
-    // Disable tapping of cells
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
-    // Init cell labels
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
-    UILabel *contentLabel = (UILabel *)[cell viewWithTag:102];
-    
-    // Ensure title and content fit in their respective labels
-    titleLabel.adjustsFontSizeToFitWidth = YES;
-    contentLabel.numberOfLines = 0;
-    
-    // Set font colour of titleLabel
-    // Dark Pastel Red
-    titleLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
-    
-    // Set font of titleLabel
-    UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
-    titleLabel.font = titleFont;
-    
-    // Set font of content label
-    UIFont *contentFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
-    contentLabel.font = contentFont;
-    
-    // Set cell text
-    // TODO: localize content for About section
-    titleLabel.text = cellData.title;
-    contentLabel.text = cellData.content;
-    
-    return cell;
-}
-
 #pragma mark - Init method
 
 - (void)viewDidLoad
@@ -88,18 +30,26 @@
     // Set title
     self.title = NSLocalizedString(@"About", nil);
     
-    // Register cell with tableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"NUSAboutCell" bundle:nil] forCellReuseIdentifier:@"AboutCell"];
-    
-    // Remove seperator insets from tableView
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    // Set tableView background colour
-    // White (Gallery)
-    [self.tableView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
-    
     // Init cellArray data source
     [self initCellArrayDataSource];
+    NUSAboutContent *cellData = [cellArray firstObject];
+    
+    // Init UITextView
+    UITextView *aboutContentView = [[UITextView alloc] initWithFrame:self.view.frame];
+    [aboutContentView setFont:[UIFont aboutContentFont]];
+    [aboutContentView setEditable:NO];
+    [aboutContentView setSelectable:NO];
+    // top, left, bottom, right
+    [aboutContentView setTextContainerInset:UIEdgeInsetsMake(10, 10, 80, 10)];
+    // Set text
+    [aboutContentView setText:cellData.content];
+    
+    // Set background colours
+    [self.view setBackgroundColor:[UIColor backgroundColorForMostViews]];
+    [aboutContentView setBackgroundColor:[UIColor backgroundColorForMostViews]];
+    
+    // Add aboutContentView to view
+    [self.view addSubview:aboutContentView];
 }
 
 #pragma mark - Init cellArray data source

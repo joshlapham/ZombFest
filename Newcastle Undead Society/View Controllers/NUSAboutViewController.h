@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NUSAboutViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface NUSAboutViewController : UIViewController
 
 @end
