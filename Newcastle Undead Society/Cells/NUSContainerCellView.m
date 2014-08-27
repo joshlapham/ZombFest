@@ -70,6 +70,9 @@
     
     [self.collectionView setCollectionViewLayout:flowLayout];
     
+    // Set gallery cells to have a little gap at the start and end
+    [self.collectionView setContentInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+    
     // Set background colour
     // White (Gallery)
     [self.collectionView setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
