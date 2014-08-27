@@ -9,6 +9,7 @@
 #import "NUSAboutViewController.h"
 #import "NUSDataStore.h"
 #import "NUSAboutContent.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface NUSAboutViewController () {
     NSMutableArray *cellArray;
@@ -34,22 +35,51 @@
     [self initCellArrayDataSource];
     NUSAboutContent *cellData = [cellArray firstObject];
     
+    // Init UIScrollView
+    UIScrollView *aboutContentScrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+    
+    // Init imageView
+    UIImageView *aboutImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, aboutContentScrollView.frame.size.width, 150)];
+    
+    // Set image
+    [aboutImage setImageWithURL:[NSURL URLWithString:@"https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xfa1/t31.0-8/s720x720/463879_356900251021564_1884291845_o.jpg"]
+               placeholderImage:nil
+                      completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
+                          if (cellImage && !error) {
+                              DDLogVerbose(@"About: did finish fetching image");
+                          } else {
+                              DDLogError(@"About: error fetching image for above About content: %@", [error localizedDescription]);
+                              // TODO: implement fallback
+                          }
+                      }];
+    
     // Init UITextView
-    UITextView *aboutContentView = [[UITextView alloc] initWithFrame:self.view.frame];
+    UITextView *aboutContentView = [[UITextView alloc] initWithFrame:aboutContentScrollView.frame];
     [aboutContentView setFont:[UIFont aboutContentFont]];
     [aboutContentView setEditable:NO];
     [aboutContentView setSelectable:NO];
+    [aboutContentView setScrollEnabled:NO];
     // top, left, bottom, right
-    [aboutContentView setTextContainerInset:UIEdgeInsetsMake(10, 10, 80, 10)];
+    [aboutContentView setTextContainerInset:UIEdgeInsetsMake(160, 10, 0, 10)];
     // Set text
     [aboutContentView setText:cellData.content];
+    // So that everything fits nicely
+    [aboutContentView sizeToFit];
     
     // Set background colours
     [self.view setBackgroundColor:[UIColor backgroundColorForMostViews]];
     [aboutContentView setBackgroundColor:[UIColor backgroundColorForMostViews]];
+    [aboutContentScrollView setBackgroundColor:[UIColor backgroundColorForMostViews]];
     
-    // Add aboutContentView to view
-    [self.view addSubview:aboutContentView];
+    // Configure scroll view
+    // TODO: review this, don't hardcode -60 to calculate contentSize
+    [aboutContentScrollView setContentSize:CGSizeMake(self.view.frame.size.width, (aboutImage.frame.size.height + aboutContentView.frame.size.height)-60)];
+    [aboutContentScrollView setScrollEnabled:YES];
+    
+    // Add everything to the view
+    [aboutContentScrollView addSubview:aboutContentView];
+    [aboutContentScrollView addSubview:aboutImage];
+    [self.view addSubview:aboutContentScrollView];
 }
 
 #pragma mark - Init cellArray data source
