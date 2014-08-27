@@ -33,7 +33,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 220;
+    // NOTE - 133 is 44 * 3
+    return 133;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -52,7 +53,7 @@
     
     // Ensure content fits in label
     contentLabel.numberOfLines = 0;
-    //contentLabel.adjustsFontSizeToFitWidth = YES;
+    contentLabel.adjustsFontSizeToFitWidth = YES;
     
     // Set text colour of title and date labels
     titleLabel.textColor = [UIColor newsFeedItemTitleColour];
