@@ -74,6 +74,9 @@
     [contentLabel setLineBreakMode:NSLineBreakByWordWrapping];
     //contentLabel.adjustsFontSizeToFitWidth = YES;
     
+    // Ensure content fits in title label
+    [titleLabel setAdjustsFontSizeToFitWidth:YES];
+    
     // Set text colour of title and date labels
     titleLabel.textColor = [UIColor newsFeedItemTitleColour];
     dateLabel.textColor = [UIColor newsFeedItemDateColour];
