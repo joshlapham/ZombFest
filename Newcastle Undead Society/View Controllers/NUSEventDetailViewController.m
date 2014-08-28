@@ -65,8 +65,8 @@
         // For Video cell
         return 120;
     } else {
-        // For all other cells
-        return 200;
+        // For all other cells (Details)
+        return 44;
     }
 }
 
@@ -180,17 +180,30 @@
         // Disable tapping of cells
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
-        NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
-        
+        // Init date label
         UILabel *contentLabel = (UILabel *)[cell viewWithTag:101];
+        [contentLabel setTextAlignment:NSTextAlignmentCenter];
         
-        contentLabel.numberOfLines = 0;
+        // Set content label font and colour
+        [contentLabel setFont:[UIFont eventDetailDateFont]];
+        // TODO: what to use for date font colour?
+        //[contentLabel setTextColor:[UIColor headerTextColour]];
+        [contentLabel setTextColor:[UIColor darkGrayColor]];
         
-        // Set content label font
-        // TODO: update to use categories
-        [contentLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+        // Init date formatter
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        // Use date format used in JSON
+        [df setDateFormat:@"dd/MM/yyyy"];
+        NSDate *date = [[NSDate alloc] init];
+        date = [df dateFromString:chosenEvent.eventDate];
         
-        contentLabel.text = [sectionContents objectAtIndex:indexPath.row];
+        // Init another date formatter for nicer output
+        if (date != nil) {
+            NSDateFormatter *userVisibleDF = [[NSDateFormatter alloc] init];
+            [userVisibleDF setDateStyle:NSDateFormatterLongStyle];
+            
+            [contentLabel setText:[userVisibleDF stringFromDate:date]];
+        }
         
         return cell;
         

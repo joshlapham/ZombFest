@@ -44,6 +44,12 @@
     return [self customFontOfSize:18];
 }
 
+// Event detail section
++ (UIFont *)eventDetailDateFont
+{
+    return [self customTitleFontOfSize:20];
+}
+
 // Private methods
 + (UIFont *)customFontOfSize:(NSInteger)size
 {

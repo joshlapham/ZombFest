@@ -18,5 +18,6 @@
 + (UIColor *)newsFeedItemTitleColour;
 + (UIColor *)newsFeedItemDateColour;
 + (UIColor *)backgroundColorForMostViews;
++ (UIColor *)headerTextColour;
 
 @end

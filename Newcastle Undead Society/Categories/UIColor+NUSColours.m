@@ -60,4 +60,11 @@
     return [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
 }
 
+// Header text
++ (UIColor *)headerTextColour
+{
+    // Dark Pastel Red
+    return [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
+}
+
 @end
