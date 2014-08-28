@@ -72,7 +72,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    // If event image section ..
+    if (section == 0) {
+        return 150;
+    } else {
+        // For all other headers (which are text only)
+        return 40;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -83,7 +89,8 @@
             
         case 0:
             // Details section
-            headerText = NSLocalizedString(@"Details", nil);
+            // TODO: delete this, we don't need it as we're using an image instead
+            //headerText = NSLocalizedString(@"Details", nil);
             break;
             
         case 1:
@@ -112,6 +119,10 @@
     // Init custom header view
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
     
+    // Init image view for event photo
+    UIView *headerImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 150)];
+    UIImageView *eventDetailImageView = [[UIImageView alloc] initWithFrame:headerImageView.frame];
+    
     // Init header label
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
     headerLabel.backgroundColor = [UIColor clearColor];
@@ -119,19 +130,42 @@
     headerLabel.textAlignment = NSTextAlignmentCenter;
     
     // Set header font colour
+    // TODO: update to use categories
     // Dark Pastel Red
     headerLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
     
     // Set header label font
+    // TODO: update to use categories
     UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
     headerLabel.font = headerLabelFont;
     
     // Set header label text
     headerLabel.text = headerText;
     
-    [headerView addSubview:headerLabel];
-    
-    return headerView;
+    // If this is the event photo section, then add event photo image view ..
+    if (section == 0) {
+        // Fetch event image
+        [eventDetailImageView setImageWithURL:[NSURL URLWithString:chosenEvent.eventImageUrl]
+                      placeholderImage:nil
+                             completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
+                                 if (cellImage && !error) {
+                                     //DDLogVerbose(@"Fetched cell thumbnail image");
+                                 } else {
+                                     DDLogError(@"Event detail: error fetching event image: %@", [error localizedDescription]);
+                                     // TODO: implement fallback
+                                 }
+                             }];
+        
+        // Add to headerImageView
+        [headerImageView addSubview:eventDetailImageView];
+        
+        return headerImageView;
+    } else {
+        // For all other sections, add header text
+        [headerView addSubview:headerLabel];
+        
+        return headerView;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,8 +175,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
         
         // Set cell background colour
-        // White (Gallery)
-        [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+        [cell setBackgroundColor:[UIColor backgroundColorForMostViews]];
         
         // Disable tapping of cells
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -154,6 +187,7 @@
         contentLabel.numberOfLines = 0;
         
         // Set content label font
+        // TODO: update to use categories
         [contentLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
         
         contentLabel.text = [sectionContents objectAtIndex:indexPath.row];
@@ -170,8 +204,7 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventTimeCell" forIndexPath:indexPath];
             
             // Set cell background colour
-            // White (Gallery)
-            [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+            [cell setBackgroundColor:[UIColor backgroundColorForMostViews]];
             
             // Disable tapping of cells
             //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -185,6 +218,7 @@
             timeLabel.text = [[sectionContents objectAtIndex:indexPath.row] objectForKey:@"startTime"];
             
             // Set label font
+            // TODO: update to use categories
             UIFont *locationAndTimeLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
             [locationLabel setFont:locationAndTimeLabelFont];
             [timeLabel setFont:locationAndTimeLabelFont];
@@ -197,8 +231,7 @@
             NUSContainerTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContainerTableCell" forIndexPath:indexPath];
             
             // Set cell background colour
-            // White (Gallery)
-            [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+            [cell setBackgroundColor:[UIColor backgroundColorForMostViews]];
             
             // Disable tapping of cells
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -214,8 +247,7 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoCell" forIndexPath:indexPath];
             
             // Set cell background colour
-            // White (Gallery)
-            [cell setBackgroundColor:[UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]];
+            [cell setBackgroundColor:[UIColor backgroundColorForMostViews]];
             
             NUSVideo *cellData = [eventVideos objectAtIndex:indexPath.row];
             
@@ -235,14 +267,17 @@
             durationLabel.text = cellData.duration;
             
             // Set video title font
+            // TODO: update to use categories
             UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18];
             titleLabel.font = titleFont;
             
             // Set video author font
+            // TODO: update to use categories
             UIFont *authorFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             authorLabel.font = authorFont;
             
             // Set year and duration font
+            // TODO: update to use categories
             UIFont *sharedYearAndDurationFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
             yearLabel.font = sharedYearAndDurationFont;
             durationLabel.font = sharedYearAndDurationFont;
@@ -288,6 +323,7 @@
         // Initialize the web view controller and set its' URL
         PBWebViewController *webViewController = [[PBWebViewController alloc] init];
         webViewController.URL = videoLinkUrl;
+        // TODO: localize this title?
         webViewController.title = videoLinkTitle;
         
         // Set back button of navbar to have no text
@@ -340,8 +376,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    // Set tableView to have a bit of padding at the top & bottom so everything looks right
-    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 70, 0)];
+    // Set tableView to have a bit of padding at the bottom so everything looks right
+    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 70, 0)];
     
     // Set tableView background colour
     // White (Gallery)
@@ -371,7 +407,8 @@
     
     // Add observer that will allow the nested collection cell to trigger the view controller select row at index path
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didSelectItemFromCollectionView:) name:@"didSelectItemFromCollectionView"
+                                             selector:@selector(didSelectItemFromCollectionView:)
+                                                 name:@"didSelectItemFromCollectionView"
                                                object:nil];
 }
 
@@ -458,8 +495,9 @@
     // Start on chosen photo
     [browser setCurrentPhotoIndex:chosenPhotoIndex.row];
     
-    // Set this in every view controller so that the back button displays back instead of the root view controller name
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    // Use chosen event year for back button text
+    // TODO: localize this, as we're using a year?
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:chosenEvent.eventYear style:UIBarButtonItemStylePlain target:nil action:nil];
     
     // Present photo browser (push)
     [self.navigationController pushViewController:browser animated:YES];
