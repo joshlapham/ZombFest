@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *eventImageUrl;
 @property (nonatomic, strong) NSArray *eventGalleryImageUrls;
 @property (nonatomic, strong) NSArray *eventTimes;
+@property (nonatomic, strong) NSArray *eventArticles;
 @property (nonatomic) BOOL isPastEvent;
 
 // Init method
@@ -25,6 +26,7 @@
        andImageUrl:(NSString *)imageUrlValue
 andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
           andTimes:(NSArray *)eventTimesValue
+       andArticles:(NSArray *)eventArticlesValue
     andIsPastEvent:(BOOL)pastEventOrNot;
 
 @end

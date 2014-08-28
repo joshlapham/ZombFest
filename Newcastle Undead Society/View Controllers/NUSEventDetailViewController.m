@@ -26,6 +26,7 @@
     NSMutableArray *eventDetails;
     NSMutableArray *eventVideos;
     NSMutableArray *photosForBrowser;
+    NSMutableArray *_eventArticles;
 }
 
 @synthesize eventYear, chosenEvent;
@@ -39,6 +40,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // TODO: add Articles section
+    
     if (section == 1 && chosenEvent.isPastEvent == YES) {
         // Return 1 so gallery cell will show
         return 1;
@@ -55,6 +58,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO: add Articles section
+    
     if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
         // For Gallery cell
         return 170;
@@ -83,6 +88,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    // TODO: add Articles section
+    
     NSString *headerText;
     
     switch (section) {
@@ -170,6 +177,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO: add Articles section
+    
     if (indexPath.section == 0) {
         // Details section
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
@@ -322,6 +331,8 @@
 // For Video selection (past events) and event times (future events)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO: add Articles section
+    
     // If Videos section ..
     if (indexPath.section == 2 && chosenEvent.isPastEvent == YES) {
         
@@ -412,6 +423,10 @@
     // Video cell
     [self.tableView registerNib:[UINib nibWithNibName:@"NUSVideoCell" bundle:nil] forCellReuseIdentifier:@"VideoCell"];
     
+    // Article cell
+    // TODO: make this cell
+    //[self.tableView registerNib:[UINib nibWithNibName:@"NUSArticleCell" bundle:nil] forCellReuseIdentifier:@"ArticleCell"];
+    
     // Add tableView to view
     [self.view addSubview:self.tableView];
     
@@ -447,10 +462,14 @@
     cellArray = [[NSMutableArray alloc] init];
     eventDetails = [[NSMutableArray alloc] init];
     eventTimes = [[NSMutableArray alloc] init];
+    _eventArticles = [[NSMutableArray alloc] init];
     
     // TODO: implement this whole method better
     
     // Event details
+    // TODO: review this, not needed as we're using event date for this
+    // Although, the date could still be added here rather than accessing
+    // chosenEvent.eventDate in cellForRow method
     [eventDetails addObject:chosenEvent.eventContent];
     
     // Event times (future event)
@@ -469,6 +488,11 @@
         [cellArray addObject:eventVideos];
         DDLogVerbose(@"Events: event %@ has video count: %d", chosenEvent.eventYear, [eventVideos count]);
     }
+    
+    // Add articles to cellArray if it isn't empty, so that Articles section won't appear if not needed
+//    if ([chosenEvent.eventArticles count] > 0) {
+//        [cellArray addObject:chosenEvent.eventArticles];
+//    }
     
     // MWPhotoBrowser
     photosForBrowser = [[NSMutableArray alloc] init];

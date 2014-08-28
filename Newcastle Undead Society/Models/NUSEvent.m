@@ -10,7 +10,7 @@
 
 @implementation NUSEvent
 
-@synthesize eventYear, eventDate, eventContent, eventImageUrl, eventGalleryImageUrls, eventTimes, isPastEvent;
+@synthesize eventYear, eventDate, eventContent, eventImageUrl, eventGalleryImageUrls, eventTimes, eventArticles, isPastEvent;
 
 #pragma mark - Init method
 
@@ -20,6 +20,7 @@
        andImageUrl:(NSString *)imageUrlValue
 andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
           andTimes:(NSArray *)eventTimesValue
+       andArticles:(NSArray *)eventArticlesValue
     andIsPastEvent:(BOOL)pastEventOrNot
 {
     self = [super init];
@@ -31,10 +32,11 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
         eventImageUrl = imageUrlValue;
         eventGalleryImageUrls = galleryImageUrlsValue;
         eventTimes = eventTimesValue;
+        eventArticles = eventArticlesValue;
         isPastEvent = pastEventOrNot;
     }
     
-    DDLogVerbose(@"Init event: %@, gallery URL count: %d, is past: %hhd, content: %@, imageUrl: %@, date: %@", eventYear, [eventGalleryImageUrls count], isPastEvent, eventContent, eventImageUrl, eventDate);
+    DDLogVerbose(@"Init event: %@, gallery URL count: %d, is past: %hhd, content: %@, imageUrl: %@, articles count: %d, date: %@", eventYear, [eventGalleryImageUrls count], isPastEvent, eventContent, eventImageUrl, [eventArticles count], eventDate);
     
     return self;
 }
@@ -51,6 +53,7 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
         eventImageUrl = [aDecoder decodeObjectForKey:@"eventImageUrl"];
         eventGalleryImageUrls = [aDecoder decodeObjectForKey:@"eventGalleryImageUrls"];
         eventTimes = [aDecoder decodeObjectForKey:@"eventTimes"];
+        eventArticles = [aDecoder decodeObjectForKey:@"eventArticles"];
         isPastEvent = [aDecoder decodeBoolForKey:@"isPastEvent"];
     }
     return self;
@@ -64,6 +67,7 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
     [aCoder encodeObject:eventImageUrl forKey:@"eventImageUrl"];
     [aCoder encodeObject:eventGalleryImageUrls forKey:@"eventGalleryImageUrls"];
     [aCoder encodeObject:eventTimes forKey:@"eventTimes"];
+    [aCoder encodeObject:eventArticles forKey:@"eventArticles"];
     [aCoder encodeBool:isPastEvent forKey:@"isPastEvent"];
 }
 

@@ -208,6 +208,7 @@
     NSMutableArray *futureEventsResults = [[NSMutableArray alloc] init];
     NSMutableArray *videoResults = [[NSMutableArray alloc] init];
     NSMutableArray *socialMediaLinksResults = [[NSMutableArray alloc] init];
+    NSMutableArray *allArticlesResults = [[NSMutableArray alloc] init];
     
     // Init data source
     NSData *jsonLocalData = [NSData dataWithContentsOfFile:pathToJsonDataFile
@@ -219,8 +220,17 @@
                                                                         error:nil];
     
     // Date that JSON data was last modified
+    // TODO: implement this in the back end
     NSString *fetchedDataLastModified = [NSString stringWithFormat:@"%@", [jsonLocalDataDict objectForKey:@"lastModified"]];
     DDLogVerbose(@"Data was last modified %@", fetchedDataLastModified);
+    
+    // Articles
+    for (NSDictionary *fetchedArticle in [jsonLocalDataDict objectForKey:@"articles"]) {
+        DDLogVerbose(@"ARTICLE: %@", fetchedArticle);
+        [allArticlesResults addObject:fetchedArticle];
+    }
+    
+    DDLogVerbose(@"ALL ARTICLES COUNT: %d", [allArticlesResults count]);
     
     // Past events
     for (NSDictionary *pastEvent in [jsonLocalDataDict objectForKey:@"pastEvents"]) {
@@ -234,12 +244,22 @@
             [fetchedEventGalleryUrls addObject:fetchedGalleryUrl];
         }
         
+        // Articles
+        NSMutableArray *tmpArticlesArray = [[NSMutableArray alloc] init];
+        // Loop over existing articles to see if any match the year we're currently looping on
+        for (NSDictionary *article in allArticlesResults) {
+            if ([[article objectForKey:@"year"] isEqualToString:[pastEvent objectForKey:@"year"]]) {
+                [tmpArticlesArray addObject:article];
+            }
+        }
+        
         NUSEvent *fetchedPastEvent = [[NUSEvent alloc] initWithYear:fetchedEventYear
                                                             andDate:[pastEvent objectForKey:@"date"]
                                                          andContent:[pastEvent objectForKey:@"content"]
                                                         andImageUrl:[pastEvent objectForKey:@"imageUrl"]
                                                 andGalleryImageUrls:[NSArray arrayWithArray:fetchedEventGalleryUrls]
                                                            andTimes:nil
+                                                        andArticles:[NSArray arrayWithArray:tmpArticlesArray]
                                                      andIsPastEvent:YES];
         
         // Add to results array
@@ -271,12 +291,14 @@
             [fetchedEventTimes addObject:futureTimes];
         }
         
+        // NOTE - we don't need gallery image URLs or articles for future events, so passing nil
         NUSEvent *fetchedFutureEvent = [[NUSEvent alloc] initWithYear:fetchedEventYear
                                                               andDate:[futureEvent objectForKey:@"date"]
                                                            andContent:[futureEvent objectForKey:@"content"]
                                                           andImageUrl:[futureEvent objectForKey:@"imageUrl"]
                                                   andGalleryImageUrls:nil
                                                              andTimes:[NSArray arrayWithArray:fetchedEventTimes]
+                                                          andArticles:nil
                                                        andIsPastEvent:NO];
         
         [futureEventsResults addObject:fetchedFutureEvent];
