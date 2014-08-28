@@ -17,5 +17,8 @@
 + (UIFont *)newsFeedItemDateFont;
 + (UIFont *)aboutContentFont;
 + (UIFont *)eventDetailDateFont;
++ (UIFont *)articleTitleFont;
++ (UIFont *)articleAuthorFont;
++ (UIFont *)articleDateFont;
 
 @end

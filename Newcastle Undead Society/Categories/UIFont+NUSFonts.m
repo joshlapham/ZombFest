@@ -50,6 +50,22 @@
     return [self customTitleFontOfSize:20];
 }
 
+// Event articles
++ (UIFont *)articleTitleFont
+{
+    return [self customTitleFontOfSize:18];
+}
+
++ (UIFont *)articleAuthorFont
+{
+    return [self customFontOfSize:16];
+}
+
++ (UIFont *)articleDateFont
+{
+    return [self customFontOfSize:16];
+}
+
 // Private methods
 + (UIFont *)customFontOfSize:(NSInteger)size
 {

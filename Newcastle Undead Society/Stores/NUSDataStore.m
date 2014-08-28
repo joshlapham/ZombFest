@@ -388,9 +388,9 @@
     
     // Zombie data file URL to download
     // PRODUCTION
-    //NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
+    NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
     // DEVELOPMENT
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.15:3000/api/data.json"];
+    //NSURL *url = [NSURL URLWithString:@"http://192.168.1.15:3000/api/data.json"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     

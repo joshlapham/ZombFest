@@ -40,8 +40,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // TODO: add Articles section
-    
     if (section == 1 && chosenEvent.isPastEvent == YES) {
         // Return 1 so gallery cell will show
         return 1;
@@ -49,6 +47,10 @@
         // Videos
         // Return number of videos
         return [eventVideos count];
+    } else if (section == 3 && chosenEvent.isPastEvent == YES && [chosenEvent.eventArticles count] > 0) {
+        // Articles
+        // Return number of articles
+        return [chosenEvent.eventArticles count];
     } else {
         NSArray *sectionContents = [cellArray objectAtIndex:section];
         
@@ -58,8 +60,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: add Articles section
-    
     if (indexPath.section == 1 && chosenEvent.isPastEvent == YES) {
         // For Gallery cell
         return 170;
@@ -69,6 +69,9 @@
     } else if (indexPath.section == 2 && chosenEvent.isPastEvent == YES) {
         // For Video cell
         return 120;
+    } else if (indexPath.section == 3 && chosenEvent.isPastEvent == YES) {
+        // For Article cell
+        return 100;
     } else {
         // For all other cells (Details)
         return 44;
@@ -88,8 +91,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // TODO: add Articles section
-    
     NSString *headerText;
     
     switch (section) {
@@ -115,6 +116,13 @@
             // Videos (only for past events)
             if (chosenEvent.isPastEvent == YES && [eventVideos count] > 0) {
                 headerText = NSLocalizedString(@"Videos", nil);
+            }
+            break;
+            
+        case 3:
+            // Articles (only for past events)
+            if (chosenEvent.isPastEvent == YES && [chosenEvent.eventArticles count] > 0) {
+                headerText = NSLocalizedString(@"Articles", nil);
             }
             break;
             
@@ -177,8 +185,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: add Articles section
-    
     if (indexPath.section == 0) {
         // Details section
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventDetailCell" forIndexPath:indexPath];
@@ -323,6 +329,45 @@
             
             return cell;
         }
+    } else if (indexPath.section == 3) {
+        
+        if (chosenEvent.isPastEvent == YES && [chosenEvent.eventArticles count] > 0) {
+            // Article cell
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleCell" forIndexPath:indexPath];
+            
+            // Cell data
+            NSDictionary *cellData = [chosenEvent.eventArticles objectAtIndex:indexPath.row];
+            
+            // Set cell background colour
+            [cell setBackgroundColor:[UIColor backgroundColorForMostViews]];
+            
+            // Init cell labels
+            UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
+            UILabel *authorLabel = (UILabel *)[cell viewWithTag:102];
+            UILabel *dateLabel = (UILabel *)[cell viewWithTag:103];
+            
+            // Ensure things fit in labels
+            [titleLabel setAdjustsFontSizeToFitWidth:YES];
+            [dateLabel setAdjustsFontSizeToFitWidth:YES];
+            
+            // Set article title
+            titleLabel.text = [cellData objectForKey:@"title"];
+            
+            // Set author and date text
+            [authorLabel setText:[cellData objectForKey:@"author"]];
+            [dateLabel setText:[cellData objectForKey:@"date"]];
+            
+            // Set title font
+            [titleLabel setFont:[UIFont articleTitleFont]];
+            
+            // Set author and date fonts
+            [authorLabel setFont:[UIFont articleAuthorFont]];
+            [authorLabel setTextColor:[UIColor darkGrayColor]];
+            [dateLabel setFont:[UIFont articleDateFont]];
+            [dateLabel setTextColor:[UIColor lightGrayColor]];
+            
+            return cell;
+        }
     }
     
     return nil;
@@ -331,8 +376,6 @@
 // For Video selection (past events) and event times (future events)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: add Articles section
-    
     // If Videos section ..
     if (indexPath.section == 2 && chosenEvent.isPastEvent == YES) {
         
@@ -350,8 +393,8 @@
         // TODO: localize this title?
         webViewController.title = videoLinkTitle;
         
-        // Set back button of navbar to have no text
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        // Set back button text to be chosen event year
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:chosenEvent.eventYear style:UIBarButtonItemStylePlain target:nil action:nil];
         
         // Show web view controller with video link
         [self.navigationController pushViewController:webViewController animated:YES];
@@ -374,6 +417,28 @@
         
         // Show map view controller
         [self.navigationController pushViewController:destViewController animated:YES];
+        
+    } else if (indexPath.section == 3 && chosenEvent.isPastEvent == YES && [chosenEvent.eventArticles count] > 0) {
+        // Articles section (for past events only)
+        NSDictionary *cellData = [chosenEvent.eventArticles objectAtIndex:indexPath.row];
+        
+        // Init string with title of social link
+        NSString *articleLinkTitle = [cellData objectForKey:@"title"];
+        
+        // Init NSURL with video link URL from cellArray
+        NSURL *articleLinkUrl = [NSURL URLWithString:[cellData objectForKey:@"url"]];
+        
+        // Initialize the web view controller and set its' URL
+        PBWebViewController *webViewController = [[PBWebViewController alloc] init];
+        webViewController.URL = articleLinkUrl;
+        webViewController.title = articleLinkTitle;
+        
+        // Set back button text to be chosen event year
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:chosenEvent.eventYear style:UIBarButtonItemStylePlain target:nil action:nil];
+        
+        // Show web view controller with video link
+        [self.navigationController pushViewController:webViewController animated:YES];
+
     }
 }
 
@@ -425,7 +490,7 @@
     
     // Article cell
     // TODO: make this cell
-    //[self.tableView registerNib:[UINib nibWithNibName:@"NUSArticleCell" bundle:nil] forCellReuseIdentifier:@"ArticleCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"NUSArticleCell" bundle:nil] forCellReuseIdentifier:@"ArticleCell"];
     
     // Add tableView to view
     [self.view addSubview:self.tableView];
@@ -490,9 +555,9 @@
     }
     
     // Add articles to cellArray if it isn't empty, so that Articles section won't appear if not needed
-//    if ([chosenEvent.eventArticles count] > 0) {
-//        [cellArray addObject:chosenEvent.eventArticles];
-//    }
+    if ([chosenEvent.eventArticles count] > 0) {
+        [cellArray addObject:chosenEvent.eventArticles];
+    }
     
     // MWPhotoBrowser
     photosForBrowser = [[NSMutableArray alloc] init];
