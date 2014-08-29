@@ -117,17 +117,22 @@
     NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
     NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
     
-    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    NSMutableArray *videosArray = [[NSMutableArray alloc] init];
     
     for (NUSVideo *video in allVideos) {
         if (video.isWinner == YES) {
-            [arrayToReturn addObject:video];
+            [videosArray addObject:video];
         }
     }
     
-    DDLogVerbose(@"Return winning videos count: %d", [arrayToReturn count]);
+    // Sort videos by year, with the latest being at the top
+    NSSortDescriptor *yearSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"year" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:yearSortDescriptor];
+    NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    return arrayToReturn;
+    DDLogVerbose(@"Return winning videos count: %d, sorted by year", [sortedArray count]);
+    
+    return sortedArray;
 }
 
 + (NSArray *)returnEntrantVideosFromCache
@@ -135,17 +140,22 @@
     NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
     NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
     
-    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    NSMutableArray *videosArray = [[NSMutableArray alloc] init];
     
     for (NUSVideo *video in allVideos) {
         if (video.isEntrant == YES) {
-            [arrayToReturn addObject:video];
+            [videosArray addObject:video];
         }
     }
     
-    DDLogVerbose(@"Return entrant videos count: %d", [arrayToReturn count]);
+    // Sort videos by year, with the latest being at the top
+    NSSortDescriptor *yearSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"year" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:yearSortDescriptor];
+    NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    return arrayToReturn;
+    DDLogVerbose(@"Return entrant videos count: %d, sorted by year", [sortedArray count]);
+    
+    return sortedArray;
 }
 
 + (NSArray *)returnOtherVideosFromCache
@@ -153,17 +163,22 @@
     NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
     NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
     
-    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    NSMutableArray *videosArray = [[NSMutableArray alloc] init];
     
     for (NUSVideo *video in allVideos) {
         if (video.isOther == YES) {
-            [arrayToReturn addObject:video];
+            [videosArray addObject:video];
         }
     }
     
-    DDLogVerbose(@"Return other videos count: %d", [arrayToReturn count]);
+    // Sort videos by year, with the latest being at the top
+    NSSortDescriptor *yearSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"year" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:yearSortDescriptor];
+    NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    return arrayToReturn;
+    DDLogVerbose(@"Return other videos count: %d, sorted by year", [sortedArray count]);
+    
+    return sortedArray;
 }
 
 + (NSArray *)returnAllVideosFromCacheForYear:(NSString *)eventYear
@@ -181,6 +196,8 @@
     
     // Sort results by winner
     NSSortDescriptor *winnerSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isWinner" ascending:NO];
+    // Additionally, sort results by entrant
+    // All this sorting means that 'isOther' videos are at the very bottom
     NSSortDescriptor *entrantSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isEntrant" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:winnerSortDescriptor, entrantSortDescriptor, nil];
     NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
