@@ -58,11 +58,16 @@
 + (NSArray *)returnNewsItemsFromCache
 {
     NSData *newsItemData = [[NSUserDefaults standardUserDefaults] objectForKey:@"newsItemResults"];
-    NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:newsItemData];
+    NSArray *newsItemsArray = [NSKeyedUnarchiver unarchiveObjectWithData:newsItemData];
     
-    DDLogVerbose(@"Return news items count: %d", [arrayToReturn count]);
+    // Sort news items by date, with the latest being at the top
+    NSSortDescriptor *dateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateSortDescriptor];
+    NSArray *sortedArray = [newsItemsArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    return arrayToReturn;
+    DDLogVerbose(@"Return news items count, sorted by date: %d", [sortedArray count]);
+    
+    return sortedArray;
 }
 
 // About section content
@@ -84,6 +89,8 @@
     
     DDLogVerbose(@"Return past events count: %d", [arrayToReturn count]);
     
+    // TODO: implement this better using NSSortDescriptor to sort by year,
+    // rather than just reversing the array
     NSArray *reversedArray = [[arrayToReturn reverseObjectEnumerator] allObjects];
     
     //return arrayToReturn;
