@@ -171,17 +171,23 @@
     NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
     NSArray *allVideos = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
     
-    NSMutableArray *arrayToReturn = [[NSMutableArray alloc] init];
+    NSMutableArray *videosArray = [[NSMutableArray alloc] init];
     
     for (NUSVideo *video in allVideos) {
         if ([video.year isEqualToString:eventYear]) {
-            [arrayToReturn addObject:video];
+            [videosArray addObject:video];
         }
     }
     
-    DDLogVerbose(@"Return videos for event year %@ count: %d", eventYear, [arrayToReturn count]);
+    // Sort results by winner
+    NSSortDescriptor *winnerSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isWinner" ascending:NO];
+    NSSortDescriptor *entrantSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isEntrant" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:winnerSortDescriptor, entrantSortDescriptor, nil];
+    NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    return arrayToReturn;
+    DDLogVerbose(@"Return videos for event year %@ count: %d, sorted by winners and entrants", eventYear, [sortedArray count]);
+    
+    return sortedArray;
 }
 
 // Social media links
@@ -388,9 +394,9 @@
     
     // Zombie data file URL to download
     // PRODUCTION
-    NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
+    //NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
     // DEVELOPMENT
-    //NSURL *url = [NSURL URLWithString:@"http://192.168.1.15:3000/api/data.json"];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.1.15:3000/api/data.json"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
