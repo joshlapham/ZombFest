@@ -347,8 +347,8 @@
             UILabel *dateLabel = (UILabel *)[cell viewWithTag:103];
             
             // Ensure things fit in labels
-            [titleLabel setAdjustsFontSizeToFitWidth:YES];
-            [dateLabel setAdjustsFontSizeToFitWidth:YES];
+            //[titleLabel setAdjustsFontSizeToFitWidth:YES];
+            //[dateLabel setAdjustsFontSizeToFitWidth:YES];
             
             // Set article title
             titleLabel.text = [cellData objectForKey:@"title"];
