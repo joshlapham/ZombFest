@@ -66,6 +66,17 @@
     return [self customFontOfSize:16];
 }
 
+// Map callouts
++ (UIFont *)mapCalloutTitleFont
+{
+    return [self customTitleFontOfSize:18];
+}
+
++ (UIFont *)mapCalloutAddressFont
+{
+    return [self customFontOfSize:16];
+}
+
 // Private methods
 + (UIFont *)customFontOfSize:(NSInteger)size
 {

@@ -376,7 +376,10 @@
 // For Video selection (past events) and event times (future events)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //
     // If Videos section ..
+    //
+    
     if (indexPath.section == 2 && chosenEvent.isPastEvent == YES) {
         
         NUSVideo *cellData = [eventVideos objectAtIndex:indexPath.row];
@@ -400,16 +403,18 @@
         [self.navigationController pushViewController:webViewController animated:YES];
         
     } else if (indexPath.section == 1 && chosenEvent.isPastEvent == NO) {
+        
+        //
         // Times section (for future event only)
+        //
+        
         NSDictionary *cellData = [self.chosenEvent.eventTimes objectAtIndex:indexPath.row];
         
         // Init map view controller
         NUSEventMapViewController *destViewController = [[NUSEventMapViewController alloc] init];
         destViewController.chosenEvent = self.chosenEvent;
-        destViewController.chosenLat = [cellData objectForKey:@"lat"];
-        destViewController.chosenLong = [cellData objectForKey:@"long"];
-        destViewController.markerTitle = [cellData objectForKey:@"locationName"];
-        destViewController.markerSubtitle = [cellData objectForKey:@"startTime"];
+        destViewController.chosenEventIndex = indexPath.row;
+        destViewController.chosenEventDataDict = cellData;
         
         // Set back button of navbar to chosen event year
         // TODO: localize title, as we're using a year?
@@ -419,7 +424,11 @@
         [self.navigationController pushViewController:destViewController animated:YES];
         
     } else if (indexPath.section == 3 && chosenEvent.isPastEvent == YES && [chosenEvent.eventArticles count] > 0) {
+        
+        //
         // Articles section (for past events only)
+        //
+        
         NSDictionary *cellData = [chosenEvent.eventArticles objectAtIndex:indexPath.row];
         
         // Init string with title of social link

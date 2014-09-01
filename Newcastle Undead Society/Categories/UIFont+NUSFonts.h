@@ -20,5 +20,7 @@
 + (UIFont *)articleTitleFont;
 + (UIFont *)articleAuthorFont;
 + (UIFont *)articleDateFont;
++ (UIFont *)mapCalloutTitleFont;
++ (UIFont *)mapCalloutAddressFont;
 
 @end

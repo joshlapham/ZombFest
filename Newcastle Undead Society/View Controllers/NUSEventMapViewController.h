@@ -8,16 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
-@class NUSEvent;
+#import "NUSEvent.h"
 
 @interface NUSEventMapViewController : UIViewController <MKMapViewDelegate>
 
 @property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) NUSEvent *chosenEvent;
-@property (nonatomic, strong) NSString *chosenLat;
-@property (nonatomic, strong) NSString *chosenLong;
-@property (nonatomic, strong) NSString *markerTitle;
-@property (nonatomic, strong) NSString *markerSubtitle;
+@property (nonatomic) NSInteger chosenEventIndex;
+@property (nonatomic, strong) NSDictionary *chosenEventDataDict;
 
 @end

@@ -50,6 +50,7 @@
 		68DE94A7194080EC00DC96B6 /* NUSArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE94A6194080EC00DC96B6 /* NUSArticleCollectionViewCell.m */; };
 		68DE94AA1940984A00DC96B6 /* NUSContainerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DE94A91940984A00DC96B6 /* NUSContainerTableCell.m */; };
 		68EC3386193EEA090086CAA9 /* NUSAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */; };
+		68F119CC19B05B1300B1A19A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F119CB19B05B1300B1A19A /* AddressBook.framework */; };
 		68F90EDA19480B34005ED0D8 /* zombie-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 68F90ED919480B34005ED0D8 /* zombie-data.json */; };
 		68F90EDD194A9A1B005ED0D8 /* NUSNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F90EDC194A9A1B005ED0D8 /* NUSNewsItem.m */; };
 		68F90EE0194A9F5E005ED0D8 /* NUSAboutContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F90EDF194A9F5E005ED0D8 /* NUSAboutContent.m */; };
@@ -134,6 +135,7 @@
 		68DE94A81940984A00DC96B6 /* NUSContainerTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSContainerTableCell.h; path = Cells/NUSContainerTableCell.h; sourceTree = "<group>"; };
 		68DE94A91940984A00DC96B6 /* NUSContainerTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSContainerTableCell.m; path = Cells/NUSContainerTableCell.m; sourceTree = "<group>"; };
 		68EC3385193EEA090086CAA9 /* NUSAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NUSAboutCell.xib; path = Cells/NUSAboutCell.xib; sourceTree = "<group>"; };
+		68F119CB19B05B1300B1A19A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		68F90ED919480B34005ED0D8 /* zombie-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "zombie-data.json"; sourceTree = "<group>"; };
 		68F90EDB194A9A1B005ED0D8 /* NUSNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSNewsItem.h; path = Models/NUSNewsItem.h; sourceTree = "<group>"; };
 		68F90EDC194A9A1B005ED0D8 /* NUSNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSNewsItem.m; path = Models/NUSNewsItem.m; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68F119CC19B05B1300B1A19A /* AddressBook.framework in Frameworks */,
 				68A9CD31198DFFCE00CBD57B /* MapKit.framework in Frameworks */,
 				6892E78518CF31A600D60787 /* CoreGraphics.framework in Frameworks */,
 				6892E78718CF31A600D60787 /* UIKit.framework in Frameworks */,
@@ -217,6 +220,7 @@
 		6892E78118CF31A600D60787 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68F119CB19B05B1300B1A19A /* AddressBook.framework */,
 				68A9CD30198DFFCE00CBD57B /* MapKit.framework */,
 				6892E78218CF31A600D60787 /* Foundation.framework */,
 				6892E78418CF31A600D60787 /* CoreGraphics.framework */,

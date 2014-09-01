@@ -7,6 +7,7 @@
 //
 
 #import "NUSEventMapViewController.h"
+#import <AddressBook/AddressBook.h>
 
 @interface NUSEventMapViewController () {
     MKPointAnnotation *_eventLocation;
@@ -31,19 +32,39 @@
     // Init .xib
     [[NSBundle mainBundle] loadNibNamed:@"NUSMapCallout" owner:self options:nil];
     
+    // Init data source
+    // TODO: maybe make this dict a property, instead
+    // of init'ing it all the time?
+    NSDictionary *chosenEventTimes = [self.chosenEvent.eventTimes objectAtIndex:self.chosenEventIndex];
+    
     // Init labels
     UILabel *titleLabel = (UILabel *)[self.mapCalloutView viewWithTag:101];
     UILabel *subtitleLabel = (UILabel *)[self.mapCalloutView viewWithTag:102];
+    UILabel *secondAddressLabel = (UILabel *)[self.mapCalloutView viewWithTag:103];
     
-    // TODO: update categories so this VC has specific fonts and font colours
-    [titleLabel setFont:[UIFont navbarFont]];
-    [titleLabel setTextColor:[UIColor newsFeedItemTitleColour]];
-    [subtitleLabel setFont:[UIFont navbarButtonFont]];
-    [titleLabel setText:self.markerTitle];
-    [subtitleLabel setText:self.markerSubtitle];
+    // Set font and text colour of labels
+    // Title label
+    [titleLabel setFont:[UIFont mapCalloutTitleFont]];
+    [titleLabel setTextColor:[UIColor headerTextColour]];
+    
+    // Address labels
+    [subtitleLabel setFont:[UIFont mapCalloutAddressFont]];
+    [secondAddressLabel setFont:[UIFont mapCalloutAddressFont]];
+    [subtitleLabel setTextColor:[UIColor darkGrayColor]];
+    [secondAddressLabel setTextColor:[UIColor darkGrayColor]];
+    
+    // Set second address label string
+    NSString *secondAddressString = [NSString stringWithFormat:@"%@, %@ %@", [chosenEventTimes objectForKey:@"city"], [chosenEventTimes objectForKey:@"state"], [chosenEventTimes objectForKey:@"postcode"]];
+    
+    // Set text of labels
+    [titleLabel setText:[chosenEventTimes objectForKey:@"locationName"]];
+    [subtitleLabel setText:[chosenEventTimes objectForKey:@"address"]];
+    [secondAddressLabel setText:secondAddressString];
     
     // Set frame of custom callout
-    [self.mapCalloutView setFrame:CGRectMake(CGRectGetMidX(view.frame)-100, view.frame.origin.y-75, 200, 72)];
+    // NOTE - this aligns the callout just above the map marker
+    // NOTE - last two values are the width and height of the callout
+    [self.mapCalloutView setFrame:CGRectMake(CGRectGetMidX(view.frame)-100, view.frame.origin.y-80, 200, 80)];
 
     // Add callout to view
     [self.view addSubview:self.mapCalloutView];
@@ -70,10 +91,33 @@
     DDLogVerbose(@"MAP - region did change");
     
     // Update callout's frame
-    [self.mapCalloutView setFrame:CGRectMake(CGRectGetMidX(_eventLocationAnnotationView.frame)-100, _eventLocationAnnotationView.frame.origin.y-75, 200, 72)];
+    [self.mapCalloutView setFrame:CGRectMake(CGRectGetMidX(_eventLocationAnnotationView.frame)-100, _eventLocationAnnotationView.frame.origin.y-80, 200, 80)];
     
     // Show annotation
     [self.mapView selectAnnotation:_eventLocation animated:NO];
+}
+
+#pragma mark - MKMapItem (for Maps app) method
+
+- (void)openCurrentLocationInMapsApp
+{
+    // Init MKPlacemark and MKMapItem for Maps app integration
+    // Init address dict
+    NSDictionary *chosenEventTimes = [self.chosenEvent.eventTimes firstObject];
+    NSDictionary *addressDict = @{(NSString *)kABPersonAddressStreetKey : [chosenEventTimes objectForKey:@"address"],
+                                  (NSString *)kABPersonAddressCityKey   : [chosenEventTimes objectForKey:@"city"],
+                                  (NSString *)kABPersonAddressStateKey  : [chosenEventTimes objectForKey:@"state"],
+                                  (NSString *)kABPersonAddressZIPKey    : [chosenEventTimes objectForKey:@"postcode"]};
+    
+    // Init placemark coordinates
+    CLLocationCoordinate2D placemarkLocation = CLLocationCoordinate2DMake([[chosenEventTimes objectForKey:@"lat"] doubleValue], [[chosenEventTimes objectForKey:@"long"] doubleValue]);
+    
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:placemarkLocation addressDictionary:addressDict];
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    [mapItem setName:[chosenEventTimes objectForKey:@"locationName"]];
+    
+    // Launch in Map app
+    [mapItem openInMapsWithLaunchOptions:nil];
 }
 
 #pragma mark - Init method
@@ -87,6 +131,9 @@
     // Use markerTitle as title for view, as this is our location name
     //self.title = self.markerTitle;
     
+    // Init data source
+    //NSDictionary *chosenEventTimes = [self.chosenEvent.eventTimes objectAtIndex:self.chosenEventIndex];
+    
     // Init mapView
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     self.mapView.delegate = self;
@@ -95,7 +142,7 @@
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-32.929347, 151.778322), 3000.0, 3000.0) animated:YES];
     
     // Init lat and long
-    CLLocationCoordinate2D location = CLLocationCoordinate2DMake([self.chosenLat doubleValue], [self.chosenLong doubleValue]);
+    CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[self.chosenEventDataDict objectForKey:@"lat"] doubleValue], [[self.chosenEventDataDict objectForKey:@"long"] doubleValue]);
     
     // Init marker
     _eventLocation = [[MKPointAnnotation alloc] init];
@@ -112,6 +159,13 @@
     
     // Automatically show annotation callout
     [self.mapView selectAnnotation:_eventLocation animated:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:NO];
+    
+    self.chosenEvent = nil;
 }
 
 @end
