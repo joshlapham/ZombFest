@@ -32,11 +32,6 @@
     // Init .xib
     [[NSBundle mainBundle] loadNibNamed:@"NUSMapCallout" owner:self options:nil];
     
-    // Init data source
-    // TODO: maybe make this dict a property, instead
-    // of init'ing it all the time?
-    NSDictionary *chosenEventTimes = [self.chosenEvent.eventTimes objectAtIndex:self.chosenEventIndex];
-    
     // Init labels
     UILabel *titleLabel = (UILabel *)[self.mapCalloutView viewWithTag:101];
     UILabel *subtitleLabel = (UILabel *)[self.mapCalloutView viewWithTag:102];
@@ -54,11 +49,11 @@
     [secondAddressLabel setTextColor:[UIColor darkGrayColor]];
     
     // Set second address label string
-    NSString *secondAddressString = [NSString stringWithFormat:@"%@, %@ %@", [chosenEventTimes objectForKey:@"city"], [chosenEventTimes objectForKey:@"state"], [chosenEventTimes objectForKey:@"postcode"]];
+    NSString *secondAddressString = [NSString stringWithFormat:@"%@, %@ %@", [self.chosenEventDataDict objectForKey:@"city"], [self.chosenEventDataDict objectForKey:@"state"], [self.chosenEventDataDict objectForKey:@"postcode"]];
     
     // Set text of labels
-    [titleLabel setText:[chosenEventTimes objectForKey:@"locationName"]];
-    [subtitleLabel setText:[chosenEventTimes objectForKey:@"address"]];
+    [titleLabel setText:[self.chosenEventDataDict objectForKey:@"locationName"]];
+    [subtitleLabel setText:[self.chosenEventDataDict objectForKey:@"address"]];
     [secondAddressLabel setText:secondAddressString];
     
     // Set frame of custom callout
@@ -102,19 +97,17 @@
 - (void)openCurrentLocationInMapsApp
 {
     // Init MKPlacemark and MKMapItem for Maps app integration
-    // Init address dict
-    NSDictionary *chosenEventTimes = [self.chosenEvent.eventTimes firstObject];
-    NSDictionary *addressDict = @{(NSString *)kABPersonAddressStreetKey : [chosenEventTimes objectForKey:@"address"],
-                                  (NSString *)kABPersonAddressCityKey   : [chosenEventTimes objectForKey:@"city"],
-                                  (NSString *)kABPersonAddressStateKey  : [chosenEventTimes objectForKey:@"state"],
-                                  (NSString *)kABPersonAddressZIPKey    : [chosenEventTimes objectForKey:@"postcode"]};
+    NSDictionary *addressDict = @{(NSString *)kABPersonAddressStreetKey : [self.chosenEventDataDict objectForKey:@"address"],
+                                  (NSString *)kABPersonAddressCityKey   : [self.chosenEventDataDict objectForKey:@"city"],
+                                  (NSString *)kABPersonAddressStateKey  : [self.chosenEventDataDict objectForKey:@"state"],
+                                  (NSString *)kABPersonAddressZIPKey    : [self.chosenEventDataDict objectForKey:@"postcode"]};
     
     // Init placemark coordinates
-    CLLocationCoordinate2D placemarkLocation = CLLocationCoordinate2DMake([[chosenEventTimes objectForKey:@"lat"] doubleValue], [[chosenEventTimes objectForKey:@"long"] doubleValue]);
+    CLLocationCoordinate2D placemarkLocation = CLLocationCoordinate2DMake([[self.chosenEventDataDict objectForKey:@"lat"] doubleValue], [[self.chosenEventDataDict objectForKey:@"long"] doubleValue]);
     
     MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:placemarkLocation addressDictionary:addressDict];
     MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-    [mapItem setName:[chosenEventTimes objectForKey:@"locationName"]];
+    [mapItem setName:[self.chosenEventDataDict objectForKey:@"locationName"]];
     
     // Launch in Map app
     [mapItem openInMapsWithLaunchOptions:nil];
@@ -130,9 +123,6 @@
     self.title = @"Map";
     // Use markerTitle as title for view, as this is our location name
     //self.title = self.markerTitle;
-    
-    // Init data source
-    //NSDictionary *chosenEventTimes = [self.chosenEvent.eventTimes objectAtIndex:self.chosenEventIndex];
     
     // Init mapView
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
@@ -159,13 +149,6 @@
     
     // Automatically show annotation callout
     [self.mapView selectAnnotation:_eventLocation animated:YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:NO];
-    
-    self.chosenEvent = nil;
 }
 
 @end

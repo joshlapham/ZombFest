@@ -408,13 +408,11 @@
         // Times section (for future event only)
         //
         
-        NSDictionary *cellData = [self.chosenEvent.eventTimes objectAtIndex:indexPath.row];
-        
         // Init map view controller
         NUSEventMapViewController *destViewController = [[NUSEventMapViewController alloc] init];
-        destViewController.chosenEvent = self.chosenEvent;
-        destViewController.chosenEventIndex = indexPath.row;
-        destViewController.chosenEventDataDict = cellData;
+        
+        // Init data source for DVC to be the chosen event time
+        destViewController.chosenEventDataDict = [self.chosenEvent.eventTimes objectAtIndex:indexPath.row];
         
         // Set back button of navbar to chosen event year
         // TODO: localize title, as we're using a year?
