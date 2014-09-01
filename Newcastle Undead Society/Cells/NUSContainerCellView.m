@@ -83,7 +83,9 @@
 - (void)setCollectionData:(NSArray *)collectionData
 {
     _collectionData = collectionData;
-    [self.collectionView setContentOffset:CGPointZero animated:NO];
+    // NOTE - have disabled this as it resets the gallery pictures back to the
+    // first one (losing the user's place), and also resets the contentInset
+    //[self.collectionView setContentOffset:CGPointZero animated:NO];
     [self.collectionView reloadData];
 }
 
