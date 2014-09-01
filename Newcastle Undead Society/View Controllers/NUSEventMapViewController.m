@@ -49,7 +49,7 @@
     [secondAddressLabel setTextColor:[UIColor darkGrayColor]];
     
     // Set second address label string
-    NSString *secondAddressString = [NSString stringWithFormat:@"%@, %@ %@", [self.chosenEventDataDict objectForKey:@"city"], [self.chosenEventDataDict objectForKey:@"state"], [self.chosenEventDataDict objectForKey:@"postcode"]];
+    NSString *secondAddressString = [NSString stringWithFormat:@"%@ %@ %@", [self.chosenEventDataDict objectForKey:@"city"], [self.chosenEventDataDict objectForKey:@"state"], [self.chosenEventDataDict objectForKey:@"postcode"]];
     
     // Set text of labels
     [titleLabel setText:[self.chosenEventDataDict objectForKey:@"locationName"]];
