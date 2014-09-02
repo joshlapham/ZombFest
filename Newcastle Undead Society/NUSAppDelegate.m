@@ -43,6 +43,10 @@
     
     // Set navbar items of UIActivityViews to white
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
+    
+    // Set navbar button font
+    NSDictionary *navbarButtonTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[UIFont navbarButtonFont]};
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:navbarButtonTextAttributes forState:UIControlStateNormal];
 }
 
 #pragma mark - Reachability NSNotification method
