@@ -58,8 +58,16 @@
         
         switch (indexPath.section) {
             case 0:
-                // Future Events
-                headerTitle = NSLocalizedString(@"Future Events", nil);
+                
+                // Check if there are any future events and set header text accordingly
+                if ([cellArray count] > 1) {
+                    // More than one means there ARE future events
+                    headerTitle = NSLocalizedString(@"Future Events", nil);
+                } else {
+                    // There are NO future events
+                    headerTitle = NSLocalizedString(@"Past Events", nil);
+                }
+                
                 break;
                 
             case 1:
@@ -216,8 +224,11 @@
     futureEvents = [NSMutableArray arrayWithArray:[NUSDataStore returnFutureEventsFromCache]];
     pastEvents = [NSMutableArray arrayWithArray:[NUSDataStore returnPastEventsFromCache]];
     
-    // NOTE - add futureEvents first so it's at the top
-    [cellArray addObject:futureEvents];
+    // Check if there are any future events and add to cellArray if there are any
+    // NOTE - adding futureEvents first so it's at the top
+    if ([futureEvents count] > 0) {
+        [cellArray addObject:futureEvents];
+    }
     [cellArray addObject:pastEvents];
     
     // Reload collectionView with data
