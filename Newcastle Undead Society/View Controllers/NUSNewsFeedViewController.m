@@ -44,7 +44,19 @@
     [self.prototypeCell layoutIfNeeded];
     CGSize size = [self.prototypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
-    return size.height;
+    // TODO:
+    // Check if iOS 8 and add +1 to the height, as iOS 8 is removing -1 from the cell height
+    // and screwing with the contentLabel text.
+    // NOTE: this is pretty hacky, improve this!
+    float osVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    
+    if (osVersion >= 8.0) {
+        // Running iOS 8 or higher, so add +1 to the cell height
+        return size.height + 1;
+    } else {
+        // Running iOS 7, so just return the height normally
+        return size.height;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
