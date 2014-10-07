@@ -33,5 +33,6 @@
 + (BOOL)isCurrentlyFetchingZombieJSONDataFile;
 + (BOOL)isCurrentlyPreloadingGalleryImages;
 + (UIImage *)returnEventImageForEventYear:(NSString *)eventYearToGet;
++ (void)postNotificationThatDataFetchDidHappen;
 
 @end

@@ -112,10 +112,9 @@
                 DDLogVerbose(@"dataStore: found downloaded JSON file at path: %@", [NUSDataStore returnPathToLocalZombieJSONDataFile]);
                 
                 // Parse JSON file
+                // NOTE - this parseZombieJSON .. method posts an NSNotification that data fetch did happen
                 [NUSDataStore parseZombieJSONDataFileWithFilePath:[NUSDataStore returnPathToLocalZombieJSONDataFile]];
             }
-            
-            // TODO: post notification that data load has happened? Maybe?
         }
         
     } else {

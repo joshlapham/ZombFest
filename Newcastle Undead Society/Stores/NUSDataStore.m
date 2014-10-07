@@ -405,6 +405,16 @@
     // Sync NSUserDefaults
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    // Post NSNotification that data fetch did happen
+    [self postNotificationThatDataFetchDidHappen];
+}
+
+#pragma mark - Post NSNotification that data fetch did happen method
+
++ (void)postNotificationThatDataFetchDidHappen
+{
+    DDLogVerbose(@"dataStore: posting notification that data fetch did happen");
+    
     // Post data fetch did happen NSNotification
     NSString *notificationName = @"NUSDataFetchDidHappen";
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
