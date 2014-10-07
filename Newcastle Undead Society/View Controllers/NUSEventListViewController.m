@@ -131,17 +131,36 @@
     UIFont *titleLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:44];
     titleLabel.font = titleLabelFont;
     
+    // Set placeholder image
+    UIImage *placeholderImage;
+    
+    if ([cellData.eventYear isEqualToString:@"2009"]) {
+        placeholderImage = [UIImage imageNamed:@"event-image-2009"];
+        
+    } else if ([cellData.eventYear isEqualToString:@"2010"]) {
+        placeholderImage = [UIImage imageNamed:@"event-image-2010"];
+        
+    } else if ([cellData.eventYear isEqualToString:@"2011"]) {
+        placeholderImage = [UIImage imageNamed:@"event-image-2011"];
+        
+    } else if ([cellData.eventYear isEqualToString:@"2012"]) {
+        placeholderImage = [UIImage imageNamed:@"event-image-2012"];
+        
+    } else if ([cellData.eventYear isEqualToString:@"2013"]) {
+        placeholderImage = [UIImage imageNamed:@"event-image-2013"];
+        
+    } else if ([cellData.eventYear isEqualToString:@"2014"]) {
+        placeholderImage = [UIImage imageNamed:@"event-image-2014"];
+    }
+    
     // Set cell thumbnail using SDWebImage
-    [cellImageView setImageWithURL:[NSURL URLWithString:cellData.eventImageUrl]
-               placeholderImage:nil
-                      completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                             if (cellImage && !error) {
-                                 //DDLogVerbose(@"Fetched cell thumbnail image");
-                             } else {
-                                 DDLogError(@"Events: error fetching cell thumbnail image: %@", [error localizedDescription]);
-                                 // TODO: implement fallback
-                             }
-                         }];
+    [cellImageView sd_setImageWithURL:[NSURL URLWithString:cellData.eventImageUrl]
+                     placeholderImage:placeholderImage
+                            completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+                                if (error) {
+                                    DDLogError(@"Events: error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                }
+    }];
     
     return cell;
 }
