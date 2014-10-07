@@ -138,13 +138,16 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
-#pragma mark - NSNotification data fetch did happen method
+#pragma mark - Data fetch did happen NSNotifcation method
 
 - (void)dataFetchDidHappen
 {
-    DDLogVerbose(@"%s", __FUNCTION__);
+    DDLogVerbose(@"Contact VC: was notified that data fetch did happen");
     
+    // Reload cellArray data source
     [self initCellArrayDataSource];
+    
+    // Reload tableView with new data
     [self.tableView reloadData];
 }
 
@@ -199,6 +202,13 @@
         [self.tableView setScrollEnabled:NO];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    // Remove NSNotification observers
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
 }
 
 #pragma mark - Init cellArray data source

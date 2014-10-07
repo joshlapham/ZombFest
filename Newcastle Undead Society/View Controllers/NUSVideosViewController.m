@@ -179,6 +179,19 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
+#pragma mark - Data fetch did happen NSNotifcation method
+
+- (void)dataFetchDidHappen
+{
+    DDLogVerbose(@"Videos VC: was notified that data fetch did happen");
+    
+    // Reload cellArray data source
+    [self initCellArrayDataSource];
+    
+    // Reload tableView with new data
+    [self.tableView reloadData];
+}
+
 #pragma mark - Init methods
 
 - (void)viewDidLoad
@@ -196,6 +209,13 @@
     
     // Make tableView seperator insets extend to edges
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
+    // Register for dataFetchDidHappen NSNotification
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataFetchDidHappen)
+                                                 name:notificationName
+                                               object:nil];
     
     // Init cellArray data source
     [self initCellArrayDataSource];
@@ -215,6 +235,13 @@
         [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    // Remove NSNotification observers
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
 }
 
 #pragma mark - Init cellArray data source

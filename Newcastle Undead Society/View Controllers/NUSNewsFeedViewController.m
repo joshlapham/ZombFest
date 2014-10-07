@@ -128,7 +128,20 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
-#pragma mark - Init method
+#pragma mark - Data fetch did happen NSNotifcation method
+
+- (void)dataFetchDidHappen
+{
+    DDLogVerbose(@"News VC: was notified that data fetch did happen");
+    
+    // Reload cellArray data source
+    [self initCellArrayDataSource];
+    
+    // Reload tableView with new data
+    [self.tableView reloadData];
+}
+
+#pragma mark - Init methods
 
 - (void)viewDidLoad
 {
@@ -149,8 +162,22 @@
     // Set tableView background colour
     [self.tableView setBackgroundColor:[UIColor backgroundColorForMostViews]];
     
+    // Register for dataFetchDidHappen NSNotification
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataFetchDidHappen)
+                                                 name:notificationName
+                                               object:nil];
+    
     // Init cellArray data source
     [self initCellArrayDataSource];
+}
+
+- (void)dealloc
+{
+    // Remove NSNotification observers
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
 }
 
 #pragma mark - Init cellArray data source

@@ -448,6 +448,19 @@
     }
 }
 
+#pragma mark - Data fetch did happen NSNotifcation method
+
+- (void)dataFetchDidHappen
+{
+    DDLogVerbose(@"Event Detail VC: was notified that data fetch did happen");
+    
+    // Reload cellArray data source
+    [self initCellArrayDataSource];
+    
+    // Reload tableView with new data
+    [self.tableView reloadData];
+}
+
 #pragma mark - Init methods
 
 - (id)initWithChosenEventItem:(NUSEvent *)chosenEventValue
@@ -501,6 +514,13 @@
     // Add tableView to view
     [self.view addSubview:self.tableView];
     
+    // Register for dataFetchDidHappen NSNotification
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataFetchDidHappen)
+                                                 name:notificationName
+                                               object:nil];
+    
     // Init cellArray data source
     [self initCellArrayDataSource];
     
@@ -524,6 +544,10 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didSelectItemFromCollectionView" object:nil];
+    
+    // Remove data fetch observer
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
 }
 
 #pragma mark - Init cellArray data source
@@ -557,7 +581,7 @@
     // Add videos to cellArray if it isn't empty, so that Videos section won't appear if not needed
     if ([eventVideos count] > 0) {
         [cellArray addObject:eventVideos];
-        DDLogVerbose(@"Events: event %@ has video count: %d", chosenEvent.eventYear, [eventVideos count]);
+        DDLogVerbose(@"Events: event %@ has video count: %lu", chosenEvent.eventYear, (unsigned long)[eventVideos count]);
     }
     
     // Add articles to cellArray if it isn't empty, so that Articles section won't appear if not needed
@@ -572,7 +596,7 @@
     for (NSString *imageUrl in chosenEvent.eventGalleryImageUrls) {
         [photosForBrowser addObject:[MWPhoto photoWithURL:[NSURL URLWithString:imageUrl]]];
     }
-    DDLogVerbose(@"Photos for browser count: %d", [photosForBrowser count]);
+    DDLogVerbose(@"Photos for browser count: %lu", (unsigned long)[photosForBrowser count]);
 }
 
 #pragma mark - MWPhotoBrowser delegate methods

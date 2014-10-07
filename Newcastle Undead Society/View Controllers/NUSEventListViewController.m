@@ -158,7 +158,20 @@
     [self.navigationController pushViewController:[[NUSEventDetailViewController alloc] initWithChosenEventItem:cellData] animated:YES];
 }
 
-#pragma mark - Init method
+#pragma mark - Data fetch did happen NSNotifcation method
+
+- (void)dataFetchDidHappen
+{
+    DDLogVerbose(@"Event List VC: was notified that data fetch did happen");
+    
+    // Reload cellArray data source
+    [self initCellArrayDataSource];
+    
+    // NOTE: no need to reload collectionView here,
+    // as this is done in the initCellArrayDataSource method
+}
+
+#pragma mark - Init methods
 
 - (void)viewDidLoad
 {
@@ -170,11 +183,25 @@
     // Turn off navbar translucency
     [self.navigationController.navigationBar setTranslucent:NO];
     
+    // Register for dataFetchDidHappen NSNotification
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataFetchDidHappen)
+                                                 name:notificationName
+                                               object:nil];
+    
     // Init collectionView
     [self initCollectionView];
     
     // Init cellArray data source
     [self initCellArrayDataSource];
+}
+
+- (void)dealloc
+{
+    // Remove NSNotification observers
+    NSString *notificationName = @"NUSDataFetchDidHappen";
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
 }
 
 #pragma mark - Init collectionView
