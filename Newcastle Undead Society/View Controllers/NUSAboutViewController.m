@@ -41,9 +41,12 @@
     // Init imageView
     UIImageView *aboutImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, aboutContentScrollView.frame.size.width, 150)];
     
+    // Set placeholder image
+    UIImage *placeholderImage = [UIImage imageNamed:@"about_section_image"];
+    
     // Set image
     [aboutImage setImageWithURL:[NSURL URLWithString:cellData.imageUrl]
-               placeholderImage:nil
+               placeholderImage:placeholderImage
                       completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
                           if (cellImage && !error) {
                               DDLogVerbose(@"About: did finish fetching image");
