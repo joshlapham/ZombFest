@@ -11,6 +11,7 @@
 #import "NUSDataStore.h"
 #import "NUSSocialLink.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "JPLReachabilityManager.h"
 
 @interface NUSContactViewController () {
     NSMutableArray *cellArray;
@@ -121,7 +122,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NUSSocialLink *cellData = [cellArray objectAtIndex:indexPath.row];
+    if ([JPLReachabilityManager isUnreachable]) {
+        // Network is unreachable, so show alertView to user saying so
+        DDLogVerbose(@"Contact VC: network is unreachable, so unable to load link that was tapped");
+        [NUSDataStore showNetworkUnreachableAlertView];
+    } else {
+        // Network is reachable
+        DDLogVerbose(@"Contact VC: network IS reachable, loading link that was tapped ..");
+        // Load social media link that was tapped
+        [self loadSocialMediaLinkWithObject:[cellArray objectAtIndex:indexPath.row]];
+    }
+}
+
+#pragma mark - Load social media link that was tapped method
+
+- (void)loadSocialMediaLinkWithObject:(NUSSocialLink *)linkToLoad
+{
+    NUSSocialLink *cellData = linkToLoad;
     
     // Init NSURL with social link URL from cellArray
     NSURL *socialLinkUrl = [NSURL URLWithString:cellData.linkUrl];

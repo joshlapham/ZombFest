@@ -589,6 +589,27 @@
     return imageToReturn;
 }
 
+#pragma mark - Show network unreachable UIAlertView
+
++ (void)showNetworkUnreachableAlertView
+{
+    // Init text for alert view
+    NSString *alertViewTitle = NSLocalizedString(@"No Network Connectivity", @"Title of alert to user when no network is available");
+    NSString *alertViewMessage = NSLocalizedString(@"A network connection is required.", @"Message shown to user in alert when no network is available");
+    NSString *alertViewCancelButtonText = NSLocalizedString(@"Okay", @"Title of dismiss button shown in alert when no network is available");
+    
+    // Init alert view
+    UIAlertView *noNetworkAlertView = [[UIAlertView alloc] initWithTitle:alertViewTitle
+                                                                 message:alertViewMessage
+                                                                delegate:self
+                                                       cancelButtonTitle:alertViewCancelButtonText
+                                                       otherButtonTitles:nil,
+                                       nil];
+    
+    // Show alert view
+    [noNetworkAlertView show];
+}
+
 #pragma mark - Init method
 
 + (instancetype)sharedStore

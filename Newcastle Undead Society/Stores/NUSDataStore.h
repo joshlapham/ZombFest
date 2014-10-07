@@ -34,5 +34,6 @@
 + (BOOL)isCurrentlyPreloadingGalleryImages;
 + (UIImage *)returnEventImageForEventYear:(NSString *)eventYearToGet;
 + (void)postNotificationThatDataFetchDidHappen;
++ (void)showNetworkUnreachableAlertView;
 
 @end
