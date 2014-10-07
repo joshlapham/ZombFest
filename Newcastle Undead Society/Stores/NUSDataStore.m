@@ -347,7 +347,8 @@
     
     // About section
     for (NSDictionary *aboutContent in [jsonLocalDataDict objectForKey:@"aboutContent"]) {
-        NUSAboutContent *fetchedAboutContent = [[NUSAboutContent alloc] initWithTitle:[aboutContent objectForKey:@"title"] andContent:[aboutContent objectForKey:@"content"]];
+        
+        NUSAboutContent *fetchedAboutContent = [[NUSAboutContent alloc] initWithTitle:[aboutContent objectForKey:@"title"] andContent:[aboutContent objectForKey:@"content"] andImageUrl:[aboutContent objectForKey:@"imageUrl"]];
         
         [aboutSectionResults addObject:fetchedAboutContent];
     }
@@ -397,6 +398,7 @@
     NSData *videosToSave = [NSKeyedArchiver archivedDataWithRootObject:videoResults];
     [[NSUserDefaults standardUserDefaults] setObject:videosToSave forKey:@"videoResults"];
     
+    // TODO: review this key name and sync of NSUserDefaults
     // Flag that first data fetch has happened
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstDataFetchDidHappen"];
     
@@ -419,15 +421,16 @@
     // Zombie data file URL to download
     // PRODUCTION
     //NSURL *url = [NSURL URLWithString:@"http://leagueofevil.org/nus/zombie-data.json"];
-    NSURL *url = [NSURL URLWithString:@"http://zombies.leagueofevil.org/api/data.json"];
+    //NSURL *url = [NSURL URLWithString:@"http://zombies.leagueofevil.org/api/data.json"];
     // DEVELOPMENT
-    //NSURL *url = [NSURL URLWithString:@"http://192.168.1.15:3000/api/data.json"];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.1.15:3000/api/data.json"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // Path to downloaded JSON file
     NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[url lastPathComponent]];
     
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:path append:NO]];
@@ -436,6 +439,7 @@
         DDLogVerbose(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
     }];
     
+    // Set completion block for download operation
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         DDLogVerbose(@"dataStore: %@", [[[operation response] allHeaderFields] description]);
@@ -444,13 +448,26 @@
         NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
         
         if (error) {
+            
+            // Download was NOT successful
+            
             DDLogError(@"dataStore: %@", [error description]);
+            
+            // Hide network activity indicator
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
         } else {
+            
+            // Download was successful
+            
             DDLogVerbose(@"%@", fileAttributes);
             
             // Set isCurrentlyFetchingData flag in NSUserDefaults
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isCurrentlyFetchingData"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            // Hide network activity indicator
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             
             DDLogVerbose(@"dataStore: finished fetching JSON data, now parsing ..");
             
@@ -461,8 +478,15 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         DDLogError(@"dataStore: %@", [error description]);
+        
+        // Hide network activity indicator
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
     
+    // Show network activity indicator
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    // Start the download
     [operation start];
 }
 
@@ -509,6 +533,9 @@
         [prefetchUrls addObject:eventImageUrl];
     }
     
+    // Show network activity indicator
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     // Cache URL with SDWebImage
     [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:prefetchUrls
                                                       progress:nil
@@ -518,6 +545,9 @@
                                                          // Set isCurrentlyPreloadingGalleryImages flag in NSUserDefaults
                                                          [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isCurrentlyPreloadingGalleryImages"];
                                                          [[NSUserDefaults standardUserDefaults] synchronize];
+                                                         
+                                                         // Hide network activity indicator
+                                                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
 

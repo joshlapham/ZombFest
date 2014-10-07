@@ -42,7 +42,7 @@
     UIImageView *aboutImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, aboutContentScrollView.frame.size.width, 150)];
     
     // Set image
-    [aboutImage setImageWithURL:[NSURL URLWithString:@"https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xfa1/t31.0-8/s720x720/463879_356900251021564_1884291845_o.jpg"]
+    [aboutImage setImageWithURL:[NSURL URLWithString:cellData.imageUrl]
                placeholderImage:nil
                       completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
                           if (cellImage && !error) {

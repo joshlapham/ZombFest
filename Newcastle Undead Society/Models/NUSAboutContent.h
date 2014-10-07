@@ -12,9 +12,11 @@
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSString *imageUrl;
 
 // Init method
 - (id)initWithTitle:(NSString *)titleValue
-         andContent:(NSString *)contentValue;
+         andContent:(NSString *)contentValue
+        andImageUrl:(NSString *)imageUrlValue;
 
 @end

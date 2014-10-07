@@ -10,18 +10,20 @@
 
 @implementation NUSAboutContent
 
-@synthesize title, content;
+@synthesize title, content, imageUrl;
 
 #pragma mark - Init method
 
 - (id)initWithTitle:(NSString *)titleValue
          andContent:(NSString *)contentValue
+        andImageUrl:(NSString *)imageUrlValue
 {
     self = [super init];
     
     if (self) {
         title = titleValue;
         content = contentValue;
+        imageUrl = imageUrlValue;
     }
     
     DDLogVerbose(@"Init About content");
@@ -37,6 +39,7 @@
     if (self) {
         title = [aDecoder decodeObjectForKey:@"aboutTitle"];
         content = [aDecoder decodeObjectForKey:@"aboutContent"];
+        imageUrl = [aDecoder decodeObjectForKey:@"aboutImageUrl"];
     }
     return self;
 }
@@ -45,6 +48,7 @@
 {
     [aCoder encodeObject:title forKey:@"aboutTitle"];
     [aCoder encodeObject:content forKey:@"aboutContent"];
+    [aCoder encodeObject:imageUrl forKey:@"aboutImageUrl"];
 }
 
 @end
