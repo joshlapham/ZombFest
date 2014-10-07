@@ -317,7 +317,7 @@
             
             // Set cell thumbnail using SDWebImage
             [cellImageView setImageWithURL:[NSURL URLWithString:cellData.thumbUrl]
-                          placeholderImage:nil
+                          placeholderImage:[UIImage imageNamed:@"video-thumb-placeholder"]
                                  completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
                                      if (cellImage && !error) {
                                          //DDLogVerbose(@"Fetched cell thumbnail image");
