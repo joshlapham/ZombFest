@@ -159,17 +159,18 @@
     
     // If this is the event photo section, then add event photo image view ..
     if (section == 0) {
+        
         // Fetch event image
-        [eventDetailImageView setImageWithURL:[NSURL URLWithString:chosenEvent.eventImageUrl]
-                      placeholderImage:nil
-                             completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                                 if (cellImage && !error) {
-                                     //DDLogVerbose(@"Fetched cell thumbnail image");
-                                 } else {
-                                     DDLogError(@"Event detail: error fetching event image: %@", [error localizedDescription]);
-                                     // TODO: implement fallback
-                                 }
-                             }];
+        UIImage *placeholderImage = [NUSDataStore returnEventImageForEventYear:chosenEvent.eventYear];
+        
+        [eventDetailImageView sd_setImageWithURL:[NSURL URLWithString:chosenEvent.eventImageUrl]
+                                placeholderImage:placeholderImage
+                                         options:SDWebImageRetryFailed
+                                       completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+                                           if (error) {
+                                               DDLogError(@"Event detail: error fetching event image: %@", [error localizedDescription]);
+                                           }
+        }];
         
         // Add to headerImageView
         [headerImageView addSubview:eventDetailImageView];
@@ -315,17 +316,15 @@
             authorLabel.text = [NSString stringWithFormat:@"%@ %@", byString, cellData.author];
             yearLabel.text = cellData.year;
             
-            // Set cell thumbnail using SDWebImage
-            [cellImageView setImageWithURL:[NSURL URLWithString:cellData.thumbUrl]
-                          placeholderImage:[UIImage imageNamed:@"video-thumb-placeholder"]
-                                 completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                                     if (cellImage && !error) {
-                                         //DDLogVerbose(@"Fetched cell thumbnail image");
-                                     } else {
-                                         DDLogError(@"Events: error fetching video cell thumbnail image: %@", [error localizedDescription]);
-                                         // TODO: implement fallback
-                                     }
-                                 }];
+            // Set video cell thumbnail using SDWebImage
+            [cellImageView sd_setImageWithURL:[NSURL URLWithString:cellData.thumbUrl]
+                             placeholderImage:[UIImage imageNamed:@"video-thumb-placeholder"]
+                                      options:SDWebImageRetryFailed
+                                    completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+                                        if (error) {
+                                            DDLogError(@"Events: error fetching video cell thumbnail image: %@", [error localizedDescription]);
+                                        }
+            }];
             
             return cell;
         }

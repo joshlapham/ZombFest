@@ -132,26 +132,7 @@
     titleLabel.font = titleLabelFont;
     
     // Set placeholder image
-    UIImage *placeholderImage;
-    
-    if ([cellData.eventYear isEqualToString:@"2009"]) {
-        placeholderImage = [UIImage imageNamed:@"event-image-2009"];
-        
-    } else if ([cellData.eventYear isEqualToString:@"2010"]) {
-        placeholderImage = [UIImage imageNamed:@"event-image-2010"];
-        
-    } else if ([cellData.eventYear isEqualToString:@"2011"]) {
-        placeholderImage = [UIImage imageNamed:@"event-image-2011"];
-        
-    } else if ([cellData.eventYear isEqualToString:@"2012"]) {
-        placeholderImage = [UIImage imageNamed:@"event-image-2012"];
-        
-    } else if ([cellData.eventYear isEqualToString:@"2013"]) {
-        placeholderImage = [UIImage imageNamed:@"event-image-2013"];
-        
-    } else if ([cellData.eventYear isEqualToString:@"2014"]) {
-        placeholderImage = [UIImage imageNamed:@"event-image-2014"];
-    }
+    UIImage *placeholderImage = [NUSDataStore returnEventImageForEventYear:cellData.eventYear];
     
     // Set cell thumbnail using SDWebImage
     [cellImageView sd_setImageWithURL:[NSURL URLWithString:cellData.eventImageUrl]

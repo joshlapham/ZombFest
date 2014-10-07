@@ -551,6 +551,34 @@
     }];
 }
 
+#pragma mark - Return event image for event year method
+
++ (UIImage *)returnEventImageForEventYear:(NSString *)eventYearToGet
+{
+    UIImage *imageToReturn;
+    
+    if ([eventYearToGet isEqualToString:@"2009"]) {
+        imageToReturn = [UIImage imageNamed:@"event-image-2009"];
+        
+    } else if ([eventYearToGet isEqualToString:@"2010"]) {
+        imageToReturn = [UIImage imageNamed:@"event-image-2010"];
+        
+    } else if ([eventYearToGet isEqualToString:@"2011"]) {
+        imageToReturn = [UIImage imageNamed:@"event-image-2011"];
+        
+    } else if ([eventYearToGet isEqualToString:@"2012"]) {
+        imageToReturn = [UIImage imageNamed:@"event-image-2012"];
+        
+    } else if ([eventYearToGet isEqualToString:@"2013"]) {
+        imageToReturn = [UIImage imageNamed:@"event-image-2013"];
+        
+    } else if ([eventYearToGet isEqualToString:@"2014"]) {
+        imageToReturn = [UIImage imageNamed:@"event-image-2014"];
+    }
+    
+    return imageToReturn;
+}
+
 #pragma mark - Init method
 
 + (instancetype)sharedStore

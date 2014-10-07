@@ -83,6 +83,53 @@
     }
 }
 
+#pragma mark - Fetch data method
+
+- (void)fetchZombieData
+{
+    // Check if this is first load, if so then use data file included with app instead
+    if ([NUSDataStore hasFirstDataFetchHappened] == YES) {
+        DDLogVerbose(@"First data fetch has happened");
+        
+        // Download new copy of data file
+        if ([JPLReachabilityManager isReachable]) {
+            
+            if ([NUSDataStore isCurrentlyFetchingZombieJSONDataFile] == NO) {
+                [NUSDataStore downloadZombieJSONDataFileToDevice];
+            }
+            
+            // Preload all gallery images
+            if ([NUSDataStore isCurrentlyPreloadingGalleryImages] == NO) {
+                [self preloadAllGalleryImages];
+            }
+            
+        } else if ([JPLReachabilityManager isUnreachable]) {
+            
+            // No network is available, and first data fetch has happened,
+            // so check that a JSON file has been downloaded to the device
+            // and use that for the data
+            if ([NUSDataStore returnPathToLocalZombieJSONDataFile]) {
+                DDLogVerbose(@"dataStore: found downloaded JSON file at path: %@", [NUSDataStore returnPathToLocalZombieJSONDataFile]);
+                
+                // Parse JSON file
+                [NUSDataStore parseZombieJSONDataFileWithFilePath:[NUSDataStore returnPathToLocalZombieJSONDataFile]];
+            }
+            
+            // TODO: post notification that data load has happened? Maybe?
+        }
+        
+    } else {
+        DDLogVerbose(@" First data fetch has NOT happened, using local data file");
+        // Is first load, use local data file
+        [NUSDataStore parseZombieJSONDataFileWithFilePath:[NUSDataStore returnPathToLocalZombieJSONDataFileIncludedOnDevice]];
+        
+        // Preload all gallery images
+        if ([NUSDataStore isCurrentlyPreloadingGalleryImages] == NO) {
+            [self preloadAllGalleryImages];
+        }
+    }
+}
+
 #pragma mark - App Delegate methods
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -113,34 +160,7 @@
                                                object:nil];
     
     // Fetch data
-    // Check if this is first load, if so then use data file included with app instead
-    if ([NUSDataStore hasFirstDataFetchHappened] == YES) {
-        DDLogVerbose(@"First data fetch has happened");
-        
-        // Download new copy of data file
-        if ([JPLReachabilityManager isReachable]) {
-            
-            if ([NUSDataStore isCurrentlyFetchingZombieJSONDataFile] == NO) {
-                [NUSDataStore downloadZombieJSONDataFileToDevice];
-            }
-            
-            // Preload all gallery images
-            if ([NUSDataStore isCurrentlyPreloadingGalleryImages] == NO) {
-                [self preloadAllGalleryImages];
-            }
-            
-        }
-        
-    } else {
-        DDLogVerbose(@" First data fetch has NOT happened, using local data file");
-        // Is first load, use local data file
-        [NUSDataStore parseZombieJSONDataFileWithFilePath:[NUSDataStore returnPathToLocalZombieJSONDataFileIncludedOnDevice]];
-        
-        // Preload all gallery images
-        if ([NUSDataStore isCurrentlyPreloadingGalleryImages] == NO) {
-            [self preloadAllGalleryImages];
-        }
-    }
+    [self fetchZombieData];
     
     return YES;
 }

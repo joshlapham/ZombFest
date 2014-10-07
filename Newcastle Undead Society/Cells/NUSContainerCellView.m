@@ -33,8 +33,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DDLogVerbose(@"%s", __FUNCTION__);
-    
     // Pass indexPath to notification so MWPhotoBrowser can start on photo that was just tapped
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectItemFromCollectionView" object:indexPath];
 }
@@ -44,16 +42,14 @@
     NUSArticleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCollectionViewCell" forIndexPath:indexPath];
     
     // Set cell image using SDWebImage
-    [cell.articleImage setImageWithURL:[NSURL URLWithString:[self.collectionData objectAtIndex:indexPath.row]]
-                  placeholderImage:nil
-                         completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                             if (cellImage && !error) {
-                                 //DDLogVerbose(@"Fetched cell thumbnail image");
-                             } else {
-                                 DDLogError(@"Gallery: error fetching cell thumbnail image: %@", [error localizedDescription]);
-                                 // TODO: implement fallback
-                             }
-                         }];
+    [cell.articleImage sd_setImageWithURL:[NSURL URLWithString:[self.collectionData objectAtIndex:indexPath.row]]
+                         placeholderImage:[UIImage imageNamed:@"gallery-image-placeholder"]
+                                  options:SDWebImageRetryFailed
+                                completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+                                    if (error) {
+                                        DDLogError(@"Gallery: error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                    }
+    }];
     
     return cell;
 }

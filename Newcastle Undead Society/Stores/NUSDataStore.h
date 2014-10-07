@@ -32,5 +32,6 @@
 + (void)parseZombieJSONDataFileWithFilePath:(NSString *)pathToJsonDataFile;
 + (BOOL)isCurrentlyFetchingZombieJSONDataFile;
 + (BOOL)isCurrentlyPreloadingGalleryImages;
++ (UIImage *)returnEventImageForEventYear:(NSString *)eventYearToGet;
 
 @end
