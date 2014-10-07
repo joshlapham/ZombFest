@@ -45,16 +45,14 @@
     UIImage *placeholderImage = [UIImage imageNamed:@"about_section_image"];
     
     // Set image
-    [aboutImage setImageWithURL:[NSURL URLWithString:cellData.imageUrl]
-               placeholderImage:placeholderImage
-                      completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                          if (cellImage && !error) {
-                              DDLogVerbose(@"About: did finish fetching image");
-                          } else {
-                              DDLogError(@"About: error fetching image for above About content: %@", [error localizedDescription]);
-                              // TODO: implement fallback
-                          }
-                      }];
+    [aboutImage sd_setImageWithURL:[NSURL URLWithString:cellData.imageUrl]
+                  placeholderImage:placeholderImage
+                           options:SDWebImageRetryFailed
+                         completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+                             if (error) {
+                                 DDLogError(@"About: error fetching image for About content: %@", [error localizedDescription]);
+                             }
+    }];
     
     // Init UITextView
     UITextView *aboutContentView = [[UITextView alloc] initWithFrame:aboutContentScrollView.frame];

@@ -107,16 +107,14 @@
     }
     
     // Set cell thumbnail using SDWebImage
-    [iconImage setImageWithURL:[NSURL URLWithString:cellData.linkImageUrl]
-              placeholderImage:placeholderImage
-                     completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                         if (cellImage && !error) {
-                             //DDLogVerbose(@"Fetched cell thumbnail image");
-                         } else {
-                             DDLogError(@"Contact: error fetching cell thumbnail image: %@", [error localizedDescription]);
-                             // TODO: implement fallback
-                         }
-                     }];
+    [iconImage sd_setImageWithURL:[NSURL URLWithString:cellData.linkImageUrl]
+                 placeholderImage:placeholderImage
+                          options:SDWebImageRetryFailed
+                        completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+                            if (error) {
+                                DDLogError(@"Contact: error fetching cell thumbnail image: %@", [error localizedDescription]);
+                            }
+    }];
     
     return cell;
 }

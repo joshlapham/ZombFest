@@ -65,7 +65,7 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:dateSortDescriptor];
     NSArray *sortedArray = [newsItemsArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    DDLogVerbose(@"Return news items count, sorted by date: %d", [sortedArray count]);
+    DDLogVerbose(@"Return news items count, sorted by date: %lu", [sortedArray count]);
     
     return sortedArray;
 }
@@ -76,7 +76,7 @@
     NSData *aboutSectionData = [[NSUserDefaults standardUserDefaults] objectForKey:@"aboutSectionResults"];
     NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:aboutSectionData];
     
-    DDLogVerbose(@"Return About section count: %d", [arrayToReturn count]);
+    DDLogVerbose(@"Return About section count: %lu", (unsigned long)[arrayToReturn count]);
     
     return arrayToReturn;
 }
@@ -87,7 +87,7 @@
     NSData *pastEventsData = [[NSUserDefaults standardUserDefaults] objectForKey:@"pastEventResults"];
     NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:pastEventsData];
     
-    DDLogVerbose(@"Return past events count: %d", [arrayToReturn count]);
+    DDLogVerbose(@"Return past events count: %lu", (unsigned long)[arrayToReturn count]);
     
     // TODO: implement this better using NSSortDescriptor to sort by year,
     // rather than just reversing the array
@@ -103,7 +103,7 @@
     NSData *futureEventsData = [[NSUserDefaults standardUserDefaults] objectForKey:@"futureEventResults"];
     NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:futureEventsData];
     
-    DDLogVerbose(@"Return future events count: %d", [arrayToReturn count]);
+    DDLogVerbose(@"Return future events count: %lu", (unsigned long)[arrayToReturn count]);
     
     return arrayToReturn;
 }
@@ -114,7 +114,7 @@
     NSData *videoData = [[NSUserDefaults standardUserDefaults] objectForKey:@"videoResults"];
     NSArray *arrayToReturn = [NSKeyedUnarchiver unarchiveObjectWithData:videoData];
     
-    DDLogVerbose(@"Return all videos count: %d", [arrayToReturn count]);
+    DDLogVerbose(@"Return all videos count: %lu", (unsigned long)[arrayToReturn count]);
     
     return arrayToReturn;
 }
@@ -137,7 +137,7 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:yearSortDescriptor];
     NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    DDLogVerbose(@"Return winning videos count: %d, sorted by year", [sortedArray count]);
+    DDLogVerbose(@"Return winning videos count: %lu, sorted by year", (unsigned long)[sortedArray count]);
     
     return sortedArray;
 }
@@ -160,7 +160,7 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:yearSortDescriptor];
     NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    DDLogVerbose(@"Return entrant videos count: %d, sorted by year", [sortedArray count]);
+    DDLogVerbose(@"Return entrant videos count: %lu, sorted by year", (unsigned long)[sortedArray count]);
     
     return sortedArray;
 }
@@ -183,7 +183,7 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:yearSortDescriptor];
     NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    DDLogVerbose(@"Return other videos count: %d, sorted by year", [sortedArray count]);
+    DDLogVerbose(@"Return other videos count: %lu, sorted by year", (unsigned long)[sortedArray count]);
     
     return sortedArray;
 }
@@ -209,7 +209,7 @@
     NSArray *sortDescriptors = [NSArray arrayWithObjects:winnerSortDescriptor, entrantSortDescriptor, nil];
     NSArray *sortedArray = [videosArray sortedArrayUsingDescriptors:sortDescriptors];
     
-    DDLogVerbose(@"Return videos for event year %@ count: %d, sorted by winners and entrants", eventYear, [sortedArray count]);
+    DDLogVerbose(@"Return videos for event year %@ count: %lu, sorted by winners and entrants", eventYear, (unsigned long)[sortedArray count]);
     
     return sortedArray;
 }
@@ -260,7 +260,7 @@
         [allArticlesResults addObject:fetchedArticle];
     }
     
-    DDLogVerbose(@"ALL ARTICLES COUNT: %d", [allArticlesResults count]);
+    DDLogVerbose(@"ALL ARTICLES COUNT: %lu", (unsigned long)[allArticlesResults count]);
     
     // Past events
     for (NSDictionary *pastEvent in [jsonLocalDataDict objectForKey:@"pastEvents"]) {
@@ -436,7 +436,7 @@
     [operation setOutputStream:[NSOutputStream outputStreamToFileAtPath:path append:NO]];
     
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        DDLogVerbose(@"bytesRead: %u, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", bytesRead, totalBytesRead, totalBytesExpectedToRead);
+        DDLogVerbose(@"bytesRead: %lu, totalBytesRead: %lld, totalBytesExpectedToRead: %lld", (unsigned long)bytesRead, totalBytesRead, totalBytesExpectedToRead);
     }];
     
     // Set completion block for download operation
@@ -540,7 +540,7 @@
     [[SDWebImagePrefetcher sharedImagePrefetcher] prefetchURLs:prefetchUrls
                                                       progress:nil
                                                      completed:^(NSUInteger finishedCount, NSUInteger skippedCount) {
-                                                         DDLogVerbose(@"Prefetched images count: %d, skipped: %d", finishedCount, skippedCount);
+                                                         DDLogVerbose(@"Prefetched images count: %lu, skipped: %lu", (unsigned long)finishedCount, (unsigned long)skippedCount);
                                                          
                                                          // Set isCurrentlyPreloadingGalleryImages flag in NSUserDefaults
                                                          [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isCurrentlyPreloadingGalleryImages"];

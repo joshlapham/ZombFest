@@ -143,16 +143,14 @@
     yearLabel.text = cellData.year;
     
     // Set cell thumbnail using SDWebImage
-    [cellImageView setImageWithURL:[NSURL URLWithString:cellData.thumbUrl]
-                  placeholderImage:[UIImage imageNamed:@"video-thumb-placeholder"]
-                         completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                             if (cellImage && !error) {
-                                 //DDLogVerbose(@"Fetched cell thumbnail image");
-                             } else {
-                                 DDLogError(@"Videos: error fetching cell thumbnail image: %@", [error localizedDescription]);
-                                 // TODO: implement fallback
-                             }
-                         }];
+    [cellImageView sd_setImageWithURL:[NSURL URLWithString:cellData.thumbUrl]
+                     placeholderImage:[UIImage imageNamed:@"video-thumb-placeholder"]
+                              options:SDWebImageRetryFailed
+                            completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType, NSURL *imageUrl) {
+                                if (error) {
+                                    DDLogError(@"Videos: error fetching cell thumbnail image: %@", [error localizedDescription]);
+                                }
+    }];
     
     return cell;
 }

@@ -36,7 +36,7 @@ andGalleryImageUrls:(NSArray *)galleryImageUrlsValue
         isPastEvent = pastEventOrNot;
     }
     
-    DDLogVerbose(@"Init event: %@, gallery URL count: %d, is past: %hhd, content: %@, imageUrl: %@, articles count: %d, date: %@", eventYear, [eventGalleryImageUrls count], isPastEvent, eventContent, eventImageUrl, [eventArticles count], eventDate);
+    DDLogVerbose(@"Init event: %@, gallery URL count: %lu, is past: %hhd, content: %@, imageUrl: %@, articles count: %lu, date: %@", eventYear, [eventGalleryImageUrls count], isPastEvent, eventContent, eventImageUrl, (unsigned long)[eventArticles count], eventDate);
     
     return self;
 }
