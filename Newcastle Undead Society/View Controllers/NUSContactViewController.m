@@ -93,17 +93,30 @@
     // Set cell text
     titleLabel.text = cellData.linkTitle;
     
+    // Determine the placeholder image based on the link title
+    UIImage *placeholderImage;
+    
+    if ([cellData.linkTitle isEqualToString:@"Facebook"]) {
+        placeholderImage = [UIImage imageNamed:@"contact-facebook"];
+    } else if ([cellData.linkTitle isEqualToString:@"Twitter"]) {
+        placeholderImage = [UIImage imageNamed:@"contact-twitter"];
+    } else if ([cellData.linkTitle isEqualToString:@"Tumblr"]) {
+        placeholderImage = [UIImage imageNamed:@"contact-tumblr"];
+    } else {
+        placeholderImage = nil;
+    }
+    
     // Set cell thumbnail using SDWebImage
     [iconImage setImageWithURL:[NSURL URLWithString:cellData.linkImageUrl]
-                  placeholderImage:nil
-                         completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
-                             if (cellImage && !error) {
-                                 //DDLogVerbose(@"Fetched cell thumbnail image");
-                             } else {
-                                 DDLogError(@"Contact: error fetching cell thumbnail image: %@", [error localizedDescription]);
-                                 // TODO: implement fallback
-                             }
-                         }];
+              placeholderImage:placeholderImage
+                     completed:^(UIImage *cellImage, NSError *error, SDImageCacheType cacheType) {
+                         if (cellImage && !error) {
+                             //DDLogVerbose(@"Fetched cell thumbnail image");
+                         } else {
+                             DDLogError(@"Contact: error fetching cell thumbnail image: %@", [error localizedDescription]);
+                             // TODO: implement fallback
+                         }
+                     }];
     
     return cell;
 }
