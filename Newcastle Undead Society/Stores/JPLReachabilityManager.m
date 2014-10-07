@@ -61,7 +61,7 @@
     
     if (self) {
         // Init Reachability
-        self.reachability = [Reachability reachabilityWithHostname:@"http://zombies.leagueofevil.org"];
+        self.reachability = [Reachability reachabilityWithHostname:@"www.duckduckgo.com"];
         
 //        // Reachable block
 //        self.reachability.reachableBlock = ^(Reachability *reach) {
