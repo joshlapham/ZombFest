@@ -118,12 +118,12 @@
     } else {
         // Network is reachable
         DDLogVerbose(@"News VC: network IS reachable, loading link that was tapped ..");
-        // Load social media link that was tapped
+        // Load news feed link that was tapped
         [self loadNewsFeedItemWithObject:[_cellArray objectAtIndex:indexPath.row]];
     }
 }
 
-#pragma mark - Load social media link that was tapped method
+#pragma mark - Load news feed link that was tapped method
 
 - (void)loadNewsFeedItemWithObject:(NUSNewsItem *)linkToLoad
 {
@@ -141,7 +141,7 @@
     // Set back button text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"News", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    // Show web view controller with social media link
+    // Show web view controller with news feed link
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 

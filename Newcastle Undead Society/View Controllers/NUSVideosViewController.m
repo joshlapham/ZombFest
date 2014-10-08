@@ -11,6 +11,7 @@
 #import "PBWebViewController.h"
 #import "NUSDataStore.h"
 #import "NUSVideo.h"
+#import "JPLReachabilityManager.h"
 
 @interface NUSVideosViewController () {
     NSMutableArray *cellArray;
@@ -159,9 +160,25 @@
 {
     NSArray *sectionContents = [cellArray objectAtIndex:indexPath.section];
     
-    NUSVideo *cellData = [sectionContents objectAtIndex:indexPath.row];
+    if ([JPLReachabilityManager isUnreachable]) {
+        // Network is unreachable, so show alertView to user saying so
+        DDLogVerbose(@"Videos VC: network is unreachable, so unable to load link that was tapped");
+        [NUSDataStore showNetworkUnreachableAlertView];
+    } else {
+        // Network is reachable
+        DDLogVerbose(@"Videos VC: network IS reachable, loading link that was tapped ..");
+        // Load video link that was tapped
+        [self loadVideoLinkWithObject:[sectionContents objectAtIndex:indexPath.row]];
+    }
+}
+
+#pragma mark - Load video link that was tapped method
+
+- (void)loadVideoLinkWithObject:(NUSVideo *)linkToLoad
+{
+    NUSVideo *cellData = linkToLoad;
     
-    // Init string with title of social link
+    // Init string with title of video link
     NSString *videoLinkTitle = cellData.title;
     
     // Init NSURL with video link URL from cellArray
