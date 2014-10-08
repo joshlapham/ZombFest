@@ -51,54 +51,68 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView *reusableView = nil;
-    NSString *headerTitle;
+    UICollectionReusableView *reusableView;
     
     if (kind == UICollectionElementKindSectionHeader) {
         
-        switch (indexPath.section) {
-            case 0:
-                
-                // Check if there are any future events and set header text accordingly
-                if ([cellArray count] > 1) {
-                    // More than one means there ARE future events
-                    headerTitle = NSLocalizedString(@"Future Events", nil);
-                } else {
-                    // There are NO future events
-                    headerTitle = NSLocalizedString(@"Past Events", nil);
-                }
-                
-                break;
-                
-            case 1:
-                // Past Events
-                headerTitle = NSLocalizedString(@"Past Events", nil);
-                break;
-                
-            default:
-                break;
-        }
-        
         reusableView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SectionHeader" forIndexPath:indexPath];
         
-        // Init section header label
-        UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:reusableView.bounds];
-        sectionHeaderLabel.backgroundColor = [UIColor clearColor];
-        sectionHeaderLabel.adjustsFontSizeToFitWidth = YES;
-        sectionHeaderLabel.textAlignment = NSTextAlignmentCenter;
-        sectionHeaderLabel.text = headerTitle;
-        
-        // Set header text colour
-        // Dark Pastel Red
-        sectionHeaderLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
-        
-        // Set header font
-        UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
-        sectionHeaderLabel.font = headerLabelFont;
-        
-        [reusableView addSubview:sectionHeaderLabel];
+        // Configure header label text
+        [self updateSectionHeader:reusableView forIndexPath:indexPath];
     }
+    
     return reusableView;
+}
+
+- (void)updateSectionHeader:(UICollectionReusableView *)header forIndexPath:(NSIndexPath *)indexPath
+{
+    // Clear out old header text labels so they don't stack up
+    // NOTE - this was to fix a bug where that happened
+    [[header subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    // Init header title text
+    NSString *headerTitle;
+    
+    switch (indexPath.section) {
+        case 0:
+            
+            // Check if there are any future events and set header text accordingly
+            if ([cellArray count] > 1) {
+                // More than one means there ARE future events
+                headerTitle = NSLocalizedString(@"Future Events", nil);
+            } else {
+                // There are NO future events
+                headerTitle = NSLocalizedString(@"Past Events", nil);
+            }
+            
+            break;
+            
+        case 1:
+            // Past Events
+            headerTitle = NSLocalizedString(@"Past Events", nil);
+            break;
+            
+        default:
+            break;
+    }
+    
+    // Set text of header label
+    // Init section header label
+    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:header.bounds];
+    sectionHeaderLabel.backgroundColor = [UIColor clearColor];
+    sectionHeaderLabel.adjustsFontSizeToFitWidth = YES;
+    sectionHeaderLabel.textAlignment = NSTextAlignmentCenter;
+    sectionHeaderLabel.text = headerTitle;
+    
+    // Set header text colour
+    // Dark Pastel Red
+    sectionHeaderLabel.textColor = [UIColor colorWithRed:0.75 green:0.22 blue:0.17 alpha:1];
+    
+    // Set header font
+    UIFont *headerLabelFont = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:20];
+    sectionHeaderLabel.font = headerLabelFont;
+    
+    [header addSubview:sectionHeaderLabel];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
