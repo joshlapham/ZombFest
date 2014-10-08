@@ -680,13 +680,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Josh Lapham (7HSH26BZGU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Josh Lapham (7HSH26BZGU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Newcastle Undead Society/Newcastle Undead Society-Prefix.pch";
 				INFOPLIST_FILE = "Newcastle Undead Society/Newcastle Undead Society-Info.plist";
 				PRODUCT_NAME = Zombfest;
-				PROVISIONING_PROFILE = "EAB57CD7-3139-4E6E-87B4-019760260B09";
+				PROVISIONING_PROFILE = "fc586d3b-9ef3-4931-94ba-183b2c66c715";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
