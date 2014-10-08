@@ -10,6 +10,7 @@
 #import "NUSDataStore.h"
 #import "NUSNewsItem.h"
 #import "PBWebViewController.h"
+#import "JPLReachabilityManager.h"
 
 @interface NUSNewsFeedViewController () {
     NSMutableArray *_cellArray;
@@ -110,9 +111,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NUSNewsItem *cellData = [_cellArray objectAtIndex:indexPath.row];
+    if ([JPLReachabilityManager isUnreachable]) {
+        // Network is unreachable, so show alertView to user saying so
+        DDLogVerbose(@"News VC: network is unreachable, so unable to load link that was tapped");
+        [NUSDataStore showNetworkUnreachableAlertView];
+    } else {
+        // Network is reachable
+        DDLogVerbose(@"News VC: network IS reachable, loading link that was tapped ..");
+        // Load social media link that was tapped
+        [self loadNewsFeedItemWithObject:[_cellArray objectAtIndex:indexPath.row]];
+    }
+}
+
+#pragma mark - Load social media link that was tapped method
+
+- (void)loadNewsFeedItemWithObject:(NUSNewsItem *)linkToLoad
+{
+    NUSNewsItem *cellData = linkToLoad;
     
-    // Init NSURL with social link URL from cellArray
+    // Init NSURL with news item URL from cellArray
     NSURL *newsLinkUrl = [NSURL URLWithString:cellData.url];
     
     // Initialize the web view controller and set its' URL and title
@@ -121,7 +138,7 @@
     // TODO: what to use for title?
     //webViewController.title = @"News";
     
-    // Set back button of navbar
+    // Set back button text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"News", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
     
     // Show web view controller with social media link
