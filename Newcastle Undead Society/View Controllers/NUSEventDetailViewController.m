@@ -15,6 +15,7 @@
 #import "NUSVideo.h"
 #import "PBWebViewController.h"
 #import "NUSEventMapViewController.h"
+#import "JPLReachabilityManager.h"
 
 @interface NUSEventDetailViewController () <MWPhotoBrowserDelegate>
 
@@ -381,25 +382,30 @@
     
     if (indexPath.section == 2 && chosenEvent.isPastEvent == YES) {
         
-        NUSVideo *cellData = [eventVideos objectAtIndex:indexPath.row];
         
-        // Init string with title of social link
-        NSString *videoLinkTitle = cellData.title;
-        
-        // Init NSURL with video link URL from cellArray
-        NSURL *videoLinkUrl = [NSURL URLWithString:cellData.videoUrl];
-        
-        // Initialize the web view controller and set its' URL
-        PBWebViewController *webViewController = [[PBWebViewController alloc] init];
-        webViewController.URL = videoLinkUrl;
-        // TODO: localize this title?
-        webViewController.title = videoLinkTitle;
-        
-        // Set back button text to be chosen event year
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:chosenEvent.eventYear style:UIBarButtonItemStylePlain target:nil action:nil];
-        
-        // Show web view controller with video link
-        [self.navigationController pushViewController:webViewController animated:YES];
+        if ([JPLReachabilityManager isUnreachable]) {
+            
+            // Network is unreachable, so show alertView to user saying so
+            DDLogVerbose(@"Event Detail VC: network is unreachable, so unable to load link that was tapped");
+            [NUSDataStore showNetworkUnreachableAlertView];
+            
+        } else {
+            
+            // Network is reachable
+            DDLogVerbose(@"Event Detail VC: network IS reachable, loading link that was tapped ..");
+            
+            NUSVideo *cellData = [eventVideos objectAtIndex:indexPath.row];
+            
+            // Init string with title of video link
+            // TODO: localize this title?
+            NSString *videoLinkTitle = cellData.title;
+            
+            // Init NSURL with video link URL from cellArray
+            NSURL *videoLinkUrl = [NSURL URLWithString:cellData.videoUrl];
+            
+            // Show web view controller with video link
+            [self loadLinkThatWasTappedWithUrl:videoLinkUrl andTitle:videoLinkTitle andBackButtonTitle:chosenEvent.eventYear];
+        }
         
     } else if (indexPath.section == 1 && chosenEvent.isPastEvent == NO) {
         
@@ -426,26 +432,45 @@
         // Articles section (for past events only)
         //
         
-        NSDictionary *cellData = [chosenEvent.eventArticles objectAtIndex:indexPath.row];
-        
-        // Init string with title of social link
-        NSString *articleLinkTitle = [cellData objectForKey:@"title"];
-        
-        // Init NSURL with video link URL from cellArray
-        NSURL *articleLinkUrl = [NSURL URLWithString:[cellData objectForKey:@"url"]];
-        
-        // Initialize the web view controller and set its' URL
-        PBWebViewController *webViewController = [[PBWebViewController alloc] init];
-        webViewController.URL = articleLinkUrl;
-        webViewController.title = articleLinkTitle;
-        
-        // Set back button text to be chosen event year
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:chosenEvent.eventYear style:UIBarButtonItemStylePlain target:nil action:nil];
-        
-        // Show web view controller with video link
-        [self.navigationController pushViewController:webViewController animated:YES];
-
+        if ([JPLReachabilityManager isUnreachable]) {
+            
+            // Network is unreachable, so show alertView to user saying so
+            DDLogVerbose(@"Event Detail VC: network is unreachable, so unable to load link that was tapped");
+            [NUSDataStore showNetworkUnreachableAlertView];
+            
+        } else {
+            
+            // Network is reachable
+            DDLogVerbose(@"Event Detail VC: network IS reachable, loading link that was tapped ..");
+            
+            NSDictionary *cellData = [chosenEvent.eventArticles objectAtIndex:indexPath.row];
+            
+            // Init string with title of social link
+            NSString *articleLinkTitle = [cellData objectForKey:@"title"];
+            
+            // Init NSURL with video link URL from cellArray
+            NSURL *articleLinkUrl = [NSURL URLWithString:[cellData objectForKey:@"url"]];
+            
+            // Show web view controller with article link
+            [self loadLinkThatWasTappedWithUrl:articleLinkUrl andTitle:articleLinkTitle andBackButtonTitle:chosenEvent.eventYear];
+        }
     }
+}
+
+#pragma mark - Load URL with PBWebViewController method
+
+- (void)loadLinkThatWasTappedWithUrl:(NSURL *)urlToLoad andTitle:(NSString *)titleToLoad andBackButtonTitle:(NSString *)backButtonTextToUse
+{
+    // Initialize the web view controller and set its' URL and title
+    PBWebViewController *webViewController = [[PBWebViewController alloc] init];
+    webViewController.URL = urlToLoad;
+    webViewController.title = titleToLoad;
+    
+    // Set back button text
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:backButtonTextToUse style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    // Show web view controller with social media link
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 #pragma mark - Data fetch did happen NSNotifcation method
